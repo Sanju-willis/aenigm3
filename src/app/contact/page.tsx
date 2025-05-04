@@ -71,7 +71,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Send us a message</h2>
               <div className="mt-8">
-                <ContactForm />
+              <ContactForm open={true} onClose={() => {}} />
               </div>
             </div>
           </div>

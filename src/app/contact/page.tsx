@@ -1,11 +1,7 @@
-"use client";
-
-import React from 'react';
-import { Metadata } from 'next';
 import ContactForm from '@/components/forms/ContactForm';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Contact Us - Aenigm3 Labs',
   description: 'Get in touch with us to discuss your digital marketing needs. We\'re here to help drive your business growth.',
 };
@@ -73,7 +69,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Send us a message</h2>
               <div className="mt-8">
-              <ContactForm open={true} onClose={() => {}} />
+                <ContactForm open={true} onClose={() => {}} />
               </div>
             </div>
           </div>
@@ -81,4 +77,4 @@ export default function ContactPage() {
       </div>
     </div>
   );
-} 
+}

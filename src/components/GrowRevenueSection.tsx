@@ -9,17 +9,17 @@ const features = [
   {
     title: "Website Audit & Analysis",
     description: "Identify conversion blockers and sales leaks",
-    img: "/images/audit-analysis.svg",
+    img: "/images/website-audit.png",
   },
   {
     title: "Actionable Strategies",
     description: "Steps to boost sales and reduce drop-offs",
-    img: "/images/actionable-strategies.svg",
+    img: "/images/actionable-strategies.png",
   },
   {
     title: "Personalized Recommendations",
     description: "Expert insights tailored to your business needs",
-    img: "/images/personalized-recommendations.svg",
+    img: "/images/personalized-recommendations.png",
   },
 ];
 

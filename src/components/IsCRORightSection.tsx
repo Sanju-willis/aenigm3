@@ -28,7 +28,7 @@ export default function IsCRORightSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <img src="/images/cro-illustration.svg" alt="CRO" className="mx-auto h-64" />
+            <img src="/images/cro-illustration.png" alt="CRO" className="mx-auto h-64" />
           </motion.div>
 
           {/* Right List */}

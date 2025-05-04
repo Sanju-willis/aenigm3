@@ -13,7 +13,7 @@ const steps = [
       "User behavior analysis",
       "Identify high-risk pages",
     ],
-    img: "/images/research.svg", // replace with real path
+    img: "/images/research.png",
   },
   {
     title: "A/B Testing & UX Optimization",
@@ -22,7 +22,7 @@ const steps = [
       "Improve layout, copy & mobile experience",
       "Reduce bounce rate & exits",
     ],
-    img: "/images/abtesting.svg",
+    img: "/images/abtesting.png",
   },
   {
     title: "Implement & Scale",
@@ -31,59 +31,61 @@ const steps = [
       "Track performance using analytics",
       "Continuous improvement for growth",
     ],
-    img: "/images/scale.svg",
+    img: "/images/scale.png",
   },
   {
     title: "Implement Winning Strategies",
-    points: [
-      "Continuously tweak & improve",
-      "Use live data insights",
-    ],
-    img: "/images/strategy.svg",
+    points: ["Continuously tweak & improve", "Use live data insights"],
+    img: "/images/strategy.png",
   },
 ];
 
 const partners = [
-  "/logos/vwo.svg",
-  "/logos/google-analytics.svg",
-  "/logos/hotjar.svg",
-  "/logos/shopify.svg",
+  "/logos/vwo.png",
+  "/logos/google-analytics.png",
+  "/logos/hotjar.png",
 ];
 
 export default function CROProcessSection() {
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-6 text-center">
+    <section className="py-12 bg-background"> {/* reduced from py-20 to py-12 */}
+      <div className="container mx-auto px-4 text-center">
         {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-3"> {/* reduced mb-4 to mb-3 */}
           Our Simple <span className="text-pink-600">4-Step</span> CRO Process
         </h2>
-        <p className="text-muted-foreground mb-10">
+        <p className="text-muted-foreground mb-6"> {/* reduced mb-8 to mb-6 */}
           We use science—not assumptions—to increase conversions.
         </p>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 max-w-6xl mx-auto"> {/* reduced gap-4 to gap-3, mb-8 to mb-6 */}
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="flex flex-col"
+              className="flex flex-col max-w-[240px] w-full mx-auto" 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
             >
               <Card>
                 <CardHeader>
-                  <img src={step.img} alt={step.title} className="h-20 mx-auto mb-4" />
-                  <CardTitle className="text-lg">
+                  <img
+                    src={step.img}
+                    alt={step.title}
+                    className="h-16 mx-auto mb-2" 
+                  />
+                  <CardTitle className="text-base text-center"> {/* slightly smaller title */}
                     {step.title}
                     {step.subtitle && (
-                      <div className="text-sm text-muted-foreground">{step.subtitle}</div>
+                      <div className="text-xs text-muted-foreground"> {/* smaller subtitle */}
+                        {step.subtitle}
+                      </div>
                     )}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm space-y-1">
+                  <ul className="text-xs space-y-1 text-left"> {/* smaller text */}
                     {step.points.map((point, i) => (
                       <li key={i}>{point}</li>
                     ))}
@@ -95,17 +97,17 @@ export default function CROProcessSection() {
         </div>
 
         {/* CTA */}
-        <p className="text-lg font-medium mb-4">
+        <p className="text-base font-medium mb-3"> {/* reduced text size and mb */}
           Results? More revenue, lower costs, and higher profits.
         </p>
-        <Button size="lg" className="mb-10">
+        <Button size="sm" className="mb-6"> {/* smaller button */}
           Schedule a Strategy Call →
         </Button>
 
         {/* Partner Logos */}
-        <div className="flex justify-center items-center gap-6 flex-wrap">
+        <div className="flex justify-center items-center gap-4 flex-wrap"> {/* reduced gap */}
           {partners.map((logo, i) => (
-            <img key={i} src={logo} alt="Partner Logo" className="h-8" />
+            <img key={i} src={logo} alt="Partner Logo" className="h-6" /> 
           ))}
         </div>
       </div>

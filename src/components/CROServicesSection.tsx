@@ -4,14 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 const services = [
-  { title: "A/B Testing", img: "/images/ab-testing.svg" },
-  { title: "Customer Journey Mapping", img: "/images/journey-mapping.svg" },
-  { title: "User Flow Analysis", img: "/images/user-flow.svg" },
-  { title: "User Behavior Analysis", img: "/images/user-behavior.svg" },
-  { title: "Research & Data Analytics", img: "/images/data-analytics.svg" },
-  { title: "UX Auditing & Funnel Optimization", img: "/images/ux-audit.svg" },
-  { title: "Heatmaps & Session Recordings", img: "/images/heatmaps.svg" },
-  { title: "Polls & Surveys", img: "/images/polls-surveys.svg" },
+  { title: "A/B Testing", img: "/images/ab-testing.png" },
+  { title: "Customer Journey Mapping", img: "/images/customer-journey.png" },
+  { title: "User Flow Analysis", img: "/images/user-flow.png" },
+  { title: "User Behavior Analysis", img: "/images/user-behavior.png" },
+  { title: "Research & Data Analytics", img: "/images/data-analytics.png" },
+  { title: "UX Auditing & Funnel Optimization", img: "/images/ux-audit.png" },
+  { title: "Heatmaps & Session Recordings", img: "/images/heatmaps.png" },
+  { title: "Polls & Surveys", img: "/images/polls.png" },
 ];
 
 export default function CROServicesSection() {

@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { Metadata } from 'next';
-import SecondaryNav from '@/components/SecondaryNav';
+import SecondaryNav from '@/components/layout/SecondaryNav';
 import HeroSection from '@/components/HeroSection';
-import ConversionProblemSection from '@/components/ConversionSection';
 import WhyMarketingSection from '@/components/WhyMarketingSection';
 import BigMistakesSection from '@/components/BigMistakesSection';
 import CROProcessSection from '@/components/CROProcessSection';
@@ -12,6 +11,8 @@ import IsCRORightSection from '@/components/IsCRORightSection';
 import CROQuestionsSection from '@/components/CROQuestionsSection';
 import CROServicesSection from '@/components/CROServicesSection';
 import GrowRevenueSection from '@/components/GrowRevenueSection';
+import WhyDigitalMarketingSection from '@/components/WhyDigitalMarketingSection';
+import PowerOfCROSection from '@/components/PowerOfCROSection';
 
 export const metadata: Metadata = {
   title: 'Conversion Rate Optimization - Aenigm3 Labs',
@@ -30,13 +31,17 @@ export default function Home() {
       {/* Sticky secondary nav */}
       <SecondaryNav />
 
-      {/* Page sections with IDs */}
-      <section id="conversion-problem">
-        <ConversionProblemSection />
-      </section>
-
+      
       <section id="why-marketing">
         <WhyMarketingSection />
+      </section>
+
+     <section id="why-digital-marketing">
+        <WhyDigitalMarketingSection />
+      </section>
+
+      <section id="power-of-cro">
+        <PowerOfCROSection />
       </section>
 
       <section id="big-mistakes">

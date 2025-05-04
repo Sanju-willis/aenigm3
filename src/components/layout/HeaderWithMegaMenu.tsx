@@ -11,17 +11,17 @@ const navigation = [
     name: 'Traffic & Qualified Leads',
     href: '/services',
     submenu: [
-      { name: 'SEO & Lead Generation', href: '/services/seo' },
+      { name: 'Ai SEO', href: '/services/seo' },
       { name: 'Paid Media', href: '/services/paid-media' },
-      { name: 'Local SEO', href: '/services/local-seo' },
+      { name: 'REvenue Driven Paid Campaing', href: '/services/local-seo' },
     ],
   },
   {
     name: 'Our Products',
     href: '/solutions',
     submenu: [
-      { name: 'Analytics Tools', href: '/solutions/analytics' },
-      { name: 'AI Solutions', href: '/solutions/ai' },
+      { name: 'Ai Powered META CRO Tool', href: '/solutions/analytics' },
+      { name: 'Ai Powered CRO Landing Pages ', href: '/solutions/ai' },
       { name: 'Conversion Tools', href: '/solutions/conversion-tools' },
     ],
   },
@@ -32,6 +32,7 @@ const navigation = [
       { name: 'Case Studies', href: '/growth-lab/case-studies' },
       { name: 'Workshops', href: '/growth-lab/workshops' },
       { name: 'Webinars', href: '/growth-lab/webinars' },
+      { name: 'Our Team', href: '/about'},
     ],
   },
 ];
@@ -45,7 +46,7 @@ export default function HeaderWithMegaMenu() {
         <div className="flex flex-1">
           <Link href="/" className="flex items-center">
             <span className="sr-only">Aenigm3 Labs</span>
-            <img className="h-10 w-auto" src="/logo.svg" alt="Logo" />
+            <img className="h-10 w-auto" src="/nav-logo.png" alt="Logo" />
           </Link>
         </div>
         <div className="flex lg:hidden">

@@ -1,7 +1,8 @@
+import { Metadata } from 'next';
 import ContactForm from '@/components/forms/ContactForm';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Contact Us - Aenigm3 Labs',
   description: 'Get in touch with us to discuss your digital marketing needs. We\'re here to help drive your business growth.',
 };
@@ -19,7 +20,7 @@ export default function ContactPage() {
               Ready to transform your digital presence? Get in touch with us today and let's discuss how we can help you achieve your business goals.
             </p>
           </div>
-
+          
           <div className="mt-16 grid grid-cols-1 gap-16 lg:grid-cols-2">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Contact Information</h2>
@@ -65,11 +66,11 @@ export default function ContactPage() {
                 </dl>
               </div>
             </div>
-
+            
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Send us a message</h2>
               <div className="mt-8">
-                <ContactForm open={true} onClose={() => {}} />
+                <ContactForm />
               </div>
             </div>
           </div>

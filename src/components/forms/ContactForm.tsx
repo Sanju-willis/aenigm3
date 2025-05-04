@@ -3,12 +3,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface MultiStepFormProps {
-  open: boolean;
-  onClose: () => void;
-}
-
-export default function MultiStepForm({ open, onClose }: MultiStepFormProps) {
+export default function ContactForm() {
+  // Self-contained state management
+  const [open, setOpen] = useState(true);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     fullName: '',
@@ -64,7 +61,7 @@ export default function MultiStepForm({ open, onClose }: MultiStepFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Submitted:', formData);
-    onClose();
+    setOpen(false);
   };
 
   return (
@@ -81,7 +78,7 @@ export default function MultiStepForm({ open, onClose }: MultiStepFormProps) {
           exit={{ scale: 0.8 }}
           className="bg-white rounded-lg p-6 w-full max-w-lg relative shadow-xl"
         >
-          <button onClick={onClose} className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">
+          <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">
             ×
           </button>
 
@@ -163,7 +160,7 @@ export default function MultiStepForm({ open, onClose }: MultiStepFormProps) {
               <>
                 <select name="challenge" value={formData.challenge} onChange={handleChange} className="w-full border p-2 rounded">
                   <option value="">Biggest Conversion Challenge*</option>
-                  <option value="visitors">Visitors don’t convert</option>
+                  <option value="visitors">Visitors don't convert</option>
                   <option value="checkout">People drop off at checkout</option>
                   <option value="cost">High ad costs, low sales</option>
                   <option value="other">Other</option>

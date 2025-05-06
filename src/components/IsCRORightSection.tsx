@@ -66,9 +66,14 @@ export default function IsCRORightSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
         >
-          <Button size="lg" className="px-8">
+          <motion.a
+            href="#"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition"
+          >
             See How We Can Help →
-          </Button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

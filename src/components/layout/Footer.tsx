@@ -24,7 +24,7 @@ const navigation = {
   social: [
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com/Aenigm3lab',
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -46,7 +46,7 @@ const navigation = {
     },
     {
       name: 'LinkedIn',
-      href: '#',
+      href: 'https://www.linkedin.com/company/aenigm3labs/posts/',
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -57,21 +57,39 @@ const navigation = {
         </svg>
       ),
     },
+    {
+      name: 'Instagram',
+      href: 'https://www.instagram.com/aenigm3_labs/',
+      icon: (props: React.SVGProps<SVGSVGElement>) => (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          {...props}
+        >
+          <path
+            fillRule="evenodd"
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163C8.756 0 8.322.014 7.052.072 5.782.13 4.548.396 3.515 1.43 2.482 2.463 2.216 3.697 2.158 4.967.014 8.322 0 8.756 0 12s.014 3.678.072 4.948c.058 1.27.324 2.504 1.358 3.537 1.033 1.033 2.267 1.3 3.537 1.358 1.27.058 1.704.072 4.948.072s3.678-.014 4.948-.072c1.27-.058 2.504-.324 3.537-1.358 1.033-1.033 1.3-2.267 1.358-3.537.058-1.27.072-1.704.072-4.948s-.014-3.678-.072-4.948c-.058-1.27-.324-2.504-1.358-3.537-1.033-1.033-2.267-1.3-3.537-1.358C15.678.014 15.244 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"
+            clipRule="evenodd"
+          />
+        </svg>
+      ),
+    },
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900" aria-labelledby="footer-heading">
+    <footer className="bg-blue-600" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
-            <img className="h-7" src="/logo-white.svg" alt="Company name" />
+            <img className="h-7" src="/logo-2.png" alt="Company name" />
             <p className="text-sm leading-6 text-gray-300">
-              Driving revenue through innovative digital marketing solutions.
+              Driving sales,Maximizing revenue.
             </p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (
@@ -79,7 +97,7 @@ export default function Footer() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'text-gray-500 hover:text-gray-400',
+                    'text-white hover:text-gray-400',
                     'transition-colors duration-200'
                   )}
                 >
@@ -151,7 +169,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-400">
+          <p className="text-xs leading-5 text-white">
             &copy; {new Date().getFullYear()} Aenigm3 Labs. All rights reserved.
           </p>
         </div>

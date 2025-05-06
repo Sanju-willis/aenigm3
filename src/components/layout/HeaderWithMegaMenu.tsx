@@ -9,36 +9,51 @@ import { cn } from '../../lib/utils';
 const navigation = [
   {
     name: 'Traffic & Qualified Leads',
-    href: '/services',
+    href: '#',
     submenu: [
       { name: 'Ai SEO', href: '/services/seo' },
       { name: 'Paid Media', href: '/services/paid-media' },
-      { name: 'REvenue Driven Paid Campaing', href: '/services/local-seo' },
+      { name: 'Revenue Driven Paid Campaign', href: '/services/local-seo' },
     ],
   },
   {
     name: 'Our Products',
-    href: '/solutions',
+    href: '#',
     submenu: [
       { name: 'Ai Powered META CRO Tool', href: '/solutions/analytics' },
-      { name: 'Ai Powered CRO Landing Pages ', href: '/solutions/ai' },
+      { name: 'Ai Powered CRO Landing Pages', href: '/solutions/ai' },
       { name: 'Conversion Tools', href: '/solutions/conversion-tools' },
     ],
   },
   {
     name: 'Growth Lab',
-    href: '/growth-lab',
+    href: '#',
     submenu: [
       { name: 'Case Studies', href: '/growth-lab/case-studies' },
       { name: 'Workshops', href: '/growth-lab/workshops' },
       { name: 'Webinars', href: '/growth-lab/webinars' },
-      { name: 'Our Team', href: '/about'},
+      { name: 'Our Team', href: '/about' },
     ],
   },
 ];
 
 export default function HeaderWithMegaMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [selectedSubtopic, setSelectedSubtopic] = useState<string | null>(null);
+
+  const handleMouseEnter = (menuName: string) => {
+    setOpenMenu(menuName);
+  };
+
+  const handleMouseLeave = () => {
+    setOpenMenu(null);
+  };
+
+  const handleSubtopicClick = (subtopicName: string) => {
+    setSelectedSubtopic(subtopicName);
+    console.log(`Selected Subtopic: ${subtopicName}`);
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
@@ -46,7 +61,7 @@ export default function HeaderWithMegaMenu() {
         <div className="flex flex-1">
           <Link href="/" className="flex items-center">
             <span className="sr-only">Aenigm3 Labs</span>
-            <img className="h-10 w-auto" src="/nav-logo.png" alt="Logo" />
+            <img className="h-10 w-auto" src="/nav-logo-left.png" alt="Logo" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -63,24 +78,29 @@ export default function HeaderWithMegaMenu() {
         {/* Desktop nav with mega menu */}
         <div className="hidden lg:flex lg:gap-x-10 relative">
           {navigation.map((item) => (
-            <div key={item.name} className="group relative">
+            <div
+              key={item.name}
+              className="group relative"
+              onMouseEnter={() => handleMouseEnter(item.name)}
+              onMouseLeave={handleMouseLeave}
+            >
               <Link
                 href={item.href}
-                className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors"
               >
                 {item.name}
               </Link>
-              {item.submenu && (
-                <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg p-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300">
+              {item.submenu && openMenu === item.name && (
+                <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg p-4 opacity-100 translate-y-0 transition-all duration-300">
                   <ul className="space-y-2">
                     {item.submenu.map((sub) => (
                       <li key={sub.name}>
-                        <Link
-                          href={sub.href}
-                          className="block text-sm text-gray-700 hover:text-blue-600"
+                        <button
+                          onClick={() => handleSubtopicClick(sub.name)}
+                          className="block text-sm text-gray-700 hover:text-blue-600 w-full text-left"
                         >
                           {sub.name}
-                        </Link>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -131,12 +151,12 @@ export default function HeaderWithMegaMenu() {
                   <ul className="ml-4 mt-2 space-y-1">
                     {item.submenu.map((sub) => (
                       <li key={sub.name}>
-                        <Link
-                          href={sub.href}
-                          className="block text-sm text-gray-600 hover:text-blue-600"
+                        <button
+                          onClick={() => handleSubtopicClick(sub.name)}
+                          className="block text-sm text-gray-600 hover:text-blue-600 w-full text-left"
                         >
                           {sub.name}
-                        </Link>
+                        </button>
                       </li>
                     ))}
                   </ul>

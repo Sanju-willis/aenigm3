@@ -63,7 +63,7 @@ export default function CROQuestionsSection() {
 
         {/* CTA Block */}
         <motion.div
-          className="mt-12"
+          className="mt-12 flex justify-center items-center flex-col"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -73,10 +73,10 @@ export default function CROQuestionsSection() {
           </h3>
           <Button
             size="lg"
-            className="bg-purple-500 text-white px-8 py-4 rounded-lg flex items-center gap-3 hover:bg-purple-600"
+            className="bg-purple-500 text-white px-8 py-4 rounded-lg flex items-center  gap-3 hover:bg-purple-600"
           >
             <img
-              src="/images/expert-avatar.jpg" // Replace with your real image
+              src="expert.png" // Replace with your real image
               alt="Expert"
               className="w-8 h-8 rounded-full"
             />

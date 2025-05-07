@@ -12,7 +12,7 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowAlt((prev) => !prev);
-    }, 6000);
+    }, 3000);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);

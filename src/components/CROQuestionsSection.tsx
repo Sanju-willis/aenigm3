@@ -71,17 +71,22 @@ export default function CROQuestionsSection() {
           <h3 className="text-xl font-semibold mb-6">
             Want to See Which CRO Strategy Works for You?
           </h3>
-          <Button
-            size="lg"
-            className="bg-purple-500 text-white px-8 py-4 rounded-lg flex items-center  gap-3 hover:bg-purple-600"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <img
-              src="expert.png" // Replace with your real image
-              alt="Expert"
-              className="w-8 h-8 rounded-full"
-            />
-            Ask a CRO Expert
-          </Button>
+            <Button
+              size="lg"
+              className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold"
+            >
+              <img
+                src="expert.png"
+                alt="Expert"
+                className="w-12 h-12 rounded-full"
+              />
+              Ask a CRO Expert
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
     </section>

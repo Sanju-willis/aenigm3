@@ -4,43 +4,156 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { cn } from '../../lib/utils';
 
 const navigation = [
   {
     name: 'Traffic & Qualified Leads',
     href: '#',
     submenu: [
-      { name: 'Ai SEO', href: '/services/seo' },
-      { name: 'Paid Media', href: '/services/paid-media' },
-      { name: 'Revenue Driven Paid Campaign', href: '/services/local-seo' },
+      {
+        name: 'Lead Generation Services',
+        content: [
+          'Social Media Management',
+          'Social Media Strategy Development',
+          'Influencer Marketing',
+          'Facebook Ads',
+          'Instagram Ads',
+          'TikTok Ads',
+          'X Ads',
+        ],
+      },
+      {
+        name: 'Pay-Per-Click Advertising (PPC)',
+        content: [
+          'Google Ads',
+          'Bing Ads',
+          'Display Advertising',
+          'Retargeting/Remarketing',
+          'Shopping Ads',
+        ],
+      },
+      {
+        name: 'Branding Strategy',
+        content: [
+          'Brand Audits & Strategy Development',
+          'Startup Growth',
+          'Market Validation',
+          'Go-To-Market Strategy',
+          'Automation',
+          'Product Development',
+        ],
+      },
+      {
+        name: 'Email Marketing',
+        content: ['Email Marketing Campaigns', 'Newsletters', 'Drip Campaigns'],
+      },
+      {
+        name: 'eCommerce Marketing',
+        content: ['eCommerce SEO', 'Mobile SEO', 'Local SEO'],
+      },
     ],
+    rightBox: {
+      title: 'Get More Qualified Leads',
+      description: 'Unlock your business growth with our proven strategies for traffic and lead generation. Start your journey to higher conversions today!',
+      image: '/images/ab-testing.png',
+      buttonText: 'Get a Free Audit'
+    }
   },
   {
     name: 'Our Products',
     href: '#',
     submenu: [
-      { name: 'Ai Powered META CRO Tool', href: '/solutions/analytics' },
-      { name: 'Ai Powered CRO Landing Pages', href: '/solutions/ai' },
-      { name: 'Conversion Tools', href: '/solutions/conversion-tools' },
+      {
+        name: 'AI-Powered CRO Tools',
+        content: [
+          'Smart A/B Testing Engine',
+          'Personalization Suite',
+          'Conversion Predictor AI',
+          'Heatmap Analytics',
+          'User Behavior Tracking',
+          'Dynamic Content Optimization'
+        ]
+      },
+      {
+        name: 'Landing Page Solutions',
+        content: [
+          'AI Page Builder',
+          'Smart Layout Optimizer',
+          'Dynamic Content Blocks',
+          'Conversion-Focused Templates',
+          'Mobile Optimization',
+          'Speed Enhancement Tools'
+        ]
+      },
+      {
+        name: 'Meta Advertising Suite',
+        content: [
+          'Campaign Performance AI',
+          'Audience Insights Engine',
+          'Creative Testing Tools',
+          'Budget Optimization',
+          'Cross-Platform Analytics',
+          'ROI Tracking Dashboard'
+        ]
+      }
     ],
+    rightBox: {
+      title: 'AI-Powered Solutions',
+      description: 'Transform your digital presence with our suite of AI-powered tools. Optimize conversions, automate campaigns, and maximize ROI.',
+      image: '/images/personalized-recommendations.png',
+      buttonText: 'Explore Our Tools'
+    }
   },
   {
     name: 'Growth Lab',
     href: '#',
     submenu: [
-      { name: 'Case Studies', href: '/growth-lab/case-studies' },
-      { name: 'Workshops', href: '/growth-lab/workshops' },
-      { name: 'Webinars', href: '/growth-lab/webinars' },
-      { name: 'Our Team', href: '/about' },
+      {
+        name: 'Learning Resources',
+        content: [
+          'CRO Best Practices Guide',
+          'Landing Page Optimization',
+          'A/B Testing Masterclass',
+          'Meta Ads Strategy Guide',
+          'Analytics Implementation',
+          'Conversion Psychology'
+        ]
+      },
+      {
+        name: 'Success Stories',
+        content: [
+          'E-commerce Case Studies',
+          'SaaS Success Stories',
+          'Lead Generation Results',
+          'Revenue Growth Examples',
+          'ROI Breakthrough Cases',
+          'Client Testimonials'
+        ]
+      },
+      {
+        name: 'Expert Resources',
+        content: [
+          'Live Workshops & Training',
+          'Monthly Webinars',
+          'Industry Research Reports',
+          'Expert Consultations',
+          'Growth Strategy Sessions',
+          'Community Forums'
+        ]
+      }
     ],
-  },
+    rightBox: {
+      title: 'Accelerate Your Growth',
+      description: 'Access expert knowledge, proven strategies, and real-world case studies to transform your business performance.',
+      image: '/images/strategy.png',
+      buttonText: 'Start Learning'
+    }
+  }
 ];
 
 export default function HeaderWithMegaMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [selectedSubtopic, setSelectedSubtopic] = useState<string | null>(null);
 
   const handleMouseEnter = (menuName: string) => {
     setOpenMenu(menuName);
@@ -50,20 +163,18 @@ export default function HeaderWithMegaMenu() {
     setOpenMenu(null);
   };
 
-  const handleSubtopicClick = (subtopicName: string) => {
-    setSelectedSubtopic(subtopicName);
-    console.log(`Selected Subtopic: ${subtopicName}`);
-  };
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8" aria-label="Global">
+        {/* Logo */}
         <div className="flex flex-1">
           <Link href="/" className="flex items-center">
             <span className="sr-only">Aenigm3 Labs</span>
             <img className="h-10 w-auto" src="/nav-logo-left.png" alt="Logo" />
           </Link>
         </div>
+
+        {/* Mobile menu button */}
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -76,7 +187,7 @@ export default function HeaderWithMegaMenu() {
         </div>
 
         {/* Desktop nav with mega menu */}
-        <div className="hidden lg:flex lg:gap-x-10 relative">
+        <div className="hidden lg:flex lg:gap-x-10 relative static">
           {navigation.map((item) => (
             <div
               key={item.name}
@@ -91,25 +202,48 @@ export default function HeaderWithMegaMenu() {
                 {item.name}
               </Link>
               {item.submenu && openMenu === item.name && (
-                <div className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-lg p-4 opacity-100 translate-y-0 transition-all duration-300">
-                  <ul className="space-y-2">
+                <div className="fixed left-1/2 transform -translate-x-1/2 top-full mt-2 w-[1200px] bg-white rounded-2xl shadow-lg p-0 flex opacity-100 translate-y-0 transition-all duration-300">
+                  {/* Left: Categories grid */}
+                  <div className="p-6 grid grid-cols-3 gap-6 flex-1">
                     {item.submenu.map((sub) => (
-                      <li key={sub.name}>
-                        <button
-                          onClick={() => handleSubtopicClick(sub.name)}
-                          className="block text-sm text-gray-700 hover:text-blue-600 w-full text-left"
-                        >
-                          {sub.name}
-                        </button>
-                      </li>
+                      <div key={sub.name} className="group">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{sub.name}</h3>
+                        {'content' in sub && sub.content && (
+                          <ul className="space-y-2">
+                            {sub.content.map((contentItem: string, index: number) => (
+                              <li
+                                key={index}
+                                className="text-sm text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
+                              >
+                                <span className="text-blue-600">•</span>
+                                <span>{contentItem}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     ))}
-                  </ul>
+                  </div>
+                  {/* Right: Blue box */}
+                  <div className="w-80 bg-blue-600 rounded-2xl m-4 flex flex-col justify-center items-start p-8 text-white">
+                    <h4 className="text-2xl font-bold mb-2">{item.rightBox?.title}</h4>
+                    <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
+                    <img 
+                      src={item.rightBox?.image} 
+                      alt={item.rightBox?.title} 
+                      className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2" 
+                    />
+                    <button className="mt-2 bg-white text-blue-600 font-semibold px-5 py-2 rounded-full shadow hover:bg-blue-50 transition-colors">
+                      {item.rightBox?.buttonText}
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </div>
 
+        {/* Get Proposal button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
             href="/get-proposal"
@@ -151,12 +285,12 @@ export default function HeaderWithMegaMenu() {
                   <ul className="ml-4 mt-2 space-y-1">
                     {item.submenu.map((sub) => (
                       <li key={sub.name}>
-                        <button
-                          onClick={() => handleSubtopicClick(sub.name)}
+                        <Link
+                          href="#"
                           className="block text-sm text-gray-600 hover:text-blue-600 w-full text-left"
                         >
                           {sub.name}
-                        </button>
+                        </Link>
                       </li>
                     ))}
                   </ul>

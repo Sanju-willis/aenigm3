@@ -197,7 +197,7 @@ export default function HeaderWithMegaMenu() {
             >
               <Link
                 href={item.href}
-                className="text-base font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors tracking-wide"
               >
                 {item.name}
               </Link>
@@ -277,12 +277,12 @@ export default function HeaderWithMegaMenu() {
               <div key={item.name}>
                 <Link
                   href={item.href}
-                  className="block text-base font-medium text-gray-700 hover:bg-gray-100 rounded-md px-4 py-2"
+                  className="block text-lg font-bold text-gray-900 hover:bg-gray-100 rounded-md px-4 py-2"
                 >
                   {item.name}
                 </Link>
                 {item.submenu && (
-                  <ul className="ml-4 mt-2 space-y-1">
+                  <ul className="ml-4 mt-2 space-y-2">
                     {item.submenu.map((sub) => (
                       <li key={sub.name}>
                         <Link

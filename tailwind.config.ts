@@ -18,6 +18,10 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        'royal-castle': ['var(--font-royal-castle)', 'serif'],
+        'aleo': ['var(--font-aleo)', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -77,4 +81,4 @@ const config: Config = {
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],
 }
 
-export default config; 
+export default config;

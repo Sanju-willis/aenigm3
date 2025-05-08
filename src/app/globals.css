@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    /* Font families */
+    --font-royal-castle: 'Royal Castle';
+    --font-aleo: 'Aleo';
+
     /* Light mode variables */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -74,5 +78,21 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sourcesans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair);
+  }
+}
+
+@layer components {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-preserve-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
   }
 }

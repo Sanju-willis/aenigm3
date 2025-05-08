@@ -1,7 +1,6 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -96,16 +95,23 @@ export default function CROProcessSection() {
           ))}
         </div>
 
-        {/* CTA */}
+        
         <p className="text-base font-medium mb-3"> {/* reduced text size and mb */}
           Results? More revenue, lower costs, and higher profits.
         </p>
-        <Button size="sm" className="mb-6"> {/* smaller button */}
+
+        {/* CTA */}
+        <motion.a
+          href="#"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition "
+        >
           Schedule a Strategy Call →
-        </Button>
+        </motion.a>
 
         {/* Partner Logos */}
-        <div className="flex justify-center items-center gap-4 flex-wrap"> {/* reduced gap */}
+        <div className="flex justify-center items-center gap-4 flex-wrap mt-6"> {/* reduced gap */}
           {partners.map((logo, i) => (
             <img key={i} src={logo} alt="Partner Logo" className="h-6" /> 
           ))}

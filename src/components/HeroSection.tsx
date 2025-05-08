@@ -2,12 +2,20 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MultiStepForm from './forms/MultiStepForm'; // ✅ adjust this path if needed
 
 export default function HeroSection() {
   const [showAlt, setShowAlt] = useState(false);
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowAlt((prev) => !prev);
+    }, 3000);
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
 
   return (
     <section className="relative isolate overflow-hidden pt-40 pb-10 bg-white">

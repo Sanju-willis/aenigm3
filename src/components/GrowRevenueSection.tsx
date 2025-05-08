@@ -56,14 +56,20 @@ export default function GrowRevenueSection() {
 
         {/* CTA Button */}
         <motion.div
+          className="mt-6 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.9 }}
         >
-          <Button size="lg" className="px-8 flex items-center gap-2">
+          <motion.a
+            href="#"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition gap-2"
+          >
             <Rocket className="w-5 h-5" />
             Let’s Take Off!
-          </Button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

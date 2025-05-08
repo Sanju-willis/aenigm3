@@ -55,18 +55,16 @@ export default function BigMistakesSection() {
           Fix these, and your revenue will skyrocket.
           <Rocket className="text-pink-500 w-6 h-6" />
         </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          className="mt-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
+        
+        {/*  Button */}
+        <motion.a
+          href="#"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition mt-4"
         >
-          <Button size="lg" className="px-8">
-            Find Out What's Hurting Your Conversions →
-          </Button>
-        </motion.div>
+          Find Out What's Hurting Your Conversions →
+        </motion.a>
       </div>
     </section>
   );

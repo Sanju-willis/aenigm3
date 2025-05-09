@@ -170,7 +170,7 @@ export default function HeaderWithMegaMenu() {
         <div className="flex flex-1">
           <Link href="/" className="flex items-center">
             <span className="sr-only">Aenigm3 Labs</span>
-            <img className="h-10 w-auto" src="/nav-logo-left.png" alt="Logo" />
+            <img className="h-10 w-auto" src="/A3L Logo-01.svg" alt="Logo" />
           </Link>
         </div>
 

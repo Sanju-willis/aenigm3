@@ -70,12 +70,11 @@ className={`sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-
               key={section.id}
               onClick={() => scrollToSection(section.id)}
               className={`relative whitespace-nowrap text-xs sm:text-sm font-medium px-2 py-1 ${
-                active === section.id ? 'text-blue-600' : 'text-gray-500'
-              } hover:text-blue-600 transition`}
+                active === section.id ? 'text-blue-600' : 'text-gray-500'              } hover:text-brandblue transition`}
             >
               {section.label}
               <span
-                className={`absolute -bottom-0.5 left-0 h-0.5 w-full bg-blue-600 transform transition-transform duration-300 ${
+                className={`absolute -bottom-0.5 left-0 h-0.5 w-full bg-brandblue transform transition-transform duration-300 ${
                   active === section.id ? 'scale-x-100' : 'scale-x-0'
                 }`}
                 style={{ transformOrigin: 'left' }}
@@ -87,8 +86,7 @@ className={`sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-
 
       {showTopBtn && (
         <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-3 text-white shadow-lg hover:bg-blue-500 transition"
+          onClick={scrollToTop}          className="fixed bottom-6 right-6 z-50 rounded-full bg-brandblue p-3 text-white shadow-lg hover:bg-brandblue/90 transition"
           aria-label="Back to top"
         >
           <ChevronUpIcon className="h-5 w-5" />

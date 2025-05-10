@@ -65,10 +65,9 @@ function Marker({ top, left, label, tag, onClick }) {
       style={{ top, left, transform: 'translate(-50%, -50%)' }}
       onClick={onClick}
     >
-      <div className="relative">
-        {/* Animated pulse */}
-        <span className="absolute inline-flex h-8 w-8 rounded-full bg-blue-400 opacity-75 animate-ping"></span>
-        <span className="relative inline-flex rounded-full h-8 w-8 bg-blue-600 text-white text-xs font-semibold items-center justify-center">
+      <div className="relative">        {/* Animated pulse */}
+        <span className="absolute inline-flex h-8 w-8 rounded-full bg-brandblue/75 opacity-75 animate-ping"></span>
+        <span className="relative inline-flex rounded-full h-8 w-8 bg-brandblue text-white text-xs font-semibold items-center justify-center">
           {tag}
         </span>
       </div>

@@ -26,42 +26,48 @@ export default function Home() {
       {/* Hero section */}
       <section id="hero">
     	<HeroSection />
+      <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       {/* Sticky secondary nav */}
-      <SecondaryNav />
-
-      
-      <section id="why-marketing">
+      <SecondaryNav />      <section id="why-marketing">
         <WhyMarketingSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
-     <section id="why-digital-marketing">
+      <section id="why-digital-marketing">
         <WhyDigitalMarketingSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="power-of-cro">
         <PowerOfCROSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="big-mistakes">
         <BigMistakesSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="cro-process">
         <CROProcessSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="is-cro-right">
         <IsCRORightSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="cro-questions">
         <CROQuestionsSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="cro-services">
         <CROServicesSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       <section id="grow-revenue">

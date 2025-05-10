@@ -14,8 +14,7 @@ const mistakes = [
 ];
 
 export default function BigMistakesSection() {
-  return (
-    <section className="py-20 bg-background">
+  return (    <section className="py-20 bg-background scroll-mt-24">
       <div className="container mx-auto px-6 text-center">
         {/* Top Heading */}
         <motion.h2

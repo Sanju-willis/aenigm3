@@ -187,22 +187,19 @@ export default function HeaderWithMegaMenu() {
         </div>
 
         {/* Desktop nav with mega menu */}
-        <div className="hidden lg:flex lg:gap-x-10 relative static">
+        <div className="hidden lg:flex lg:gap-x-10 relative static ">
           {navigation.map((item) => (
             <div
               key={item.name}
               className="group relative"
               onMouseEnter={() => handleMouseEnter(item.name)}
               onMouseLeave={handleMouseLeave}
-            >
-              <Link
-                href={item.href}
-                className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors tracking-wide"
+            >              <Link
+                href={item.href}                className="text-xl font-bold text-gray-900 hover:text-brandblue transition-colors tracking-wide"
               >
                 {item.name}
               </Link>
-              {item.submenu && openMenu === item.name && (
-                <div className="fixed left-1/2 transform -translate-x-1/2 top-full mt-2 w-[1200px] bg-white rounded-2xl shadow-lg p-0 flex opacity-100 translate-y-0 transition-all duration-300">
+              {item.submenu && openMenu === item.name && (                <div className="fixed left-1/2 transform -translate-x-1/2 top-full mt-2 w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
                   {/* Left: Categories grid */}
                   <div className="p-6 grid grid-cols-3 gap-6 flex-1">
                     {item.submenu.map((sub) => (
@@ -213,9 +210,9 @@ export default function HeaderWithMegaMenu() {
                             {sub.content.map((contentItem: string, index: number) => (
                               <li
                                 key={index}
-                                className="text-sm text-gray-700 hover:text-blue-600 transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
+                className="text-sm text-gray-700 hover:text-brandblue transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
                               >
-                                <span className="text-blue-600">•</span>
+                                <span className="text-brandblue">•</span>
                                 <span>{contentItem}</span>
                               </li>
                             ))}
@@ -224,16 +221,14 @@ export default function HeaderWithMegaMenu() {
                       </div>
                     ))}
                   </div>
-                  {/* Right: Blue box */}
-                  <div className="w-80 bg-blue-600 rounded-2xl m-4 flex flex-col justify-center items-start p-8 text-white">
+                  {/* Right: Blue box */}                  <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-start p-8 text-white">
                     <h4 className="text-2xl font-bold mb-2">{item.rightBox?.title}</h4>
                     <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
                     <img 
                       src={item.rightBox?.image} 
                       alt={item.rightBox?.title} 
                       className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2" 
-                    />
-                    <button className="mt-2 bg-white text-blue-600 font-semibold px-5 py-2 rounded-full shadow hover:bg-blue-50 transition-colors">
+                    />                    <button className="mt-2 bg-white text-brandblue font-semibold px-5 py-2 rounded-full shadow hover:bg-brandblue/10 transition-colors">
                       {item.rightBox?.buttonText}
                     </button>
                   </div>
@@ -245,9 +240,8 @@ export default function HeaderWithMegaMenu() {
 
         {/* Get Proposal button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            href="/get-proposal"
-            className="rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition"
+          <Link            href="/get-proposal"
+            className="rounded-full bg-brandblue px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-brandblue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandblue transition"
           >
             Get Proposal
           </Link>
@@ -265,7 +259,7 @@ export default function HeaderWithMegaMenu() {
             </Link>
             <button
               type="button"
-              className="rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brandblue"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -286,8 +280,7 @@ export default function HeaderWithMegaMenu() {
                     {item.submenu.map((sub) => (
                       <li key={sub.name}>
                         <Link
-                          href="#"
-                          className="block text-sm text-gray-600 hover:text-blue-600 w-full text-left"
+                          href="#"                          className="block text-sm text-gray-600 hover:text-brandblue w-full text-left"
                         >
                           {sub.name}
                         </Link>
@@ -298,8 +291,7 @@ export default function HeaderWithMegaMenu() {
               </div>
             ))}
             <Link
-              href="/get-proposal"
-              className="block w-full rounded-full bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white hover:bg-blue-500 transition"
+              href="/get-proposal"              className="block w-full rounded-full bg-brandblue px-4 py-2 text-center text-base font-semibold text-white hover:bg-brandblue/90 transition"
             >
               Get Proposal
             </Link>

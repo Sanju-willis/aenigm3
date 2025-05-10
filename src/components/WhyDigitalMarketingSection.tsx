@@ -18,9 +18,8 @@ const ourFocus = [
 ];
 
 export default function WhyDigitalMarketingSection() {
-  return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-6 max-w-6xl"> {/* ⬅️ limits max width */}
+  return (    <section className="py-16 bg-white scroll-mt-24">
+      <div className="container mx-auto px-6 max-w-6xl">{/* ⬅️ limits max width */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
           Why Digital Marketing Alone{' '}
           <span className="text-pink-600">Isn’t Enough</span>
@@ -75,8 +74,7 @@ export default function WhyDigitalMarketingSection() {
           <motion.a
             href="#start-optimizing"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition"
+            whileTap={{ scale: 0.95 }}            className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 rounded-full transition"
           >
             Start Optimizing Now
           </motion.a>

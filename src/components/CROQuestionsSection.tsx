@@ -32,48 +32,45 @@ const faqs = [
 ];
 
 export default function CROQuestionsSection() {
-  return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-6 text-center">
+  return (    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12">
-          &quot;We understand that you are worried&quot;
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+          We understand that you are worried
         </h2>
 
         {/* FAQ List */}
-        <div className="max-w-3xl mx-auto space-y-6 text-left">
+        <div className="max-w-4xl mx-auto space-y-8">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <div className="flex items-start gap-3">
-                <span className="font-bold text-blue-600">{faq.number}</span>
-                <div>
-                  <h3 className="font-semibold">{faq.question}</h3>
-                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
+              <div className="flex items-start gap-4">
+                <span className="text-lg font-medium text-gray-600 w-12">{faq.number}</span>
+                <div className="flex-1">                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{faq.question}</h3>
+                  <p className="text-brandblue text-lg">{faq.answer}</p>
                 </div>
               </div>
-              <hr className="my-4 border-gray-200" />
+              {index < faqs.length - 1 && (
+                <hr className="mt-6 border-gray-200" />
+              )}
             </motion.div>
           ))}
         </div>
 
         {/* CTA Block */}
-        <motion.div
-          className="mt-12 flex justify-center items-center flex-col"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          <h3 className="text-xl font-semibold mb-6">
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-8">
             Want to See Which CRO Strategy Works for You?
           </h3>
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block"
           >
             <Button
               size="lg"
@@ -87,7 +84,7 @@ export default function CROQuestionsSection() {
               Ask a CRO Expert
             </Button>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

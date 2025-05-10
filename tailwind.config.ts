@@ -21,13 +21,13 @@ const config: Config = {
       fontFamily: {
         'royal-castle': ['var(--font-royal-castle)', 'serif'],
         'aleo': ['var(--font-aleo)', 'serif'],
-      },
-      colors: {
+      },      colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brandblue: "#007bff",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

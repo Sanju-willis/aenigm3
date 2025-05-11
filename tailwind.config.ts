@@ -16,12 +16,12 @@ const config: Config = {
       screens: {
         "2xl": "1400px",
       },
-    },
-    extend: {
+    },    extend: {
       fontFamily: {
-        'royal-castle': ['var(--font-royal-castle)', 'serif'],
-        'aleo': ['var(--font-aleo)', 'serif'],
-      },      colors: {
+        'heading': ['var(--font-royal-castle)', 'serif'],
+        'body': ['var(--font-aleo)', 'serif'],
+      },
+      colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

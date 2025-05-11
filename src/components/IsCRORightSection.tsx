@@ -50,7 +50,7 @@ export default function IsCRORightSection() {
 
         {/* CTA Line */}
         <motion.p
-          className="mt-12 text-center text-xl font-semibold flex justify-center items-center gap-2"
+          className="mt-12 text-center text-xl font-semibold flex justify-center items-center gap-2 text-gray-500"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -70,9 +70,9 @@ export default function IsCRORightSection() {
             href="#"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition"
+            className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 rounded-full transition"
           >
-            See How We Can Help →
+            See How We Can Help ▶
           </motion.a>
         </motion.div>
       </div>

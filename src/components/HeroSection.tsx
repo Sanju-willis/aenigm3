@@ -35,8 +35,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="pr-4"
-          >
-            <h1 className="text-6xl sm:text-7xl font-bold tracking-tight text-black leading-tight">
+          >            <h1 className="text-6xl sm:text-7xl font-heading tracking-tight text-black leading-tight">
               Conversion Rate Optimization
             </h1>
             <p className="mt-4 text-5xl text-black">
@@ -50,7 +49,7 @@ export default function HeroSection() {
               >
                 Digital Marketing
               </motion.span>{' '}
-              <span className="font-light">Agency</span>
+              <span className="font-heading">Agency</span>
             </p>
             <p className="mt-8 text-xl leading-8 text-gray-600 max-w-2xl">
               Helping Direct to Consumer businesses to increase sales & revenue by optimizing

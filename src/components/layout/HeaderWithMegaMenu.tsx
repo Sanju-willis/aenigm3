@@ -204,7 +204,7 @@ export default function HeaderWithMegaMenu() {
                   <div className="p-6 grid grid-cols-3 gap-6 flex-1">
                     {item.submenu.map((sub) => (
                       <div key={sub.name} className="group">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">{sub.name}</h3>
+                        <h3 className="text-lg font-heading text-gray-900 mb-3">{sub.name}</h3>
                         {'content' in sub && sub.content && (
                           <ul className="space-y-2">
                             {sub.content.map((contentItem: string, index: number) => (
@@ -222,7 +222,7 @@ export default function HeaderWithMegaMenu() {
                     ))}
                   </div>
                   {/* Right: Blue box */}                  <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-start p-8 text-white">
-                    <h4 className="text-2xl font-bold mb-2">{item.rightBox?.title}</h4>
+                    <h4 className="text-2xl font-heading mb-2">{item.rightBox?.title}</h4>
                     <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
                     <img 
                       src={item.rightBox?.image} 

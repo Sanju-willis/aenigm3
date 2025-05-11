@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import {bangers} from '../utils/fonts'
 
 const painPoints = [
   {
@@ -51,16 +52,16 @@ export default function StopWastingSection() {
             </motion.div>
           ))}
         </div>        <div className="text-center max-w-3xl mx-auto">
-          <p className="text-xl text-gray-800 mb-2">
-            The real issue isn't traffic — <span className="text-pink-600 font-bold">IT'S CONVERSION.</span>
+          <p className="text-xl mb-2">
+            <span className="text-gray-600 font-bold">The real issue isn't traffic</span> — <span className={`text-pink-600 text-2xl ${bangers.className}`}>IT'S CONVERSION.</span>
           </p>
           <p className="text-gray-600 mb-8">
             We help businesses turn website visitors into paying customers without increasing ad spend.
-          </p>          {/* Benefits row with dots */}          <div className="flex items-center justify-center gap-x-3 mb-8">
+          </p>{/* Benefits row with dots */}          <div className="flex items-center justify-center gap-x-3 mb-8">
             <span className="text-2xl font-medium text-brandblue">More sales</span>
-            <span className="text-brandblue text-2xl">•</span>
+            <span className="text-brandblue text-2xl">|</span>
             <span className="text-2xl font-medium text-brandblue">Lower costs</span>
-            <span className="text-brandblue text-2xl">•</span>
+            <span className="text-brandblue text-2xl">|</span>
             <span className="text-2xl font-medium text-brandblue">Higher profits</span>
           </div>
 

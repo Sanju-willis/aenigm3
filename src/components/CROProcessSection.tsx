@@ -103,9 +103,22 @@ export default function CROProcessSection() {
 
         {/* Results Text */}
         <div className="text-center mb-12">
-          <p className="text-xl font-medium text-gray-800">
+          <p className="text-xl font-semibold text-gray-500">
             Results? More revenue, lower costs, and higher profits.
           </p>
+        </div>
+
+        {/* CTA Button */}
+        <div className="text-center mb-16">
+          <motion.a
+            href="#"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-8 rounded-full transition"
+          >
+            Schedule a Strategy Call
+            <span className="text-xl">▶</span>
+          </motion.a>
         </div>
 
         {/* Partner Logos */}

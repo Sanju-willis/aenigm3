@@ -18,7 +18,7 @@ export default function CROServicesSection() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center">
+        <h2 className="text-3xl sm:text-4xl font-heading mb-10 text-center">
           Our <span className="text-pink-600">CRO</span> Services
         </h2>
 
@@ -41,7 +41,7 @@ export default function CROServicesSection() {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-base font-medium text-center text-gray-800">
+                    <h3 className="text-base font-heading text-center text-gray-800">
                       {service.title}
                     </h3>
                   </div>

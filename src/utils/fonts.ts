@@ -1,26 +1,34 @@
-import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
-export const inter = Inter({ subsets: ['latin'] });
-
-export const playfair = localFont({
+export const royalCastle = localFont({
   src: [
     {
-      path: '../fonts/PlayfairDisplay-Regular.ttf',
-      weight: '400',
+      path: '../fonts/Royal-Castle-ExtraBold.otf',
+      weight: '800',
       style: 'normal',
     }
   ],
-  variable: '--font-playfair',
+  variable: '--font-royal-castle',
 });
 
-export const sourceSans = localFont({
+export const aleo = localFont({
   src: [
     {
-      path: '../fonts/SourceSansPro-Regular.ttf',
+      path: '../fonts/Aleo-Regular.otf',
       weight: '400',
       style: 'normal',
     }
   ],
-  variable: '--font-sourcesans',
+  variable: '--font-aleo',
+});
+
+export const bangers = localFont({
+  src: [
+    {
+      path: '../fonts/bangers.regular.ttf',
+      weight: '400',
+      style: 'normal',
+    }
+  ],
+  variable: '--font-bangers',
 });

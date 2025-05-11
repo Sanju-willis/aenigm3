@@ -4,70 +4,88 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function PowerOfCROSection() {
-  return (    <section className="py-16 bg-white scroll-mt-24">
+  return (
+    <section className="py-16 bg-white scroll-mt-24">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+        <h2 className="text-3xl sm:text-4xl font-heading mb-4">
           The Power of <span className="text-pink-600">CRO</span>
         </h2>
         <p className="text-gray-600 mb-10 max-w-3xl mx-auto">
           Most businesses focus on getting more traffic, but what if converting existing visitors could drive the same (or better) results?
         </p>
 
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-12">
-          {/* Low Conversions */}
-          <div className="space-y-4 text-left">
-            <div>
-              <p className="text-2xl font-semibold">10,000</p>
-              <p className="text-gray-500 text-sm">Visitors</p>
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">1.5%</p>
-              <p className="text-gray-500 text-sm">Conversion Rate</p>
-            </div>
-            <div>
-              <p className="text-2xl font-semibold">$15,000</p>
-              <p className="text-gray-500 text-sm">Revenue ($100/sale)</p>
-            </div>
-            <p className="text-gray-700 font-medium mt-2">Low Conversions</p>
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-12 relative">
+          {/* Low Conversions Label - Left */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 lg:translate-x-24">
+            <p className="text-gray-500 text-2xl font-bold">Low</p>
+            <p className="text-gray-500 text-2xl font-bold">Conversions</p>
           </div>
 
-          {/* Funnel Image */}
+          {/* Left Side Stats */}
+          <div className="space-y-4">
+            <div className="text-left">
+              <p className="text-2xl font-bold text-gray-900">10,000</p>
+              <p className="text-gray-600 text-sm">Visitors</p>
+            </div>
+            <div className="text-left">
+              <p className="text-2xl font-bold text-gray-900">1.5%</p>
+              <p className="text-gray-600 text-sm">Conversion Rate</p>
+            </div>
+            <div className="text-left">
+              <p className="text-2xl font-bold text-gray-900">$15,000</p>
+              <p className="text-gray-600 text-sm">Revenue ($100/sale)</p>
+            </div>
+          </div>
+
+          {/* Center Funnel */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="relative mx-8"
           >
             <Image
-              src="/images/cro-funnel.png"
+              src="/images/power-cro-funnel.png"
               alt="CRO Funnel"
               width={180}
               height={300}
               className="mx-auto"
             />
+            <div className="absolute top-1/2 right-0 transform translate-x-full -translate-y-1/2 ml-4">
+              <p className="text-4xl font-semibold text-gray-500">CRO</p>
+            </div>
           </motion.div>
 
-          {/* Optimized Conversions */}
-          <div className="space-y-4 text-right">
-            <div>
-              <p className="text-2xl font-semibold text-blue-600">10,000</p>
-              <p className="text-gray-500 text-sm">Visitors</p>
+          {/* Optimized Conversions Label - Right */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 lg:-translate-x-24">
+            <p className="text-blue-600 text-2xl font-bold">Optimized</p>
+            <p className="text-blue-600 text-2xl font-bold">Conversions</p>
+            <p className="text-blue-600 text-2xl font-bold">(With CRO)</p>
+          </div>
+
+          {/* Right Side Stats */}
+          <div className="space-y-4">
+            <div className="text-right">
+              <p className="text-2xl font-bold text-blue-600">10,000</p>
+              <p className="text-gray-600 text-sm">Visitors</p>
             </div>
-            <div>
-              <p className="text-2xl font-semibold text-blue-600">
-                3.8% <span className="text-red-500 text-base">(2.5x increase)</span>
-              </p>
-              <p className="text-gray-500 text-sm">Conversion Rate</p>
+            <div className="text-right">
+              <p className="text-2xl font-bold text-blue-600">
+                3.8% 
+              </p> 
+              <p className="text-red-500 text-sm ml-1">(2.5x increase)</p>
+              
+              <p className="text-gray-600 text-sm">Conversion Rate</p>
             </div>
-            <div>
-              <p className="text-2xl font-semibold text-blue-600">$38,000</p>
-              <p className="text-gray-500 text-sm">Revenue ($100/sale)</p>
+            <div className="text-right">
+              <p className="text-2xl font-bold text-blue-600">$38,000</p>
+              <p className="text-gray-600 text-sm">Revenue ($100/sale)</p>
             </div>
-            <p className="text-blue-600 font-medium mt-2">Optimized Conversions (With CRO)</p>
           </div>
         </div>
 
-        <p className="text-lg font-semibold mt-10 mb-6">
+        <p className="text-xl text-gray-500 mt-10 mb-6">
           More traffic = more ad spend. More conversions = more profit.
         </p>
 

@@ -31,13 +31,12 @@ export default function BigMistakesSection() {
           <ul className="space-y-4">
             {mistakes.map((mistake, index) => (
               <motion.li
-                key={index}
-                className="flex items-start gap-3"
+                key={index}                className="flex items-center gap-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <XCircle className="text-red-500 w-5 h-5 mt-1" />
+                <XCircle className="text-red-500 w-6 h-6 flex-shrink-0" />
                 <span>{mistake}</span>
               </motion.li>
             ))}
@@ -46,7 +45,7 @@ export default function BigMistakesSection() {
 
         {/* CTA Line */}
         <motion.p
-          className="mt-12 text-xl font-semibold flex justify-center items-center gap-2"
+          className="mt-12 text-xl font-semibold flex justify-center items-center gap-2 text-gray-500"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -55,15 +54,18 @@ export default function BigMistakesSection() {
           <Rocket className="text-pink-500 w-6 h-6" />
         </motion.p>
         
-        {/*  Button */}
-        <motion.a
-          href="#"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition mt-4"
-        >
-          Find Out What's Hurting Your Conversions →
-        </motion.a>
+        {/* CTA Button */}
+        <div className="text-center">
+          <motion.a
+            href="#"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-8 mt-10 rounded-full transition"
+          >
+            Find Out What's Hurting Your Conversions
+            <span className="text-xl">▶</span>
+          </motion.a>
+        </div>
       </div>
     </section>
   );

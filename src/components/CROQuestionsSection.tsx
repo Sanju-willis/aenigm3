@@ -64,9 +64,9 @@ export default function CROQuestionsSection() {
 
         {/* CTA Block */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-8">
+          <p className="text-2xl font-semibold text-gray-500 mb-8">
             Want to See Which CRO Strategy Works for You?
-          </h3>
+          </p>
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

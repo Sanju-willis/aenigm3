@@ -16,14 +16,18 @@ const config: Config = {
       screens: {
         "2xl": "1400px",
       },
-    },
-    extend: {
+    },    extend: {
+      fontFamily: {
+        'heading': ['var(--font-royal-castle)', 'serif'],
+        'body': ['var(--font-aleo)', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brandblue: "#007bff",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -77,4 +81,4 @@ const config: Config = {
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],
 }
 
-export default config; 
+export default config;

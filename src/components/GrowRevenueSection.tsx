@@ -28,7 +28,7 @@ export default function GrowRevenueSection() {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6 text-center">
         {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl font-bold mb-2">
+        <h2 className="text-3xl sm:text-4xl font-heading mb-2">
           Ready to <span className="text-pink-600">Grow Your Revenue</span>
         </h2>
         <p className="text-muted-foreground mb-12">What You’ll Get</p>
@@ -45,7 +45,7 @@ export default function GrowRevenueSection() {
               <Card className="p-6">
                 <CardContent className="flex flex-col items-center">
                   <img src={feature.img} alt={feature.title} className="h-24 mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="text-lg font-heading mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
                   <CheckCircle className="text-green-500 w-6 h-6" />
                 </CardContent>
@@ -65,7 +65,7 @@ export default function GrowRevenueSection() {
             href="#"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition gap-2"
+            className="inline-flex items-center justify-center bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 rounded-full transition gap-2"
           >
             <Rocket className="w-5 h-5" />
             Let’s Take Off!

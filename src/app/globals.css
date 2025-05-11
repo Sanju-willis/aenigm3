@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    /* Font families */
+    --font-royal-castle: 'Royal Castle';
+    --font-aleo: 'Aleo';
+
     /* Light mode variables */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -71,8 +75,28 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-aleo);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-royal-castle);
+  }
+
+  /* Add scroll margin for sections to account for fixed header */
+  section {
+    scroll-margin-top: 75px; /* Adjust this value based on your header height plus some padding */
+  }
+}
+
+@layer components {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-preserve-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
   }
 }

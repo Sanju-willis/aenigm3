@@ -85,7 +85,7 @@ export default function ContactForm() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="mb-4">
               <p className="text-sm text-blue-600 font-medium mb-1">Step {step} of 3</p>
-              <h2 className="text-xl font-bold mb-2">
+              <h2 className="text-xl font-heading mb-2">
                 {step === 1 && 'About You'}
                 {step === 2 && 'Business Details'}
                 {step === 3 && 'Goals'}

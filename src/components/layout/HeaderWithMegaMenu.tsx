@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState,useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -199,7 +199,7 @@ export default function HeaderWithMegaMenu() {
               >
                 {item.name}
               </Link>
-              {item.submenu && openMenu === item.name && (                <div className="fixed left-1/2 transform -translate-x-1/2 top-full mt-2 w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
+              {item.submenu && openMenu === item.name && (                <div className="fixed left-1/2 transform -translate-x-1/2 top-full  w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
                   {/* Left: Categories grid */}
                   <div className="p-6 grid grid-cols-3 gap-6 flex-1">
                     {item.submenu.map((sub) => (
@@ -255,7 +255,7 @@ export default function HeaderWithMegaMenu() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center">
               <span className="sr-only">Aenigm3 Labs</span>
-              <img className="h-10 w-auto" src="/logo.svg" alt="Logo" />
+              <img className="h-10 w-auto" src="/A3L Logo-01.svg" alt="Logo" />
             </Link>
             <button
               type="button"

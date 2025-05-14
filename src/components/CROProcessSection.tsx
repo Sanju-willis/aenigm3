@@ -47,20 +47,20 @@ const partners = [
 
 export default function CROProcessSection() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading mb-3 sm:mb-4">
             Our Simple <span className="text-pink-600">4-Step</span> CRO Process
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-base sm:text-lg text-gray-600">
             We use science—not assumptions—to increase conversions.
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -69,27 +69,27 @@ export default function CROProcessSection() {
               transition={{ delay: index * 0.2 }}
             >
               <Card className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden h-full">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex flex-col items-center">
-                    <div className="w-28 h-28 mb-6">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mb-4 sm:mb-6">
                       <img
                         src={step.img}
                         alt={step.title}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-center mb-2">
                       {step.title}
                     </h3>
                     {step.subtitle && (
-                      <p className="text-gray-500 text-sm mb-4 text-center">
+                      <p className="text-sm sm:text-base text-gray-500 mb-3 text-center">
                         {step.subtitle}
                       </p>
                     )}
-                    <ul className="space-y-2 text-sm text-gray-600 w-full">
+                    <ul className="space-y-2 text-sm sm:text-base text-gray-600 w-full">
                       {step.points.map((point, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="mr-2">•</span>
+                          <span className="mr-2 text-brandblue">•</span>
                           <span>{point}</span>
                         </li>
                       ))}
@@ -102,19 +102,19 @@ export default function CROProcessSection() {
         </div>
 
         {/* Results Text */}
-        <div className="text-center mb-12">
-          <p className="text-xl font-semibold text-gray-500">
+        <div className="text-center mb-8 sm:mb-12">
+          <p className="text-lg sm:text-xl font-semibold text-gray-500">
             Results? More revenue, lower costs, and higher profits.
           </p>
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <motion.a
             href="#"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-8 rounded-full transition"
+            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg"
           >
             Schedule a Strategy Call
             <span className="text-xl">▶</span>
@@ -122,13 +122,13 @@ export default function CROProcessSection() {
         </div>
 
         {/* Partner Logos */}
-        <div className="flex justify-center items-center gap-8 flex-wrap">
+        <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
           {partners.map((logo, i) => (
             <img 
               key={i} 
               src={logo} 
               alt="Partner Logo" 
-              className="h-8 opacity-80 hover:opacity-100 transition-opacity" 
+              className="h-6 sm:h-8 opacity-80 hover:opacity-100 transition-opacity" 
             />
           ))}
         </div>

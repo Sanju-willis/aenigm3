@@ -59,9 +59,10 @@ export default function SecondaryNav() {
 
   return (
     <>
+      {/* Only visible on md and above screens */}
       <div
-className={`sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-w-screen-m mx-auto px-4 py-3 transform transition-transform duration-300 ${
-  showNav ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0'
+        className={`hidden md:block sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-w-screen-m mx-auto px-4 py-3 transform transition-transform duration-300 ${
+          showNav ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0'
         }`}
       >
         <div className="flex flex-wrap justify-center space-x-4 sm:space-x-4 overflow-x-auto no-scrollbar">
@@ -70,7 +71,8 @@ className={`sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-
               key={section.id}
               onClick={() => scrollToSection(section.id)}
               className={`relative whitespace-nowrap text-xs sm:text-sm font-medium px-2 py-1 ${
-                active === section.id ? 'text-blue-600' : 'text-gray-500'              } hover:text-brandblue transition`}
+                active === section.id ? 'text-blue-600' : 'text-gray-500'
+              } hover:text-brandblue transition`}
             >
               {section.label}
               <span
@@ -86,7 +88,8 @@ className={`sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-
 
       {showTopBtn && (
         <button
-          onClick={scrollToTop}          className="fixed bottom-6 right-6 z-50 rounded-full bg-brandblue p-3 text-white shadow-lg hover:bg-brandblue/90 transition"
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 rounded-full bg-brandblue p-3 text-white shadow-lg hover:bg-brandblue/90 transition"
           aria-label="Back to top"
         >
           <ChevronUpIcon className="h-5 w-5" />

@@ -78,11 +78,10 @@ export default function HeroSection() {
                 <>
                   <p className="text-base sm:text-lg font-semibold text-brandblue mb-2">Get a Personal AI Media Buyer</p>
                   <p className="text-sm sm:text-base text-gray-700 mb-3">
-                    Test creatives? Scale audiences? Set automation?
+                    “You’ve been managing ads. This one manages itself.”
                   </p>
                   <p className="text-sm sm:text-base text-gray-700 mb-5">
-                    The AI Marketer audits your account, identifies weaknesses and opportunities,
-                    and tells you exactly what to do next!
+                    It learns, steals, and scales—so you don’t have to.
                   </p>
                   <button className="w-full sm:w-auto inline-block rounded-full bg-brandblue px-6 py-3 text-base sm:text-lg font-semibold text-white shadow hover:bg-brandblue/90 transition cursor-not-allowed min-h-[48px]">
                     Coming Soon
@@ -112,7 +111,7 @@ export default function HeroSection() {
         {/* Checkmark points */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-20 ">
             {[
-              "0$ Ads spent",
+              "No Budget Bump",
               "Data Driven Decisions",
               "Increased Conversions"
             ].map((text, index) => (

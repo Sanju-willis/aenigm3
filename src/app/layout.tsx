@@ -5,6 +5,7 @@ import { Layout } from '../components/layout'
 import Script from 'next/script'
 import { royalCastle, aleo } from '../utils/fonts'
 
+
 export const metadata: Metadata = {
   title: 'Aenigm3 - Digital Marketing Agency',
   description: 'Digital Marketing Solutions for your Business',

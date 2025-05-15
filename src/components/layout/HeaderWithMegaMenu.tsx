@@ -11,52 +11,50 @@ const navigation = [
     href: '#',
     submenu: [
       {
-        name: 'Lead Generation Services',
+        name: 'AI-Powered Ad Campaigns',
         content: [
-          'Social Media Management',
-          'Social Media Strategy Development',
-          'Influencer Marketing',
-          'Facebook Ads',
-          'Instagram Ads',
-          'TikTok Ads',
-          'X Ads',
+          'Google Ads (AI Max Strategy)',
+          'Generative Engine Optimization (GEO)',
+          'Meta Ads (Facebook, Instagram, WhatsApp)',
+          'Cross-Channel Remarketing with AI Signals',
+          'Ad Budget & Performance Optimization',
+          
         ],
       },
       {
-        name: 'Pay-Per-Click Advertising (PPC)',
+        name: 'Conversion Rate Optimization (CRO)',
         content: [
-          'Google Ads',
-          'Bing Ads',
-          'Display Advertising',
-          'Retargeting/Remarketing',
-          'Shopping Ads',
+          'Smart A/B Testing with AI Recommendations',
+          'Behavior Analytics & Heatmaps',
+          'Dynamic Personalization Engine',
+          'Funnel & Micro-Journey Optimization',
+          'Landing Page AI Testing & Enhancements',
         ],
       },
       {
-        name: 'Branding Strategy',
+        name: 'Branding & Content Strategy',
         content: [
-          'Brand Audits & Strategy Development',
-          'Startup Growth',
-          'Market Validation',
-          'Go-To-Market Strategy',
-          'Automation',
-          'Product Development',
+          'AI-Driven Brand Positioning & Messaging',
+          'Content Strategy for Conversions',
+          'AI-Assisted Copy & Visual Testing',
+          'Multi-Platform Content Funnels',
+          
         ],
       },
       {
-        name: 'Email Marketing',
-        content: ['Email Marketing Campaigns', 'Newsletters', 'Drip Campaigns'],
+        name: 'Email Marketing Automation',
+        content: ['Predictive Email Campaigns (AI Scoring)', 'Segmented Drip Journeys', 'Personalized Newsletters & Retention Flows'],
       },
       {
-        name: 'eCommerce Marketing',
-        content: ['eCommerce SEO', 'Mobile SEO', 'Local SEO'],
+        name: 'Landing Page Optimization',
+        content: ['Conversion-Focused Layouts', 'Dynamic Content Blocks', 'Speed & Mobile Optimization', 'Integrated Tracking & Split Testing'],
       },
     ],
     rightBox: {
-      title: 'Get More Qualified Leads',
-      description: 'Unlock your business growth with our proven strategies for traffic and lead generation. Start your journey to higher conversions today!',
+      title: 'Convert Smarter, Grow Faster',
+      description: 'Drive meaningful traffic, convert with precision, and scale faster through AI-powered marketing, conversion optimization, and brand strategy.',
       image: '/images/ab-testing.png',
-      buttonText: 'Get a Free Audit'
+      buttonText: 'Solutions >>>'
     }
   },
   {

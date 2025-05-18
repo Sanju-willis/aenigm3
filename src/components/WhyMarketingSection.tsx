@@ -42,7 +42,7 @@ export default function StopWastingSection() {
     };
   }, [showAuditForm]);
 
-  const handleLearnMoreClick = (e) => {
+const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowAuditForm(true);
   };

@@ -1,8 +1,9 @@
+// src\components\landing-page\WhyMarketingSection.tsx
 'use client';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {bangers} from '../utils/fonts'
+import {bangers} from '../../utils/fonts'
 
 const painPoints = [
   {

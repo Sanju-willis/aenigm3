@@ -1,3 +1,4 @@
+// src\components\landing-page\IsCRORightSection.tsx
 'use client';
 
 import { Button } from "@/components/ui/button";

@@ -1,18 +1,18 @@
-// src/app/page.tsx
+// src\app\page.tsx
 
 import React from 'react';
 import { Metadata } from 'next';
-import SecondaryNav from '@/components/layout/SecondaryNav';
-import HeroSection from '@/components/HeroSection';
-import WhyMarketingSection from '@/components/WhyMarketingSection';
-import BigMistakesSection from '@/components/BigMistakesSection';
-import CROProcessSection from '@/components/CROProcessSection';
-import IsCRORightSection from '@/components/IsCRORightSection';
-import CROQuestionsSection from '@/components/CROQuestionsSection';
-import CROServicesSection from '@/components/CROServicesSection';
-import GrowRevenueSection from '@/components/GrowRevenueSection';
-import WhyDigitalMarketingSection from '@/components/WhyDigitalMarketingSection';
-import PowerOfCROSection from '@/components/PowerOfCROSection';
+import SecondaryNav from '@/components/com-layout/SecondaryNav';
+import HeroSection from '@/components/landing-page/HeroSection';
+import WhyMarketingSection from '@/components/landing-page/WhyMarketingSection';
+import BigMistakesSection from '@/components/landing-page/BigMistakesSection';
+import CROProcessSection from '@/components/landing-page/CROProcessSection';
+import IsCRORightSection from '@/components/landing-page/IsCRORightSection';
+import CROQuestionsSection from '@/components/landing-page/CROQuestionsSection';
+import CROServicesSection from '@/components/landing-page/CROServicesSection';
+import GrowRevenueSection from '@/components/landing-page/GrowRevenueSection';
+import WhyDigitalMarketingSection from '@/components/landing-page/WhyDigitalMarketingSection';
+import PowerOfCROSection from '@/components/landing-page/PowerOfCROSection';
 
 export const metadata: Metadata = {
   title: 'Conversion Rate Optimization - Aenigm3 Labs',

@@ -1,3 +1,4 @@
+// src\components\landing-page\BigMistakesSection.tsx
 'use client';
 
 import { Button } from "@/components/ui/button";

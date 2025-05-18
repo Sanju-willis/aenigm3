@@ -1,3 +1,4 @@
+// src\components\com-layout\HeaderWithMegaMenu.tsx
 'use client';
 
 import React, { useState,useRef, useEffect } from 'react';
@@ -185,7 +186,7 @@ export default function HeaderWithMegaMenu() {
         </div>
 
         {/* Desktop nav with mega menu */}
-        <div className="hidden lg:flex lg:gap-x-10 relative static ">
+        <div className="hidden lg:flex lg:gap-x-10 relative  ">
           {navigation.map((item) => (
             <div
               key={item.name}

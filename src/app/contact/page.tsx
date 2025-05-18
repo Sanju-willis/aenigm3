@@ -1,3 +1,4 @@
+// src\app\contact\page.tsx
 import { Metadata } from 'next';
 import ContactForm from '@/components/forms/ContactForm';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';

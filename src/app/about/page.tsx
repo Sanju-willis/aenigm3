@@ -1,6 +1,7 @@
+// src\app\about\page.tsx
 import React from 'react';
 import Link from 'next/link';
-import OurPresence from '@/components/OurPresence';
+import OurPresence from '@/components/landing-page/OurPresence';
 
 export default function AboutUsPage() {
   return (

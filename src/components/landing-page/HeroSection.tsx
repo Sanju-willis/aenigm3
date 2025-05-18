@@ -1,9 +1,10 @@
+// src\components\landing-page\HeroSection.tsx
 'use client';
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import BusinessQualifyForm from './forms/BusinessQualifyForm';
+import BusinessQualifyForm from '../forms/BusinessQualifyForm';
 
 export default function HeroSection() {
   const [showAlt, setShowAlt] = useState(false);

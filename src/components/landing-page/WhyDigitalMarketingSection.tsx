@@ -1,3 +1,4 @@
+// src\components\landing-page\WhyDigitalMarketingSection.tsx
 'use client';
 
 import { motion } from 'framer-motion';

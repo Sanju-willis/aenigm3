@@ -1,15 +1,11 @@
-// src\app\blog\[slug]\page.tsx
+// src/app/blog/[slug]/page.tsx
 import { client } from '@/lib/sanity';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+type Props = Awaited<ReturnType<() => { params: { slug: string } }>>;
 
 export default async function BlogPostPage(props: Props) {
   const slug = props.params.slug;

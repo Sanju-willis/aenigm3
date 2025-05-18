@@ -76,7 +76,7 @@ export default function Footer() {
               <img src="/logo-2.png" alt="Aenigm3 Labs" className="h-6 mb-4" />
             </Link>
             <p className="text-white/90 text-sm leading-relaxed">
-              Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+              Aenigm3 Labs is a CRO-first marketing and development agency using AI to turn insights into sales. We combine conversion-driven strategy, creative execution, and intelligent automation to help brands grow faster and smarter.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="mt-8 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white text-sm">2024 Aenigme Pvt.(Ltd). All Right Reserved</p>
+            <p className="text-white text-sm">2025 Aenigme Pvt(Ltd). All Right Reserved</p>
             <div className="flex items-center gap-4">
               {navigation.social.map((item) => (
                 <Link

@@ -1,6 +1,5 @@
 // src\components\forms\BusinessQualifyForm.tsx
 import { useState } from 'react';
-import Image from 'next/image';
 
 interface FormData {
   // Step 1 - About You
@@ -112,53 +111,53 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
     }, 2000);
   };
 
-  const inputClassName = "w-full p-3 rounded-lg bg-white border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm";
-  const selectClassName = "w-full p-3 rounded-lg bg-white border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm appearance-none cursor-pointer";
-  const buttonClassName = "bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-blue-600 transition-colors";
+  const inputClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm";
+  const selectClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm appearance-none cursor-pointer";
+  const buttonClassName = "bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-blue-600 transition-colors";
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/60 backdrop-blur-sm overflow-y-auto">
-      <div className="min-h-screen w-full py-8 px-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm overflow-auto">
+      <div className="w-full py-2 px-2 max-h-[98vh]">
         {/* Modal Card */}
-        <div className="w-full max-w-3xl mx-auto bg-white rounded-xl shadow-2xl relative">
+        <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow-2xl relative">
           {/* Close Button */}
           <button
             type="button"
             aria-label="Close"
-            className="absolute right-6 top-6 text-gray-400 hover:text-gray-600 text-2xl font-bold z-10"
+            className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 text-xl font-bold z-10"
             onClick={onClose}
           >
             ×
           </button>
-          <div className="p-10">
+          <div className="p-4">
             {/* Logo and Title */}
-            <div className="text-center mb-10">
-              <div className="flex justify-center mb-6">
-                <img src="/icons/roi.svg" alt="ROI" className="w-12 h-12" />
+            <div className="text-center mb-2">
+              <div className="flex justify-center mb-2">
+                <img src="/icons/roi.svg" alt="ROI" className="w-8 h-8" />
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <h1 className="text-2xl font-bold text-gray-800">Apply for Our 2X ROI Guarantee!</h1>
+              <div className="flex items-center justify-center">
+                <h1 className="text-lg font-bold text-gray-800">Apply for Our 2X ROI Guarantee!</h1>
               </div>
             </div>
-            <hr className="mb-8" />
+            <hr className="mb-3" />
 
             {/* Progress Steps */}
             {!isSubmitted && (
-              <div className="flex justify-center items-center gap-8 mb-8">
+              <div className="flex justify-center items-center gap-2 mb-3">
                 <div className="flex items-center">
-                  <div className={`w-12 h-12 rounded-full ${currentStep >= 1 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-xl font-semibold`}>
+                  <div className={`w-6 h-6 rounded-full ${currentStep >= 1 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-xs font-semibold`}>
                     1
                   </div>
-                  <div className="w-20 h-[2px] bg-gray-200" />
+                  <div className="w-8 h-[2px] bg-gray-200" />
                 </div>
                 <div className="flex items-center">
-                  <div className={`w-12 h-12 rounded-full ${currentStep >= 2 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-xl font-semibold`}>
+                  <div className={`w-6 h-6 rounded-full ${currentStep >= 2 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-xs font-semibold`}>
                     2
                   </div>
-                  <div className="w-20 h-[2px] bg-gray-200" />
+                  <div className="w-8 h-[2px] bg-gray-200" />
                 </div>
                 <div className="flex items-center">
-                  <div className={`w-12 h-12 rounded-full ${currentStep >= 3 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-xl font-semibold`}>
+                  <div className={`w-6 h-6 rounded-full ${currentStep >= 3 ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-400'} flex items-center justify-center text-xs font-semibold`}>
                     3
                   </div>
                 </div>
@@ -167,16 +166,16 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
 
             {/* Form Content */}
             <div className="max-w-lg mx-auto">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-3">
                 {isSubmitted ? (
-                  <div className="text-center space-y-6 py-8">
-                    <h2 className="text-2xl font-bold text-gray-800">Thanks!</h2>
-                    <p className="text-lg text-gray-700">Our team is reviewing your application.</p>
-                    <p className="text-lg text-gray-700">If you qualify, we'll reach out within 24 hours.</p>
+                  <div className="text-center space-y-2 py-2">
+                    <h2 className="text-lg font-bold text-gray-800">Thanks!</h2>
+                    <p className="text-sm text-gray-700">Our team is reviewing your application.</p>
+                    <p className="text-sm text-gray-700">If you qualify, we'll reach out within 24 hours.</p>
                     
-                    <div className="mt-8">
-                      <p className="text-gray-600 mb-3">In the meantime,</p>
-                      <p className="text-md mb-4">Schedule a quick call to discuss your growth potential</p>
+                    <div className="mt-2">
+                      <p className="text-gray-600 mb-1 text-xs">In the meantime,</p>
+                      <p className="text-xs mb-2">Schedule a quick call to discuss your growth potential</p>
                       <button
                         type="button"
                         className={buttonClassName}
@@ -186,12 +185,12 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                       </button>
                     </div>
 
-                    <div className="mt-12">
-                      <div className="inline-block p-3 rounded-full bg-blue-500">
+                    <div className="mt-3">
+                      <div className="inline-block ">
                         <img
-                          src="/logo-white.svg"
+                          src="/A3L Logo-01.svg"
                           alt="Aenigm3 Labs"
-                          className="h-6"
+                          className="h-4"
                         />
                       </div>
                     </div>
@@ -199,7 +198,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                 ) : (
                   <>
                     {currentStep === 1 && (
-                      <div className="space-y-6">
+                      <div className="space-y-2">
                         <input
                           type="text"
                           name="fullName"
@@ -210,7 +209,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           required
                         />
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <input
                             type="email"
                             name="workEmail"
@@ -260,9 +259,9 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           className={inputClassName}
                         />
 
-                        <div className="text-sm text-gray-500">Get direct feedback on your audit results</div>
+                        <div className="text-xs text-red-500">Get direct feedback on your audit results</div>
 
-                        <div className="flex justify-end mt-6">
+                        <div className="flex justify-end mt-2">
                           <button
                             type="button"
                             onClick={handleNext}
@@ -275,10 +274,10 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                     )}
 
                     {currentStep === 2 && (
-                      <div className="space-y-6">
-                        <div className="mb-4">
-                          <h2 className="text-lg font-semibold text-gray-800">Monthly Website Traffic</h2>
-                          <p className="text-sm text-gray-500">(Traffic must be enough for valid testing)</p>
+                      <div className="space-y-2">
+                        <div className="mb-1">
+                          <p className="text-sm font-semibold text-gray-800">Monthly Website Traffic</p>
+                          <p className="text-xs text-gray-500">(Traffic must be enough for valid testing)</p>
                         </div>
 
                         <select
@@ -295,7 +294,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                         </select>
 
                         <div>
-                          <h3 className="text-md font-medium text-gray-800 mb-3">How many conversions (sales, leads, sign-ups) do you get per month?</h3>
+                          <p className="text-sm font-semibold text-gray-800 mb-1">How many conversions (sales, leads, sign-ups) do you get per month?</p>
                           <select
                             name="monthlyConversions"
                             value={formData.monthlyConversions}
@@ -311,7 +310,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                         </div>
 
                         <div>
-                          <h3 className="text-md font-medium text-gray-800 mb-3">Current Monthly Ad Spend</h3>
+                          <p className="text-sm font-semibold text-gray-800 mb-1">Current Monthly Ad Spend</p>
                           <select
                             name="monthlyAdSpend"
                             value={formData.monthlyAdSpend}
@@ -326,13 +325,13 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           </select>
                         </div>
 
-                        <div className="flex justify-between mt-4">
+                        <div className="flex justify-between mt-2">
                           <button
                             type="button"
                             onClick={handlePrevious}
-                            className="text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-all"
+                            className="text-blue-500 px-3 py-1 rounded-full font-semibold hover:bg-blue-50 transition-all text-sm"
                           >
-                            ← Previous
+                            ← Back
                           </button>
                           <button
                             type="button"
@@ -346,10 +345,10 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                     )}
 
                     {currentStep === 3 && (
-                      <div className="space-y-6">
-                        <div className="mb-4">
-                          <h2 className="text-lg font-semibold text-gray-800">Biggest Conversion Challenge?</h2>
-                          <p className="text-sm text-gray-500">(Open-ended for qualification)</p>
+                      <div className="space-y-2">
+                        <div className="mb-1">
+                          <p className="text-sm font-semibold text-gray-800">Biggest Conversion Challenge?</p>
+                          <p className="text-xs text-gray-500">(Open-ended for qualification)</p>
                         </div>
 
                         <select
@@ -366,7 +365,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                         </select>
 
                         <div>
-                          <h3 className="text-md font-medium text-gray-800 mb-3">How Soon Do You Want to See Growth?</h3>
+                          <p className="text-sm font-semibold text-gray-800 mb-1">How Soon Do You Want to See Growth?</p>
                           <select
                             name="growthTimeline"
                             value={formData.growthTimeline}
@@ -382,7 +381,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                         </div>
 
                         <div>
-                          <h3 className="text-md font-medium text-gray-800 mb-3">Preferred Contact Method</h3>
+                          <p className="text-sm font-semibold text-gray-800 mb-1">Preferred Contact Method</p>
                           <select
                             name="contactMethod"
                             value={formData.contactMethod}
@@ -397,13 +396,13 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           </select>
                         </div>
 
-                        <div className="flex justify-between mt-4">
+                        <div className="flex justify-between mt-2">
                           <button
                             type="button"
                             onClick={handlePrevious}
-                            className="text-blue-500 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-all"
+                            className="text-blue-500 px-3 py-1 rounded-full font-semibold hover:bg-blue-50 transition-all text-sm"
                           >
-                            ← Previous
+                            ← Back
                           </button>
                           <button
                             type="submit"

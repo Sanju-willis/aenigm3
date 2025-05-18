@@ -66,7 +66,7 @@ export default function GrowRevenueSection() {
             href="#"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center justify-center bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 rounded-full transition gap-2"
+            className="inline-flex items-center justify-center bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition gap-2"
           >
             <Rocket className="w-5 h-5" />
             Let’s Take Off!

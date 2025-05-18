@@ -4,8 +4,8 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {bangers} from '../utils/fonts';
-import AuditForm from './forms/AuditForm';
+import {bangers} from '../../utils/fonts';
+import AuditForm from '../forms/AuditForm';
 
 const painPoints = [
   {

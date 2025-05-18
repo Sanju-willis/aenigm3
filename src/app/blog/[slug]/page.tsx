@@ -4,10 +4,8 @@ import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-
-  const post = await client.fetch(
+async function getPost(slug: string) {
+  return await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
       title,
       body,
@@ -18,6 +16,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     }`,
     { slug }
   );
+}
+
+export default function BlogPostPageWrapper({ params }: { params: { slug: string } }) {
+  return <BlogPostPage params={params} />;
+}
+
+async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const post = await getPost(slug);
 
   if (!post) return <p>Post not found</p>;
 

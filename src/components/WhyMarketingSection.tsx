@@ -1,3 +1,4 @@
+// src\components\WhyMarketingSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';

@@ -94,7 +94,7 @@ export default function PowerOfCROSection() {
           whileTap={{ scale: 0.95 }}
           className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg"
         >
-          Get My Custom CRO Plan
+          Get My Custom CRO Plan ▶
         </motion.a>
       </div>
     </section>

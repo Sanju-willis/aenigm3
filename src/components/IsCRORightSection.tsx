@@ -70,7 +70,7 @@ export default function IsCRORightSection() {
             href="#"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 rounded-full transition"
+            className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition"
           >
             See How We Can Help ▶
           </motion.a>

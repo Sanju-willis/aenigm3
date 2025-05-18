@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
   {
-    name: 'Traffic & Qualified Leads',
+    name: 'AI Growth Strategy',
     href: '#',
     submenu: [
       {

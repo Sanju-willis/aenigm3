@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const steps = [
   {
     title: "Research & Deep Data Analysis",
-    subtitle: "(Find What’s Wrong)",
+    subtitle: "(Find What's Wrong)",
     points: [
       "Heatmaps & session recordings",
       "User behavior analysis",
@@ -43,6 +43,7 @@ const partners = [
   "/logos/vwo.png",
   "/logos/google-analytics.png",
   "/logos/hotjar.png",
+  "/logos/shopify.png",
 ];
 
 export default function CROProcessSection() {
@@ -69,28 +70,38 @@ export default function CROProcessSection() {
               transition={{ delay: index * 0.2 }}
             >
               <Card className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden h-full">
-                <CardContent className="p-4 sm:p-6">
-                  <div className="flex flex-col items-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mb-4 sm:mb-6">
+                <CardContent className="p-4 sm:p-6 flex flex-col h-full">
+                  {/* Top section with image and title - fixed height */}
+                  <div className="flex flex-col items-center mb-4">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mb-4">
                       <img
                         src={step.img}
                         alt={step.title}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-center mb-2">
+                    <h3 className="text-lg font-semibold text-center mb-1">
                       {step.title}
                     </h3>
                     {step.subtitle && (
-                      <p className="text-sm sm:text-base text-gray-500 mb-3 text-center">
+                      <p className="text-sm text-gray-500 text-center">
                         {step.subtitle}
                       </p>
                     )}
-                    <ul className="space-y-2 text-sm sm:text-base text-gray-600 w-full">
+                  </div>
+                  
+                  {/* Horizontal divider - centered */}
+                  <div className="flex justify-center mb-4">
+                    <div className="w-48 h-px bg-gray-200"></div>
+                  </div>
+                  
+                  {/* Bullet points section */}
+                  <div className="w-full">
+                    <ul className="space-y-3">
                       {step.points.map((point, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="mr-2 text-brandblue">•</span>
-                          <span>{point}</span>
+                        <li key={i} className="flex items-baseline">
+                          <span className="text-brandblue mr-2 flex-shrink-0">•</span>
+                          <span className="text-sm sm:text-base text-gray-600">{point}</span>
                         </li>
                       ))}
                     </ul>

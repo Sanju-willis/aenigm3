@@ -61,7 +61,7 @@ export default function SecondaryNav() {
     <>
       {/* Only visible on md and above screens */}
       <div
-        className={`hidden md:block sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-w-screen-m mx-auto px-4 py-3 transform transition-transform duration-300 ${
+        className={`hidden md:flex justify-center sticky top-20 z-40 bg-blue-50 shadow border rounded-full w-auto max-w-6xl mx-auto px-4 py-3 transform transition-transform duration-300 ${
           showNav ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0'
         }`}
       >

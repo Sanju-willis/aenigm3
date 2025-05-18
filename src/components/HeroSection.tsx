@@ -13,11 +13,11 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowAlt((prev) => !prev);
-    }, 4000);
+    }, 6000);
 
     const strikeInterval = setInterval(() => {
       setShowStrike((prev) => !prev);
-    }, 4000);
+    }, 6000);
 
     return () => {
       clearInterval(interval);
@@ -40,16 +40,9 @@ export default function HeroSection() {
               Conversion Rate Optimization
             </h1>
             <p className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-black">
-              <motion.span
-                animate={{
-                  textDecoration: showStrike ? 'line-through' : 'none',
-                  color: 'black',
-                  textDecorationColor: showStrike ? '#ef4444' : 'transparent',
-                }}
-                transition={{ duration: 0.3 }}
-              >
+              <span className="line-through decoration-red-500">
                 Digital Marketing
-              </motion.span>{' '}
+              </span><span>  </span>
               <span className="font-heading">Agency</span>
             </p>
             <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl leading-7 md:leading-8 text-gray-600 max-w-2xl mx-auto lg:mx-0">

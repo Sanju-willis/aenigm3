@@ -4,8 +4,11 @@ import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
-async function getPost(slug: string) {
-  return await client.fetch(
+// 👇 Handle async params properly (Next.js 15)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
       title,
       body,
@@ -16,17 +19,10 @@ async function getPost(slug: string) {
     }`,
     { slug }
   );
-}
 
-export default function BlogPostPageWrapper({ params }: { params: { slug: string } }) {
-  return <BlogPostPage params={params} />;
-}
-
-async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const post = await getPost(slug);
-
-  if (!post) return <p>Post not found</p>;
+  if (!post) {
+    return <p>Post not found</p>;
+  }
 
   return (
     <article className="prose max-w-2xl mx-auto p-6">

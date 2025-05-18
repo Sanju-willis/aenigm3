@@ -4,13 +4,7 @@ import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const slug = params.slug;
 
   const post = await client.fetch(

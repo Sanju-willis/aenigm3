@@ -2,16 +2,17 @@
 import { client } from '@/lib/sanity';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
-interface Props {
+interface PageProps {
   params: {
     slug: string;
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: PageProps) {
   const slug = params.slug;
 
   const post = await client.fetch(

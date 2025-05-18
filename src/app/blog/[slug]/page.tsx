@@ -1,4 +1,3 @@
-// src\app\blog\[slug]\page.tsx
 import { client } from '@/lib/sanity';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';

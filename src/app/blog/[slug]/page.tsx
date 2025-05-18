@@ -1,12 +1,18 @@
-// src/app/blog/[slug]/page.tsx
+// src\app\blog\[slug]\page.tsx
 import { client } from '@/lib/sanity';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
-export default async function BlogPostPage({ params }: { params: Record<string, string> }) {
-  const slug = params.slug;
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function BlogPostPage(props: Props) {
+  const slug = props.params.slug;
 
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{

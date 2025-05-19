@@ -107,13 +107,15 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
 
   try {
     await fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        subject: 'ROI Guarantee Form Submitted',
-        data: formData,
-      }),
-    });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    subject: 'ROI Guarantee Form Submitted',
+    to: 'sanju.peramuna@gmail.com', // ✅ ADD THIS
+    data: formData,
+  }),
+});
+
   } catch (err) {
     console.error('Email send failed:', err);
   }

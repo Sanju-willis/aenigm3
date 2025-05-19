@@ -53,7 +53,7 @@ export default function PowerOfCROSection() {
               height={300}
               className="mx-auto w-32 sm:w-40 lg:w-auto h-auto"
             />
-            <div className="absolute top-1/2 left-1/2 lg:left-auto lg:right-0 transform -translate-y-1/2 lg:translate-x-full -translate-x-1/2 lg:translate-x-4">
+            <div className="absolute top-1/2 left-1/2 lg:left-auto lg:right-0 transform -translate-y-1/2 lg:translate-x-full -translate-x-1/2 ">
               <p className="text-3xl sm:text-4xl font-semibold text-gray-500">CRO</p>
             </div>
           </motion.div>

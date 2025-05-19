@@ -45,10 +45,25 @@ export default function AuditForm() {
     setShowDropdown(false);
   };
 
-  const handleSubmit = () => {
-    console.log('Audit form submitted:', formData);
+  const handleSubmit = async () => {
+  try {
+    await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: 'New CRO Audit Request',
+        to: 'sanju.peramuna@gmail.com', // optional, default is already set
+        data: formData,
+      }),
+    });
+
     setIsSubmitted(true);
-  };
+  } catch (err) {
+    console.error('Failed to send audit form email:', err);
+    alert('Something went wrong. Please try again later.');
+  }
+};
+
 
   // Thank you / What Happens Next section
   const renderThankYou = () => (

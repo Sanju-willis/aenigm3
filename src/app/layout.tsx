@@ -7,7 +7,6 @@ import Footer from '../components/com-layout/Footer';
 import ChatbotWidget from '../components/ChatbotWidget';
 import GTM from '@/components/analytics/GTM';
 
-
 export const metadata: Metadata = {
   title: 'Aenigm3 - Digital Marketing Agency',
   description: 'Digital Marketing Solutions for your Business',
@@ -25,7 +24,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`h-full ${royalCastle.variable} ${aleo.variable}`}>
+      <head />
       <body className={`${aleo.className} h-full`}>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MRD82LQD"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        <GTM />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow pt-16">

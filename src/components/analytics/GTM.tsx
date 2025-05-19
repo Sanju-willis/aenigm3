@@ -1,15 +1,14 @@
 // src\components\analytics\GTM.tsx
-// src/components/analytics/GTM.tsx
 'use client';
 
 import Script from 'next/script';
 
-const GTM_ID = 'GTM-XXXXXXX'; // ⬅️ Replace with your actual ID
+const GTM_ID = 'GTM-MRD82LQD';
 
 export default function GTM() {
   return (
     <>
-      {/* GTM <script> in <head> */}
+      {/* Google Tag Manager Script in <head> */}
       <Script id="gtm-head" strategy="afterInteractive">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -19,16 +18,6 @@ export default function GTM() {
           })(window,document,'script','dataLayer','${GTM_ID}');
         `}
       </Script>
-
-      {/* GTM <noscript> fallback */}
-      <noscript>
-        <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-          height="0"
-          width="0"
-          style={{ display: 'none', visibility: 'hidden' }}
-        />
-      </noscript>
     </>
   );
 }

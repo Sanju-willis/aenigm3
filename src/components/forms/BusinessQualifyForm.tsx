@@ -103,13 +103,27 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      onClose();
-    }, 2000);
-  };
+  e.preventDefault();
+
+  try {
+    await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: 'ROI Guarantee Form Submitted',
+        data: formData,
+      }),
+    });
+  } catch (err) {
+    console.error('Email send failed:', err);
+  }
+
+  setIsSubmitted(true);
+  setTimeout(() => {
+    onClose();
+  }, 2000);
+};
+
 
   const inputClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm";
   const selectClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm appearance-none cursor-pointer";

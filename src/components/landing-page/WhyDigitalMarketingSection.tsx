@@ -75,7 +75,7 @@ export default function WhyDigitalMarketingSection() {
           <motion.a
             href="#start-optimizing"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}            className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition"
+            whileTap={{ scale: 0.95 }}            className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition" id="cta-start-optimizing"
           >
             Start Optimizing Now ▶
             

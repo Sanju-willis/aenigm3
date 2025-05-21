@@ -56,12 +56,12 @@ export default function BigMistakesSection() {
         </motion.p>
         
         {/* CTA Button */}
-        <div className="text-center">
+        <div className="text-center" >
           <motion.a
-            href="#"
+            href="#find-out-more"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-8 mt-10 rounded-full transition"
+            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-8 mt-10 rounded-full transition" id="find-out-more"
           >
             Find Out What's Hurting Your Conversions
             <span className="text-xl">▶</span>

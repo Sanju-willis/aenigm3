@@ -75,7 +75,7 @@ export default function CROQuestionsSection() {
           >
             <Button
               size="lg"
-              className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold"
+              className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold" id="ask-cro-expert"
             >
               <img
                 src="expert.png"

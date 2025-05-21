@@ -122,7 +122,7 @@ const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
               onClick={handleLearnMoreClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg"
+              className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg" id="cta-learn-more"
             >
               Learn More About CRO
               <span className="text-xl">▶</span>

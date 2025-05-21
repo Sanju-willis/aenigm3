@@ -1,4 +1,3 @@
-// src\components\landing-page\HeroSection.tsx
 'use client';
 
 import Link from 'next/link';
@@ -37,7 +36,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5 }}
             className="text-center lg:text-left"
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading tracking-tight text-black leading-[1.1]">
+            <h1 className="whitespace-nowrap text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading tracking-tight text-black leading-tight">
               Conversion Rate Optimization
             </h1>
             <p className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-black">
@@ -46,6 +45,13 @@ export default function HeroSection() {
               </span><span>  </span>
               <span className="font-heading">Agency</span>
             </p>
+
+            {/* Pixel-by-pixel blooming animated bar */}
+            <div
+              className="h-[10px] w-full my-6 rounded-full bg-[length:0%_100%] bg-gradient-to-r from-white via-blue-500 to-white animate-pixel-bloom bg-no-repeat"
+              style={{ backgroundImage: 'linear-gradient(to right, white, #3B82F6, white)' }}
+            />
+
             <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl leading-7 md:leading-8 text-gray-600 max-w-2xl mx-auto lg:mx-0">
               Helping Direct to Consumer businesses to increase sales & revenue by optimizing
               conversion with Data Driven Insights & Testing.
@@ -71,13 +77,13 @@ export default function HeroSection() {
               {showAlt ? (
                 <>
                   <p className="text-base sm:text-lg font-semibold text-brandblue mb-2">Get a Personal AI Media Buyer</p>
-                  <p className="text-sm sm:text-base text-gray-700 mb-3">
+                  <p className="text-lg sm:text-lg font-bold text-gray-700 mb-3">
                     “You’ve been managing ads. This one manages itself.”
                   </p>
                   <p className="text-sm sm:text-base text-gray-700 mb-5">
                     It learns, steals, and scales—so you don’t have to.
                   </p>
-                  <button className="w-full sm:w-auto inline-block rounded-full bg-brandblue px-6 py-3 text-base sm:text-lg font-semibold text-white shadow hover:bg-brandblue/90 transition cursor-not-allowed min-h-[48px]">
+                  <button className="w-full sm:w-auto inline-block rounded-full bg-brandblue px-6 py-3 text-base sm:text-lg font-semibold text-white shadow hover:bg-brandblue/90 transition cursor-not-allowed min-h-[48px]" id="cta-coming-soon">
                     Coming Soon
                   </button>
                 </>
@@ -92,7 +98,7 @@ export default function HeroSection() {
                       e.stopPropagation();
                       setShowForm(true);
                     }}
-                    className="w-full sm:w-auto inline-block rounded-full bg-brandblue px-6 py-3 text-base sm:text-lg font-semibold text-white shadow hover:bg-brandblue/90 transition min-h-[48px]"
+                    className="w-full sm:w-auto inline-block rounded-full bg-brandblue px-6 py-3 text-base sm:text-lg font-semibold text-white shadow hover:bg-brandblue/90 transition min-h-[48px]" id="cta-qualify"
                   >
                     See If My Business Qualifies →
                   </button>
@@ -103,20 +109,20 @@ export default function HeroSection() {
         </div>
 
         {/* Checkmark points */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-20 ">
-            {[
-              "No Budget Bump",
-              "Data Driven Decisions",
-              "Increased Conversions"
-            ].map((text, index) => (
-              <div key={index} className="inline-flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="text-xl font-bold text-gray-700 ">{text}</span>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-20 ">
+          {[
+            "No Budget Bump",
+            "Data Driven Decisions",
+            "Increased Conversions"
+          ].map((text, index) => (
+            <div key={index} className="inline-flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-xl font-bold text-gray-700 ">{text}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <AnimatePresence>

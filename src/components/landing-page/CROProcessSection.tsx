@@ -17,6 +17,7 @@ const steps = [
   },
   {
     title: "A/B Testing & UX Optimization",
+    subtitle:"(See What Works Best)",
     points: [
       "Experiment with different versions",
       "Improve layout, copy & mobile experience",
@@ -25,7 +26,8 @@ const steps = [
     img: "/images/abtesting.png",
   },
   {
-    title: "Implement & Scale",
+    title: "Deploy, Track, Optimize & Scale",
+    subtitle: "(Accelerate Your Growth Engine)",
     points: [
       "Roll out high-converting pages",
       "Track performance using analytics",
@@ -35,16 +37,17 @@ const steps = [
   },
   {
     title: "Implement Winning Strategies",
+    subtitle: "(Turn Plans into Profit)",
     points: ["Continuously tweak & improve", "Use live data insights"],
     img: "/images/strategy.png",
   },
 ];
 
 const partners = [
-  "/logos/vwo.png",
-  "/logos/google-analytics.png",
-  "/logos/hotjar.png",
-  "/logos/shopify.png",
+  {logo: "/logos/vwo.png", url: "https://vwo.com"},
+  {logo: "/logos/google-analytics.png", url: "https://analytics.google.com"},
+  {logo: "/logos/hotjar.png", url: "https://www.hotjar.com"},
+  {logo: "/logos/shopify.png", url: "https://www.shopify.com"},
 ];
 
 export default function CROProcessSection() {
@@ -126,7 +129,7 @@ export default function CROProcessSection() {
             href="#"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg"
+            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg" id="cta-strategy-call"
           >
             Schedule a Strategy Call
             <span className="text-xl">▶</span>
@@ -135,13 +138,21 @@ export default function CROProcessSection() {
 
         {/* Partner Logos */}
         <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
-          {partners.map((logo, i) => (
-            <img 
-              key={i} 
-              src={logo} 
-              alt="Partner Logo" 
-              className="h-6 sm:h-8 opacity-80 hover:opacity-100 transition-opacity" 
-            />
+          {partners.map((partner, i) => (
+            <a
+              key={i}
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-100 opacity-80 transition-opacity"
+            >
+              <img
+                src={partner.logo}
+                alt="Partner Logo"
+                className="h-6 sm:h-8"
+              />
+            </a>
+            
           ))}
         </div>
       </div>

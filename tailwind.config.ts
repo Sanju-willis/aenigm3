@@ -16,7 +16,8 @@ const config: Config = {
       screens: {
         "2xl": "1400px",
       },
-    },    extend: {
+    },
+    extend: {
       fontFamily: {
         'heading': ['var(--font-royal-castle)', 'serif'],
         'body': ['var(--font-aleo)', 'serif'],
@@ -71,13 +72,25 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        pixelBloom: {
+          '0%': {
+            backgroundSize: '0% 50%',
+            backgroundPosition: '0% 50%',
+          },
+          '100%': {
+            backgroundSize: '100% 30%',
+            backgroundPosition: '100% 50%',
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pixel-bloom": "pixelBloom 8s linear infinite",
       },
     },
   },
+  safelist: ['animate-pixel-bloom'],
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],
 }
 

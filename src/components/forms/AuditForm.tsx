@@ -72,7 +72,7 @@ export default function AuditForm() {
 
   // Thank you / What Happens Next section
   const renderThankYou = () => (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg">
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg" id="audit-form">
       <h2 className="text-2xl font-semibold mb-6 text-center">What Happens Next?</h2>
       
       <div className="space-y-4 mb-6">

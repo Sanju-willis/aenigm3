@@ -220,7 +220,8 @@ export default function HeaderWithMegaMenu() {
                       </div>
                     ))}
                   </div>
-                  {/* Right: Blue box */}                  <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-start p-8 text-white">
+                  {/* Right: Blue box */}                  
+                  <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-center p-8 text-white">
                     <h4 className="text-2xl font-heading mb-2">{item.rightBox?.title}</h4>
                     <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
                     <img 

@@ -132,7 +132,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
   const buttonClassName = "bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-blue-600 transition-colors";
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm overflow-auto">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm overflow-auto" id="BusinessQualifyForm">
       <div className="w-full py-2 px-2 max-h-[98vh]">
         {/* Modal Card */}
         <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow-2xl relative">

@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import { royalCastle, aleo } from '../utils/fonts';
 import Header from '../components/com-layout/HeaderWithMegaMenu';
 import Footer from '../components/com-layout/Footer';
-import ChatbotWidget from '../components/ChatbotWidget';
 import GTM from '@/components/analytics/GTM';
 
 export const metadata: Metadata = {
@@ -39,7 +38,6 @@ export default function RootLayout({
           <Header />
           <main className="flex-grow pt-16">
             {children}
-            <ChatbotWidget />
           </main>
           <Footer />
         </div>

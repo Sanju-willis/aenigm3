@@ -13,6 +13,8 @@ import CROServicesSection from '@/components/landing-page/CROServicesSection';
 import GrowRevenueSection from '@/components/landing-page/GrowRevenueSection';
 import WhyDigitalMarketingSection from '@/components/landing-page/WhyDigitalMarketingSection';
 import PowerOfCROSection from '@/components/landing-page/PowerOfCROSection';
+import ClientPageViewTracker from '@/components/ClientPageViewTracker';
+
 
 export const metadata: Metadata = {
   title: 'Conversion Rate Optimization - Aenigm3 Labs',

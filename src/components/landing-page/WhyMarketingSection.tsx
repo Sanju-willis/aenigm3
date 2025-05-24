@@ -1,10 +1,10 @@
-// src\components\landing-page\WhyMarketingSection.tsx
+// src/components/landing-page/WhyMarketingSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {bangers} from '../../utils/fonts';
+import { bangers } from '../../utils/fonts';
 import AuditForm from '../forms/AuditForm';
 
 const painPoints = [
@@ -28,22 +28,13 @@ const painPoints = [
 
 export default function StopWastingSection() {
   const [showAuditForm, setShowAuditForm] = useState(false);
-  
-  // Prevent body scrolling when modal is open
+
   useEffect(() => {
-    if (showAuditForm) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    
-    // Cleanup function to reset overflow when component unmounts
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    document.body.style.overflow = showAuditForm ? 'hidden' : 'auto';
+    return () => { document.body.style.overflow = 'auto'; };
   }, [showAuditForm]);
 
-const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setShowAuditForm(true);
   };
@@ -85,14 +76,13 @@ const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 
           <div className="text-center max-w-3xl mx-auto px-4">
             <p className="text-lg sm:text-xl mb-1">
-              <span className="text-gray-600 font-bold">The real issue isn't traffic</span> — 
+              <span className="text-gray-600 font-bold">The real issue isn't traffic</span> —
               <span className={`text-pink-600 text-xl sm:text-2xl ${bangers.className}`}>IT'S CONVERSION.</span>
             </p>
             <p className="text-gray-600 text-base sm:text-lg mb-2 sm:mb-2">
               We help businesses turn website visitors into paying customers without increasing ad spend.
             </p>
 
-            {/* Benefits row with dots */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-x-3 mb-2 sm:mb-2">
               <span className="text-xl sm:text-2xl font-medium text-brandblue">More sales</span>
               <span className="hidden sm:inline text-brandblue text-2xl">|</span>
@@ -101,7 +91,6 @@ const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
               <span className="text-xl sm:text-2xl font-medium text-brandblue">Higher profits</span>
             </div>
 
-            {/* Checkmark points */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
               {[
                 "Fix hidden issues hurting conversions",
@@ -117,7 +106,6 @@ const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
               ))}
             </div>
 
-            {/* CTA Button */}
             <motion.button
               onClick={handleLearnMoreClick}
               whileHover={{ scale: 1.05 }}
@@ -134,22 +122,8 @@ const handleLearnMoreClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       {/* Modal popup with AuditForm */}
       {showAuditForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
-          <div className="relative w-full max-w-2xl">
-            {/* Close button */}
-            <button 
-              onClick={handleCloseAuditForm}
-              className="absolute -top-10 right-2 text-white p-2 hover:bg-gray-700 rounded-full z-10"
-              aria-label="Close form"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            
-            {/* Overlay click to close */}
-            <div className="absolute inset-0 -z-10" onClick={handleCloseAuditForm}></div>
-            
-            <AuditForm />
+          <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">
+            <AuditForm onClose={handleCloseAuditForm} />
           </div>
         </div>
       )}

@@ -1,0 +1,17 @@
+"use client";
+
+import useSendPageView from ".././app/hooks/useSendPageView";
+
+export default function ClientPageViewTracker() {
+  const eventId = `dedupe-${Math.floor(Math.random() * 1000000)}`;
+
+  useSendPageView({
+    email: "test@example.com",
+    gender: "m",
+    city: "Colombo",
+    country: "LK",
+    event_id: eventId
+  });
+
+  return null;
+}

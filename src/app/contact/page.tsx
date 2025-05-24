@@ -1,6 +1,6 @@
 // src\app\contact\page.tsx
 import { Metadata } from 'next';
-import ContactForm from '@/components/forms/ContactForm';
+//import ContactForm from '@/components/for
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
@@ -71,7 +71,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Send us a message</h2>
               <div className="mt-8">
-                <ContactForm />
+                
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: 'Aenigm3 Labs <noreply@aenigm3labs.com>',
+      from: 'Aenigm3 Labs <noreply@aenigme.com>',
       to: to || 'sanju.peramuna@gmail.com',
       subject: subject || 'New Form Submission',
       html: Object.entries(data)

@@ -1,3 +1,4 @@
+// src\components\ClientPageViewTracker.tsx
 "use client";
 
 import useSendPageView from ".././app/hooks/useSendPageView";

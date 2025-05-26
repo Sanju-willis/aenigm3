@@ -5,16 +5,11 @@ import { royalCastle, aleo } from '../utils/fonts';
 import Header from '../components/com-layout/HeaderWithMegaMenu';
 import Footer from '../components/com-layout/Footer';
 import GTM from '@/components/analytics/GTM';
+import { siteMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Aenigm3 - Digital Marketing Agency',
-  description: 'Digital Marketing Solutions for your Business',
-  icons: {
-    icon: '/fav-icon.png',
-    shortcut: '/fav-icon.png',
-    apple: '/fav-icon.png',
-  },
-};
+
+export const metadata: Metadata = siteMetadata;
+
 
 export default function RootLayout({
   children,

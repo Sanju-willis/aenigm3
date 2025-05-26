@@ -36,12 +36,12 @@ export default function CROQuestionsSection() {
   return (    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
           We understand that you are worried
         </h2>
 
         {/* FAQ List */}
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -57,7 +57,7 @@ export default function CROQuestionsSection() {
                 </div>
               </div>
               {index < faqs.length - 1 && (
-                <hr className="mt-6 border-gray-200" />
+                <hr className="mt-3 border-gray-200" />
               )}
             </motion.div>
           ))}
@@ -65,7 +65,7 @@ export default function CROQuestionsSection() {
 
         {/* CTA Block */}
         <div className="mt-16 text-center">
-          <p className="text-2xl font-semibold text-gray-500 mb-8">
+          <p className="text-lg sm:text-xl font-semibold text-gray-500 mb-8">
             Want to See Which CRO Strategy Works for You?
           </p>
           <motion.div

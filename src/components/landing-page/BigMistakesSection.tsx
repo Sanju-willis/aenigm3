@@ -1,4 +1,3 @@
-// src\components\landing-page\BigMistakesSection.tsx
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -15,24 +14,38 @@ const mistakes = [
 ];
 
 export default function BigMistakesSection() {
-  return (    <section className="py-20 bg-background scroll-mt-24">
+  return (
+    <section className="py-20 bg-background scroll-mt-24">
       <div className="container mx-auto px-6 text-center">
         {/* Top Heading */}
-        <motion.h2
-          className="text-3xl sm:text-4xl font-bold flex justify-center items-center gap-2 mb-10"
+        <motion.div
+          className="mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <AlertTriangle className="text-yellow-500 w-8 h-8" />
-          The Big Mistakes Hurting Your Sales
-        </motion.h2>
+          {/* Mobile Layout */}
+          <h2 className="text-2xl sm:hidden font-bold flex flex-col items-center gap-1">
+            <span className="flex items-center gap-2">
+              <AlertTriangle className="text-yellow-500 w-6 h-6" />
+              The Big Mistakes Hurting
+            </span>
+            <span>Your <span className="text-pink-600">Sales</span></span>
+          </h2>
+
+          {/* Desktop Layout */}
+          <h2 className="hidden sm:flex text-2xl sm:text-3xl lg:text-4xl font-bold justify-center items-center gap-2">
+            <AlertTriangle className="text-yellow-500 w-8 h-8" />
+            The Big Mistakes Hurting Your <span className="text-pink-600">Sales</span>
+          </h2>
+        </motion.div>
 
         {/* Mistake List */}
         <div className="max-w-3xl mx-auto text-left">
           <ul className="space-y-4">
             {mistakes.map((mistake, index) => (
               <motion.li
-                key={index}                className="flex items-center gap-3"
+                key={index}
+                className="flex items-center gap-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -54,14 +67,15 @@ export default function BigMistakesSection() {
           Fix these, and your revenue will skyrocket.
           <Rocket className="text-pink-500 w-6 h-6" />
         </motion.p>
-        
+
         {/* CTA Button */}
-        <div className="text-center" >
+        <div className="text-center">
           <motion.a
             href="#find-out-more"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-8 mt-10 rounded-full transition" id="find-out-more"
+            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-8 mt-10 rounded-full transition"
+            id="find-out-more"
           >
             Find Out What's Hurting Your Conversions
             <span className="text-xl">▶</span>

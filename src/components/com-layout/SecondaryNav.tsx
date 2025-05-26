@@ -1,4 +1,3 @@
-// src\components\com-layout\SecondaryNav.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -25,8 +24,9 @@ export default function SecondaryNav() {
     const handleScroll = () => {
       const secondSection = document.getElementById('why-marketing');
       if (secondSection) {
-        const sectionTop = secondSection.getBoundingClientRect().top;
-        setShowNav(sectionTop <= 0);
+        const sectionOffsetTop = secondSection.offsetTop;
+        const currentScroll = window.scrollY || window.pageYOffset;
+        setShowNav(currentScroll >= sectionOffsetTop - 100); // Show 10px before section
       }
 
       for (const section of sections) {

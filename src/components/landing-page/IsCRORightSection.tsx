@@ -57,7 +57,7 @@ export default function IsCRORightSection() {
           transition={{ delay: 0.7 }}
         >
           If you said YES to any of these, CRO is what you need.
-          <Rocket className="text-pink-500 w-6 h-6" />
+          <Rocket className="text-pink-500 w-6 h-6 " />
         </motion.p>
 
         {/* CTA Button */}

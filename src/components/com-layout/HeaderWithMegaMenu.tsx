@@ -1,7 +1,6 @@
-// src\components\com-layout\HeaderWithMegaMenu.tsx
 'use client';
 
-import React, { useState,useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -19,7 +18,6 @@ const navigation = [
           'Meta Ads (Facebook, Instagram, WhatsApp)',
           'Cross-Channel Remarketing with AI Signals',
           'Ad Budget & Performance Optimization',
-          
         ],
       },
       {
@@ -39,7 +37,6 @@ const navigation = [
           'Content Strategy for Conversions',
           'AI-Assisted Copy & Visual Testing',
           'Multi-Platform Content Funnels',
-          
         ],
       },
       {
@@ -50,6 +47,10 @@ const navigation = [
         name: 'Landing Page Optimization',
         content: ['Conversion-Focused Layouts', 'Dynamic Content Blocks', 'Speed & Mobile Optimization', 'Integrated Tracking & Split Testing'],
       },
+      {
+        name: 'Web & Application Development',
+        content: ['CRO-First Website Development', 'Websites Built with Landing Page Optimisation Framework', 'AI-Powered Web Applications','Speed & Mobile-Optimised Platforms','CMS Architecture with Dynamic Content Blocks','Custom SaaS & Dashboard Interfaces','Behaviour Analytics & Conversion-Focused UI','Full-Funnel Software Product Design','CRM, Chatbot & Analytics Integrations','Automation-Ready Back-End Systems'],
+      }
     ],
     rightBox: {
       title: 'Convert Smarter, Grow Faster',
@@ -108,14 +109,11 @@ const navigation = [
     href: '#',
     submenu: [
       {
-        name: 'Learning Resources',
+        name: 'Behind The Labs',
         content: [
-          'CRO Best Practices Guide',
-          'Landing Page Optimization',
-          'A/B Testing Masterclass',
-          'Meta Ads Strategy Guide',
-          'Analytics Implementation',
-          'Conversion Psychology'
+          'The Origin Formula',
+          'The Brains & Builders',
+          'Our Timeline of Trials',
         ]
       },
       {
@@ -139,7 +137,7 @@ const navigation = [
           'Growth Strategy Sessions',
           'Community Forums'
         ]
-      }
+      },
     ],
     rightBox: {
       title: 'Accelerate Your Growth',
@@ -153,19 +151,21 @@ const navigation = [
 export default function HeaderWithMegaMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = (menuName: string) => {
-    setOpenMenu(menuName);
-  };
-
-  const handleMouseLeave = () => {
-    setOpenMenu(null);
-  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
+    <header className="fixed inset-x-0 top-0 z-50 bg-black/10 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8" aria-label="Global">
-        {/* Logo */}
         <div className="flex flex-1">
           <Link href="/" className="flex items-center">
             <span className="sr-only">Aenigm3 Labs</span>
@@ -173,7 +173,6 @@ export default function HeaderWithMegaMenu() {
           </Link>
         </div>
 
-        {/* Mobile menu button */}
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -185,31 +184,30 @@ export default function HeaderWithMegaMenu() {
           </button>
         </div>
 
-        {/* Desktop nav with mega menu */}
-        <div className="hidden lg:flex lg:gap-x-10 relative  ">
+        <div className="hidden lg:flex lg:gap-x-10 relative" ref={menuRef}>
           {navigation.map((item) => (
-            <div
-              key={item.name}
-              className="group relative"
-              onMouseEnter={() => handleMouseEnter(item.name)}
-              onMouseLeave={handleMouseLeave}
-            >              <Link
-                href={item.href}                className="text-xl font-bold text-gray-900 hover:text-brandblue transition-colors tracking-wide"
+            <div key={item.name} className="group relative">
+              <button
+                onClick={() => setOpenMenu(openMenu === item.name ? null : item.name)}
+                className={`text-xl font-bold transition-colors tracking-wide ${
+                openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'
+              }`}
+                
               >
                 {item.name}
-              </Link>
-              {item.submenu && openMenu === item.name && (                <div className="fixed left-1/2 transform -translate-x-1/2 top-full  w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
-                  {/* Left: Categories grid */}
+              </button>
+              {item.submenu && openMenu === item.name && (
+                <div className="fixed left-1/2 transform -translate-x-1/2 top-full w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
                   <div className="p-6 grid grid-cols-3 gap-6 flex-1">
                     {item.submenu.map((sub) => (
                       <div key={sub.name} className="group">
-                        <h3 className="text-lg font-heading text-gray-900 mb-3">{sub.name}</h3>
+                        <h3 className="text-lg font-heading  font-semibold text-gray-900 mb-3">{sub.name}</h3>
                         {'content' in sub && sub.content && (
                           <ul className="space-y-2">
                             {sub.content.map((contentItem: string, index: number) => (
                               <li
                                 key={index}
-                className="text-sm text-gray-700 hover:text-brandblue transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
+                                className="text-sm text-gray-700 hover:text-brandblue transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
                               >
                                 <span className="text-brandblue">•</span>
                                 <span>{contentItem}</span>
@@ -220,15 +218,15 @@ export default function HeaderWithMegaMenu() {
                       </div>
                     ))}
                   </div>
-                  {/* Right: Blue box */}                  
                   <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-center p-8 text-white">
                     <h4 className="text-2xl font-heading mb-2">{item.rightBox?.title}</h4>
                     <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
-                    <img 
-                      src={item.rightBox?.image} 
-                      alt={item.rightBox?.title} 
-                      className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2" 
-                    />                    <button className="mt-2 bg-white text-brandblue font-semibold px-5 py-2 rounded-full shadow hover:bg-brandblue/10 transition-colors">
+                    <img
+                      src={item.rightBox?.image}
+                      alt={item.rightBox?.title}
+                      className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2"
+                    />
+                    <button className="mt-2 bg-white text-brandblue font-semibold px-5 py-2 rounded-full shadow hover:bg-brandblue/10 transition-colors">
                       {item.rightBox?.buttonText}
                     </button>
                   </div>
@@ -238,9 +236,9 @@ export default function HeaderWithMegaMenu() {
           ))}
         </div>
 
-        {/* Get Proposal button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link            href="/get-proposal"
+          <Link
+            href="/get-proposal"
             className="rounded-full bg-brandblue px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-brandblue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandblue transition"
           >
             Get Proposal
@@ -248,7 +246,6 @@ export default function HeaderWithMegaMenu() {
         </div>
       </nav>
 
-      {/* Mobile panel */}
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-sm" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white p-6 shadow-lg transition-transform">
@@ -280,7 +277,8 @@ export default function HeaderWithMegaMenu() {
                     {item.submenu.map((sub) => (
                       <li key={sub.name}>
                         <Link
-                          href="#"                          className="block text-sm text-gray-600 hover:text-brandblue w-full text-left"
+                          href="#"
+                          className="block text-sm text-gray-600 hover:text-brandblue w-full text-left"
                         >
                           {sub.name}
                         </Link>
@@ -291,7 +289,8 @@ export default function HeaderWithMegaMenu() {
               </div>
             ))}
             <Link
-              href="/get-proposal"              className="block w-full rounded-full bg-brandblue px-4 py-2 text-center text-base font-semibold text-white hover:bg-brandblue/90 transition"
+              href="/get-proposal"
+              className="block w-full rounded-full bg-brandblue px-4 py-2 text-center text-base font-semibold text-white hover:bg-brandblue/90 transition"
             >
               Get Proposal
             </Link>

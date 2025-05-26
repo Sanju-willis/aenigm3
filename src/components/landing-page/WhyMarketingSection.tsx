@@ -1,4 +1,3 @@
-// src/components/landing-page/WhyMarketingSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -45,7 +44,7 @@ export default function StopWastingSection() {
 
   return (
     <>
-      <section className="py-8 sm:py-12 lg:py-16 bg-white scroll-mt-24" id="learn-more">
+      <section id="why-marketing" className="py-8 sm:py-12 lg:py-16 bg-white scroll-mt-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8">
             Stop Wasting on{' '}
@@ -75,10 +74,18 @@ export default function StopWastingSection() {
           </div>
 
           <div className="text-center max-w-3xl mx-auto px-4">
-            <p className="text-lg sm:text-xl mb-1">
+            {/* Mobile view: two lines */}
+            <div className="sm:hidden mb-1">
+              <p className="text-lg font-bold text-gray-600">The real issue isn't traffic</p>
+              <p className={`text-pink-600 text-xl ${bangers.className}`}>IT'S CONVERSION.</p>
+            </div>
+
+            {/* Desktop view: original layout */}
+            <p className="hidden sm:block text-lg sm:text-xl mb-1">
               <span className="text-gray-600 font-bold">The real issue isn't traffic</span> —
               <span className={`text-pink-600 text-xl sm:text-2xl ${bangers.className}`}>IT'S CONVERSION.</span>
             </p>
+
             <p className="text-gray-600 text-base sm:text-lg mb-2 sm:mb-2">
               We help businesses turn website visitors into paying customers without increasing ad spend.
             </p>

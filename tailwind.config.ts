@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import containerQueries from '@tailwindcss/container-queries';
 
 const config: Config = {
   darkMode: ["class"],
@@ -19,8 +20,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        'heading': ['var(--font-royal-castle)', 'serif'],
-        'body': ['var(--font-aleo)', 'serif'],
+        heading: ['Royal Castle', 'serif'],
+        body: ['Aleo', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -91,7 +92,7 @@ const config: Config = {
     },
   },
   safelist: ['animate-pixel-bloom'],
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],
+  plugins: [containerQueries, require("tailwindcss-animate"), require("@tailwindcss/forms")],
 }
 
 export default config;

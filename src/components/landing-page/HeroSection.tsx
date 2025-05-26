@@ -40,7 +40,7 @@ export default function HeroSection() {
               Conversion Rate Optimization
             </h1>
             <p className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-black">
-              <span className="line-through decoration-red-500">
+              <span className="line-through decoration-pink-600">
                 Digital Marketing
               </span><span>  </span>
               <span className="font-heading">Agency</span>
@@ -48,8 +48,8 @@ export default function HeroSection() {
 
             {/* Pixel-by-pixel blooming animated bar */}
             <div
-              className="h-[10px] w-full my-6 rounded-full bg-[length:0%_100%] bg-gradient-to-r from-white via-blue-500 to-white animate-pixel-bloom bg-no-repeat"
-              style={{ backgroundImage: 'linear-gradient(to right, white, #3B82F6, white)' }}
+              className="h-[10px] w-full my-6 rounded-full bg-[length:0%_100%] bg-gradient-to-r from-white via-brandblue to-white animate-pixel-bloom bg-no-repeat"
+              style={{ backgroundImage: 'linear-gradient(to right, white,brandblue, white)' }}
             />
 
             <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl leading-7 md:leading-8 text-gray-600 max-w-2xl mx-auto lg:mx-0">

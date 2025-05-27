@@ -1,8 +1,10 @@
 // src\components\landing-page\CROQuestionsSection.tsx
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import AskCROForm from "../forms/AskCROForm";
 
 const faqs = [
   {
@@ -33,60 +35,80 @@ const faqs = [
 ];
 
 export default function CROQuestionsSection() {
-  return (    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
-          We understand that you are worried
-        </h2>
+  const [showAskCROForm, setShowAskCROForm] = useState(false);
 
-        {/* FAQ List */}
-        <div className="max-w-4xl mx-auto space-y-4">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="flex items-start gap-4">
-                <span className="text-lg font-medium text-gray-600 w-12">{faq.number}</span>
-                <div className="flex-1">                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                  <p className="text-brandblue text-lg">{faq.answer}</p>
+  useEffect(() => {
+    document.body.style.overflow = showAskCROForm ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showAskCROForm]);
+  return (
+    <>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Heading */}
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
+            We understand that you are worried
+          </h2>
+
+          {/* FAQ List */}
+          <div className="max-w-4xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-lg font-medium text-gray-600 w-12">{faq.number}</span>
+                  <div className="flex-1">                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{faq.question}</h3>
+                    <p className="text-brandblue text-lg">{faq.answer}</p>
+                  </div>
                 </div>
-              </div>
-              {index < faqs.length - 1 && (
-                <hr className="mt-3 border-gray-200" />
-              )}
-            </motion.div>
-          ))}
-        </div>
+                {index < faqs.length - 1 && (
+                  <hr className="mt-3 border-gray-200" />
+                )}
+              </motion.div>
+            ))}
+          </div>
 
-        {/* CTA Block */}
-        <div className="mt-16 text-center">
-          <p className="text-lg sm:text-xl font-semibold text-gray-500 mb-8">
-            Want to See Which CRO Strategy Works for You?
-          </p>
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-block"
-          >
-            <Button
-              size="lg"
-              className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold" id="ask-cro-expert"
+          {/* CTA Block */}
+          <div className="mt-16 text-center">
+            <p className="text-lg sm:text-xl font-semibold text-gray-500 mb-8">
+              Want to See Which CRO Strategy Works for You?
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block"
             >
-              <img
-                src="expert.png"
-                alt="Expert"
-                className="w-12 h-12 rounded-full"
-              />
-              Ask a CRO Expert
-            </Button>
-          </motion.div>
+              <Button
+                onClick={() => setShowAskCROForm(true)}
+                size="lg"
+                className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold" id="ask-cro-expert"
+              >
+                <img
+                  src="expert.png"
+                  alt="Expert"
+                  className="w-12 h-12 rounded-full"
+                />
+                Ask a CRO Expert
+              </Button>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {/* Modal for AskCROForm */}
+      {showAskCROForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
+          <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">
+            <AskCROForm onClose={() => setShowAskCROForm(false)} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

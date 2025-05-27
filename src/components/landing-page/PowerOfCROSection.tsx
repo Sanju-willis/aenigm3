@@ -85,18 +85,15 @@ export default function PowerOfCROSection() {
           </div>
         </div>
 
-        <p className="text-lg sm:text-xl text-gray-500 mt-8 sm:mt-10 mb-6 font-bold">
+        <p className="text-lg sm:text-xl text-gray-500 mt-8 sm:mt-10 mb-1 font-bold">
           More traffic = more ad spend. More conversions = more profit.
         </p>
 
-        <motion.a
-          href="#custom-cro-plan"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg" id="cta-get-cro-plan"
-        >
-          Get My Custom CRO Plan ▶
-        </motion.a>
+        <div className="text-center ">
+          <p className="text-sm sm:text-lg font-medium mb-1 text-brandblue">
+            Are you making the most of your existing visitors?
+          </p>
+        </div>
       </div>
     </section>
   );

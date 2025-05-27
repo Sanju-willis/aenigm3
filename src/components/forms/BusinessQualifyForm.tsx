@@ -1,5 +1,6 @@
 // src\components\forms\BusinessQualifyForm.tsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 
 interface FormData {
   // Step 1 - About You
@@ -86,6 +87,13 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -103,28 +111,28 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    await fetch('/api/send-email', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    subject: 'ROI Guarantee Form Submitted',
-    to: 'sanju.peramuna@gmail.com', // ✅ ADD THIS
-    data: formData,
-  }),
-});
+    try {
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: 'ROI Guarantee Form Submitted',
+          to: 'sanju.peramuna@gmail.com', // ✅ ADD THIS
+          data: formData,
+        }),
+      });
 
-  } catch (err) {
-    console.error('Email send failed:', err);
-  }
+    } catch (err) {
+      console.error('Email send failed:', err);
+    }
 
-  setIsSubmitted(true);
-  setTimeout(() => {
-    onClose();
-  }, 2000);
-};
+    setIsSubmitted(true);
+    setTimeout(() => {
+      onClose();
+    }, 2000);
+  };
 
 
   const inputClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm";
@@ -132,7 +140,11 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
   const buttonClassName = "bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-blue-600 transition-colors";
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm overflow-auto" id="BusinessQualifyForm">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center"
+      style={{
+        background: 'rgba(191, 211, 242, 0.5)',
+        backdropFilter: 'blur(6px)',
+      }} id="BusinessQualifyForm">
       <div className="w-full py-2 px-2 max-h-[98vh]">
         {/* Modal Card */}
         <div className="w-full max-w-xl mx-auto bg-white rounded-xl shadow-2xl relative">
@@ -188,7 +200,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                     <h2 className="text-lg font-bold text-gray-800">Thanks!</h2>
                     <p className="text-sm text-gray-700">Our team is reviewing your application.</p>
                     <p className="text-sm text-gray-700">If you qualify, we'll reach out within 24 hours.</p>
-                    
+
                     <div className="mt-2">
                       <p className="text-gray-600 mb-1 text-xs">In the meantime,</p>
                       <p className="text-xs mb-2">Schedule a quick call to discuss your growth potential</p>
@@ -224,7 +236,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           className={inputClassName}
                           required
                         />
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <input
                             type="email"
@@ -245,7 +257,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                             required
                           />
                         </div>
-                        
+
                         <input
                           type="text"
                           name="industry"
@@ -255,7 +267,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           className={inputClassName}
                           required
                         />
-                        
+
                         <input
                           type="url"
                           name="websiteURL"
@@ -265,7 +277,7 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           className={inputClassName}
                           required
                         />
-                        
+
                         <input
                           type="tel"
                           name="whatsApp"

@@ -1,8 +1,9 @@
 // src\components\landing-page\CROProcessSection.tsx
 'use client';
-
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import StrategyCallForm from "../forms/StrategyCallForm";
 
 const steps = [
   {
@@ -17,7 +18,7 @@ const steps = [
   },
   {
     title: "A/B Testing & UX Optimization",
-    subtitle:"(See What Works Best)",
+    subtitle: "(See What Works Best)",
     points: [
       "Experiment with different versions",
       "Improve layout, copy & mobile experience",
@@ -44,118 +45,126 @@ const steps = [
 ];
 
 const partners = [
-  {logo: "/logos/vwo.png", url: "https://vwo.com"},
-  {logo: "/logos/google-analytics.png", url: "https://analytics.google.com"},
-  {logo: "/logos/hotjar.png", url: "https://www.hotjar.com"},
-  {logo: "/logos/shopify.png", url: "https://www.shopify.com"},
+  { logo: "/logos/vwo.png", url: "https://vwo.com" },
+  { logo: "/logos/google-analytics.png", url: "https://analytics.google.com" },
+  { logo: "/logos/hotjar.png", url: "https://www.hotjar.com" },
+  { logo: "/logos/shopify.png", url: "https://www.shopify.com" },
 ];
 
 export default function CROProcessSection() {
+  const [showStrategyCallForm, setShowStrategyCallForm] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = showStrategyCallForm ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showStrategyCallForm]);
+
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading mb-3 sm:mb-4">
-            Our Simple <span className="text-pink-600">4-Step</span> CRO Process
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600">
-            We use science—not assumptions—to increase conversions.
-          </p>
-        </div>
+    <>
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading mb-3 sm:mb-4">
+              Our Simple <span className="text-pink-600">4-Step</span> CRO Process
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600">
+              We use science—not assumptions—to increase conversions.
+            </p>
+          </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-            >
-              <Card className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden h-full">
-                <CardContent className="p-4 sm:p-6 flex flex-col h-full">
-                  {/* Top section with image and title - fixed height */}
-                  <div className="flex flex-col items-center mb-4">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mb-4">
-                      <img
-                        src={step.img}
-                        alt={step.title}
-                        className="w-full h-full object-contain"
-                      />
+          {/* Steps Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <Card className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden h-full">
+                  <CardContent className="p-4 sm:p-6 flex flex-col h-full">
+                    {/* Top section with image and title - fixed height */}
+                    <div className="flex flex-col items-center mb-4">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mb-4">
+                        <img
+                          src={step.img}
+                          alt={step.title}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <h3 className="text-lg font-semibold text-center mb-1">
+                        {step.title}
+                      </h3>
+                      {step.subtitle && (
+                        <p className="text-sm text-gray-500 text-center">
+                          {step.subtitle}
+                        </p>
+                      )}
                     </div>
-                    <h3 className="text-lg font-semibold text-center mb-1">
-                      {step.title}
-                    </h3>
-                    {step.subtitle && (
-                      <p className="text-sm text-gray-500 text-center">
-                        {step.subtitle}
-                      </p>
-                    )}
-                  </div>
-                  
-                  {/* Horizontal divider - centered */}
-                  <div className="flex justify-center mb-4">
-                    <div className="w-48 h-px bg-gray-200"></div>
-                  </div>
-                  
-                  {/* Bullet points section */}
-                  <div className="w-full">
-                    <ul className="space-y-3">
-                      {step.points.map((point, i) => (
-                        <li key={i} className="flex items-baseline">
-                          <span className="text-brandblue mr-2 flex-shrink-0">•</span>
-                          <span className="text-sm sm:text-base text-gray-600">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Results Text */}
-        <div className="text-center mb-8 sm:mb-12">
-          <p className="text-lg sm:text-xl font-semibold text-gray-500">
-            Results? More revenue, lower costs, and higher profits.
-          </p>
-        </div>
+                    {/* Horizontal divider - centered */}
+                    <div className="flex justify-center mb-4">
+                      <div className="w-48 h-px bg-gray-200"></div>
+                    </div>
 
-        {/* CTA Button */}
-        <div className="text-center mb-12 sm:mb-16">
-          <motion.a
-            href="#"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-brandblue hover:bg-brandblue/90 text-white font-medium py-3 px-6 sm:px-8 rounded-full transition text-base sm:text-lg" id="cta-strategy-call"
-          >
-            Schedule a Strategy Call
-            <span className="text-xl">▶</span>
-          </motion.a>
-        </div>
+                    {/* Bullet points section */}
+                    <div className="w-full">
+                      <ul className="space-y-3">
+                        {step.points.map((point, i) => (
+                          <li key={i} className="flex items-baseline">
+                            <span className="text-brandblue mr-2 flex-shrink-0">•</span>
+                            <span className="text-sm sm:text-base text-gray-600">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* Partner Logos */}
-        <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
-          {partners.map((partner, i) => (
-            <a
-              key={i}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-100 opacity-80 transition-opacity"
-            >
-              <img
-                src={partner.logo}
-                alt="Partner Logo"
-                className="h-6 sm:h-8"
-              />
-            </a>
-            
-          ))}
+          {/* Results Text */}
+          <div className="text-center mb-8 sm:mb-12">
+            <p className="text-lg sm:text-xl font-semibold text-gray-500">
+              Results? More revenue, lower costs, and higher profits.
+            </p>
+          </div>
+
+          
+          {/* Partner Logos */}
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
+            {partners.map((partner, i) => (
+              <a
+                key={i}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-100 opacity-80 transition-opacity"
+              >
+                <img
+                  src={partner.logo}
+                  alt="Partner Logo"
+                  className="h-6 sm:h-8"
+                />
+              </a>
+
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Modal for StrategyCallForm */}
+      {showStrategyCallForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
+          <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">
+            <StrategyCallForm onClose={() => setShowStrategyCallForm(false)} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

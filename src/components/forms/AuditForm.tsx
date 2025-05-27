@@ -26,7 +26,7 @@ const challengeOptions = [
   'High bounce rate',
   'Poor mobile experience',
   'Confusing checkout process',
-  'Need better UX & design',
+  
 ];
 
 export default function AuditForm({ onClose }: AuditFormProps) {

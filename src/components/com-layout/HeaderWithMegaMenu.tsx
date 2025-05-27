@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import GetProposalForm from '../forms/GetProposalForm';
 
 const navigation = [
   {
@@ -14,49 +15,46 @@ const navigation = [
         name: 'AI-Powered Ad Campaigns',
         content: [
           'Google Ads (AI Max Strategy)',
-          'Generative Engine Optimization (GEO)',
           'Meta Ads (Facebook, Instagram, WhatsApp)',
-          'Cross-Channel Remarketing with AI Signals',
-          'Ad Budget & Performance Optimization',
+          'Generative Engine Optimization (GEO)',
+          'Cross-Channel AI Remarketing',
+          'Ad Spend Optimization',
         ],
       },
       {
         name: 'Conversion Rate Optimization (CRO)',
         content: [
-          'Smart A/B Testing with AI Recommendations',
+          'A/B Testing with AI Recommendations',
           'Behavior Analytics & Heatmaps',
+          'Funnel & Journey Optimization',
           'Dynamic Personalization Engine',
-          'Funnel & Micro-Journey Optimization',
-          'Landing Page AI Testing & Enhancements',
+
         ],
-      },
-      {
-        name: 'Branding & Content Strategy',
-        content: [
-          'AI-Driven Brand Positioning & Messaging',
-          'Content Strategy for Conversions',
-          'AI-Assisted Copy & Visual Testing',
-          'Multi-Platform Content Funnels',
-        ],
-      },
-      {
-        name: 'Email Marketing Automation',
-        content: ['Predictive Email Campaigns (AI Scoring)', 'Segmented Drip Journeys', 'Personalized Newsletters & Retention Flows'],
       },
       {
         name: 'Landing Page Optimization',
-        content: ['Conversion-Focused Layouts', 'Dynamic Content Blocks', 'Speed & Mobile Optimization', 'Integrated Tracking & Split Testing'],
+        content: [
+          'Conversion-Focused Layouts',
+          'Dynamic Content Blocks',
+          'Speed & Mobile Optimization',
+          'Integrated Split Testing',
+        ],
       },
       {
-        name: 'Web & Application Development',
-        content: ['CRO-First Website Development', 'Websites Built with Landing Page Optimisation Framework', 'AI-Powered Web Applications','Speed & Mobile-Optimised Platforms','CMS Architecture with Dynamic Content Blocks','Custom SaaS & Dashboard Interfaces','Behaviour Analytics & Conversion-Focused UI','Full-Funnel Software Product Design','CRM, Chatbot & Analytics Integrations','Automation-Ready Back-End Systems'],
-      }
+        name: ' Email & Retention Automation',
+        content: ['Predictive Email Campaigns', 'Segmented Drip Journeys', 'Personalized Retargeting Flows'],
+      },
+      {
+        name: 'Web & App Development',
+        content: ['CRO-First Website Builds', 'AI-Powered Web & SaaS Platforms', 'Conversion-Focused UI with Analytics', 'CRM, Chatbot & Backend Integrations'],
+      },
+
     ],
     rightBox: {
       title: 'Convert Smarter, Grow Faster',
       description: 'Drive meaningful traffic, convert with precision, and scale faster through AI-powered marketing, conversion optimization, and brand strategy.',
       image: '/images/ab-testing.png',
-      buttonText: 'Solutions >>>'
+
     }
   },
   {
@@ -101,7 +99,7 @@ const navigation = [
       title: 'AI-Powered Solutions',
       description: 'Transform your digital presence with our suite of AI-powered tools. Optimize conversions, automate campaigns, and maximize ROI.',
       image: '/images/personalized-recommendations.png',
-      buttonText: 'Explore Our Tools'
+
     }
   },
   {
@@ -109,11 +107,11 @@ const navigation = [
     href: '#',
     submenu: [
       {
-        name: 'Behind The Labs',
+        name: 'Inside Aenigm3',
         content: [
-          'The Origin Formula',
-          'The Brains & Builders',
-          'Our Timeline of Trials',
+          { label: 'About Us: Where It All Started', href: '/about' },
+          { label: 'Our Team: The Brains & Builders', href: '/about#leadership-team' }
+
         ]
       },
       {
@@ -143,7 +141,7 @@ const navigation = [
       title: 'Accelerate Your Growth',
       description: 'Access expert knowledge, proven strategies, and real-world case studies to transform your business performance.',
       image: '/images/strategy.png',
-      buttonText: 'Start Learning'
+
     }
   }
 ];
@@ -151,6 +149,7 @@ const navigation = [
 export default function HeaderWithMegaMenu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [showProposalForm, setShowProposalForm] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -164,139 +163,159 @@ export default function HeaderWithMegaMenu() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-black/10 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8" aria-label="Global">
-        <div className="flex flex-1">
-          <Link href="/" className="flex items-center">
-            <span className="sr-only">Aenigm3 Labs</span>
-            <img className="h-10 w-auto" src="/A3L Logo-01.svg" alt="Logo" />
-          </Link>
-        </div>
-
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-
-        <div className="hidden lg:flex lg:gap-x-10 relative" ref={menuRef}>
-          {navigation.map((item) => (
-            <div key={item.name} className="group relative">
-              <button
-                onClick={() => setOpenMenu(openMenu === item.name ? null : item.name)}
-                className={`text-xl font-bold transition-colors tracking-wide ${
-                openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'
-              }`}
-                
-              >
-                {item.name}
-              </button>
-              {item.submenu && openMenu === item.name && (
-                <div className="fixed left-1/2 transform -translate-x-1/2 top-full w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
-                  <div className="p-6 grid grid-cols-3 gap-6 flex-1">
-                    {item.submenu.map((sub) => (
-                      <div key={sub.name} className="group">
-                        <h3 className="text-lg font-heading  font-semibold text-gray-900 mb-3">{sub.name}</h3>
-                        {'content' in sub && sub.content && (
-                          <ul className="space-y-2">
-                            {sub.content.map((contentItem: string, index: number) => (
-                              <li
-                                key={index}
-                                className="text-sm text-gray-700 hover:text-brandblue transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
-                              >
-                                <span className="text-brandblue">•</span>
-                                <span>{contentItem}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-center p-8 text-white">
-                    <h4 className="text-2xl font-heading mb-2">{item.rightBox?.title}</h4>
-                    <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
-                    <img
-                      src={item.rightBox?.image}
-                      alt={item.rightBox?.title}
-                      className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2"
-                    />
-                    <button className="mt-2 bg-white text-brandblue font-semibold px-5 py-2 rounded-full shadow hover:bg-brandblue/10 transition-colors">
-                      {item.rightBox?.buttonText}
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            href="/get-proposal"
-            className="rounded-full bg-brandblue px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-brandblue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandblue transition"
-          >
-            Get Proposal
-          </Link>
-        </div>
-      </nav>
-
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-sm" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white p-6 shadow-lg transition-transform">
-          <div className="flex items-center justify-between">
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 bg-black/5 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8" aria-label="Global">
+          <div className="flex flex-1">
             <Link href="/" className="flex items-center">
               <span className="sr-only">Aenigm3 Labs</span>
-              <img className="h-10 w-auto" src="/A3L Logo-01.svg" alt="Logo" />
+              <img className="h-10 w-auto" src="/Logo Ver 02-02.svg" alt="Logo" />
             </Link>
+          </div>
+
+          <div className="flex lg:hidden">
             <button
               type="button"
-              className="rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brandblue"
-              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onClick={() => setMobileMenuOpen(true)}
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="mt-6 space-y-4">
+
+          <div className="hidden lg:flex lg:gap-x-10 relative" ref={menuRef}>
             {navigation.map((item) => (
-              <div key={item.name}>
-                <Link
-                  href={item.href}
-                  className="block text-lg font-bold text-gray-900 hover:bg-gray-100 rounded-md px-4 py-2"
+              <div key={item.name} className="group relative">
+                <button
+                  onClick={() => setOpenMenu(openMenu === item.name ? null : item.name)}
+                  className={`text-xl font-bold transition-colors tracking-wide ${openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'
+                    }`}
+
                 >
                   {item.name}
-                </Link>
-                {item.submenu && (
-                  <ul className="ml-4 mt-2 space-y-2">
-                    {item.submenu.map((sub) => (
-                      <li key={sub.name}>
-                        <Link
-                          href="#"
-                          className="block text-sm text-gray-600 hover:text-brandblue w-full text-left"
-                        >
-                          {sub.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                </button>
+                {item.submenu && openMenu === item.name && (
+                  <div className="fixed left-1/2 transform -translate-x-1/2 top-full w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
+                    <div className="p-6 grid grid-cols-3 gap-6 flex-1">
+                      {item.submenu.map((sub) => (
+                        <div key={sub.name} className="group">
+                          <h3 className="text-lg font-heading  font-semibold text-gray-900 mb-3">{sub.name}</h3>
+                          {'content' in sub && sub.content && (
+                            <ul className="space-y-2">
+                              {sub.content.map((contentItem, index) => (
+                                <li key={index}>
+                                  {typeof contentItem === 'string' ? (
+                                    <div className="text-sm text-gray-700 hover:text-brandblue transition-colors cursor-pointer flex items-center space-x-2 pl-0 hover:pl-2 duration-200">
+                                      <span className="text-brandblue">•</span>
+                                      <span>{contentItem}</span>
+                                    </div>
+                                  ) : (
+                                    <Link
+                                      href={contentItem.href}
+                                      className="text-sm text-gray-700 hover:text-brandblue transition-colors flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
+                                    >
+                                      <span className="text-brandblue">•</span>
+                                      <span>{contentItem.label}</span>
+                                    </Link>
+                                  )}
+                                </li>
+                              ))}
+
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-center p-8 text-white">
+                      <h4 className="text-2xl font-heading mb-2">{item.rightBox?.title}</h4>
+                      <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
+                      <img
+                        src={item.rightBox?.image}
+                        alt={item.rightBox?.title}
+                        className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2"
+                      />
+
+                    </div>
+                  </div>
                 )}
               </div>
             ))}
-            <Link
-              href="/get-proposal"
-              className="block w-full rounded-full bg-brandblue px-4 py-2 text-center text-base font-semibold text-white hover:bg-brandblue/90 transition"
+          </div>
+
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <button
+              onClick={() => setShowProposalForm(true)}
+              className="rounded-full bg-brandblue px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-brandblue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandblue transition"
             >
               Get Proposal
-            </Link>
+            </button>
           </div>
-        </Dialog.Panel>
-      </Dialog>
-    </header>
+        </nav>
+
+        <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+          <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-sm" />
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white p-6 shadow-lg transition-transform">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center">
+                <span className="sr-only">Aenigm3 Labs</span>
+                <img className="h-10 w-auto" src="/A3L Logo-01.svg" alt="Logo" />
+              </Link>
+              <button
+                type="button"
+                className="rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brandblue"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="sr-only">Close menu</span>
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="mt-6 space-y-4">
+              {navigation.map((item) => (
+                <div key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="block text-lg font-bold text-gray-900 hover:bg-gray-100 rounded-md px-4 py-2"
+                  >
+                    {item.name}
+                  </Link>
+                  {item.submenu && (
+                    <ul className="ml-4 mt-2 space-y-2">
+                      {item.submenu.map((sub) => (
+                        <li key={sub.name}>
+                          <Link
+                            href="#"
+                            className="block text-sm text-gray-600 hover:text-brandblue w-full text-left"
+                          >
+                            {sub.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setShowProposalForm(true);
+                }}
+                className="block w-full rounded-full bg-brandblue px-4 py-2 text-center text-base font-semibold text-white hover:bg-brandblue/90 transition"
+              >
+                Get Proposal
+              </button>
+            </div>
+          </Dialog.Panel>
+        </Dialog>
+      </header>
+      {/* ✅ Modal for GetProposalForm */}
+      {showProposalForm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
+          <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">
+            <GetProposalForm onClose={() => setShowProposalForm(false)} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

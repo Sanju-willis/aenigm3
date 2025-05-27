@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import GetProposalForm from '../forms/GetProposalForm';
@@ -28,7 +29,6 @@ const navigation = [
           'Behavior Analytics & Heatmaps',
           'Funnel & Journey Optimization',
           'Dynamic Personalization Engine',
-
         ],
       },
       {
@@ -48,14 +48,12 @@ const navigation = [
         name: 'Web & App Development',
         content: ['CRO-First Website Builds', 'AI-Powered Web & SaaS Platforms', 'Conversion-Focused UI with Analytics', 'CRM, Chatbot & Backend Integrations'],
       },
-
     ],
     rightBox: {
       title: 'Convert Smarter, Grow Faster',
       description: 'Drive meaningful traffic, convert with precision, and scale faster through AI-powered marketing, conversion optimization, and brand strategy.',
       image: '/images/ab-testing.png',
-
-    }
+    },
   },
   {
     name: 'Our Products',
@@ -99,7 +97,6 @@ const navigation = [
       title: 'AI-Powered Solutions',
       description: 'Transform your digital presence with our suite of AI-powered tools. Optimize conversions, automate campaigns, and maximize ROI.',
       image: '/images/personalized-recommendations.png',
-
     }
   },
   {
@@ -107,33 +104,10 @@ const navigation = [
     href: '#',
     submenu: [
       {
-        name: 'Inside Aenigm3',
+        name: 'Inside Aenigm3', href: '/about',
         content: [
           { label: 'About Us: Where It All Started', href: '/about' },
           { label: 'Our Team: The Brains & Builders', href: '/about#leadership-team' }
-
-        ]
-      },
-      {
-        name: 'Success Stories',
-        content: [
-          'E-commerce Case Studies',
-          'SaaS Success Stories',
-          'Lead Generation Results',
-          'Revenue Growth Examples',
-          'ROI Breakthrough Cases',
-          'Client Testimonials'
-        ]
-      },
-      {
-        name: 'Expert Resources',
-        content: [
-          'Live Workshops & Training',
-          'Monthly Webinars',
-          'Industry Research Reports',
-          'Expert Consultations',
-          'Growth Strategy Sessions',
-          'Community Forums'
         ]
       },
     ],
@@ -141,12 +115,12 @@ const navigation = [
       title: 'Accelerate Your Growth',
       description: 'Access expert knowledge, proven strategies, and real-world case studies to transform your business performance.',
       image: '/images/strategy.png',
-
     }
   }
 ];
 
 export default function HeaderWithMegaMenu() {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [showProposalForm, setShowProposalForm] = useState(false);
@@ -161,6 +135,12 @@ export default function HeaderWithMegaMenu() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const handleLinkClick = (href: string) => {
+    setOpenMenu(null);
+    setMobileMenuOpen(false);
+    router.push(href);
+  };
 
   return (
     <>
@@ -189,9 +169,7 @@ export default function HeaderWithMegaMenu() {
               <div key={item.name} className="group relative">
                 <button
                   onClick={() => setOpenMenu(openMenu === item.name ? null : item.name)}
-                  className={`text-xl font-bold transition-colors tracking-wide ${openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'
-                    }`}
-
+                  className={`text-xl font-bold transition-colors tracking-wide ${openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'}`}
                 >
                   {item.name}
                 </button>
@@ -200,7 +178,7 @@ export default function HeaderWithMegaMenu() {
                     <div className="p-6 grid grid-cols-3 gap-6 flex-1">
                       {item.submenu.map((sub) => (
                         <div key={sub.name} className="group">
-                          <h3 className="text-lg font-heading  font-semibold text-gray-900 mb-3">{sub.name}</h3>
+                          <h3 className="text-lg font-heading font-semibold text-gray-900 mb-3">{sub.name}</h3>
                           {'content' in sub && sub.content && (
                             <ul className="space-y-2">
                               {sub.content.map((contentItem, index) => (
@@ -211,17 +189,16 @@ export default function HeaderWithMegaMenu() {
                                       <span>{contentItem}</span>
                                     </div>
                                   ) : (
-                                    <Link
-                                      href={contentItem.href}
-                                      className="text-sm text-gray-700 hover:text-brandblue transition-colors flex items-center space-x-2 pl-0 hover:pl-2 duration-200"
+                                    <button
+                                      onClick={() => handleLinkClick(contentItem.href)}
+                                      className="text-sm text-left text-gray-700 hover:text-brandblue transition-colors flex items-center space-x-2 pl-0 hover:pl-2 duration-200 w-full"
                                     >
                                       <span className="text-brandblue">•</span>
                                       <span>{contentItem.label}</span>
-                                    </Link>
+                                    </button>
                                   )}
                                 </li>
                               ))}
-
                             </ul>
                           )}
                         </div>
@@ -235,7 +212,6 @@ export default function HeaderWithMegaMenu() {
                         alt={item.rightBox?.title}
                         className="w-32 h-32 object-contain mb-4 rounded-xl shadow-lg bg-white p-2"
                       />
-
                     </div>
                   </div>
                 )}
@@ -252,70 +228,68 @@ export default function HeaderWithMegaMenu() {
             </button>
           </div>
         </nav>
-
-        <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-          <div className="fixed inset-0 z-50 bg-black/25 backdrop-blur-sm" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white p-6 shadow-lg transition-transform">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center">
-                <span className="sr-only">Aenigm3 Labs</span>
-                <img className="h-10 w-auto" src="/A3L Logo-01.svg" alt="Logo" />
-              </Link>
-              <button
-                type="button"
-                className="rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brandblue"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 space-y-4">
-              {navigation.map((item) => (
-                <div key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="block text-lg font-bold text-gray-900 hover:bg-gray-100 rounded-md px-4 py-2"
-                  >
-                    {item.name}
-                  </Link>
-                  {item.submenu && (
-                    <ul className="ml-4 mt-2 space-y-2">
-                      {item.submenu.map((sub) => (
-                        <li key={sub.name}>
-                          <Link
-                            href="#"
-                            className="block text-sm text-gray-600 hover:text-brandblue w-full text-left"
-                          >
-                            {sub.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setShowProposalForm(true);
-                }}
-                className="block w-full rounded-full bg-brandblue px-4 py-2 text-center text-base font-semibold text-white hover:bg-brandblue/90 transition"
-              >
-                Get Proposal
-              </button>
-            </div>
-          </Dialog.Panel>
-        </Dialog>
       </header>
-      {/* ✅ Modal for GetProposalForm */}
-      {showProposalForm && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
-          <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">
-            <GetProposalForm onClose={() => setShowProposalForm(false)} />
+
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <div className="fixed inset-0 z-50" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="-m-1.5 p-1.5">
+              <img className="h-8 w-auto" src="/Logo Ver 02-02.svg" alt="Logo" />
+            </Link>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
           </div>
-        </div>
-      )}
+
+          <div className="mt-6">
+            {navigation.map((item, i) => (
+              <div key={i} className="mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h3>
+                {item.submenu && (
+                  <div className="ml-3 space-y-4">
+                    {item.submenu.map((sub, subIndex) => (
+                      <details key={subIndex} className="group border rounded-md p-3">
+                        <summary className="cursor-pointer text-sm font-medium text-gray-700">
+                          {sub.name}
+                        </summary>
+                        <ul className="mt-2 ml-3 list-disc text-sm text-gray-600">
+                          {'content' in sub && sub.content.map((contentItem, idx) => (
+                            <li key={idx} className="mt-1">
+                              {typeof contentItem === 'string' ? (
+                                <span>{contentItem}</span>
+                              ) : (
+                                <Link href={contentItem.href} onClick={() => setMobileMenuOpen(false)}>
+                                  {contentItem.label}
+                                </Link>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            <button
+              onClick={() => {
+                setShowProposalForm(true);
+                setMobileMenuOpen(false);
+              }}
+              className="mt-6 w-full rounded-md bg-brandblue px-4 py-2 text-center text-white font-semibold hover:bg-brandblue/90"
+            >
+              Get Proposal
+            </button>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+
     </>
   );
 }

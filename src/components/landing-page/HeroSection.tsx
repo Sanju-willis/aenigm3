@@ -42,7 +42,7 @@ export default function HeroSection() {
               Conversion Rate Optimization
             </h1>
             <p className="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-black">
-              <span className="line-through decoration-pink-600">
+              <span className="line-through decoration-boldpink">
                 Digital Marketing
               </span>{' '}
               <span className="font-heading">Agency</span>
@@ -82,7 +82,7 @@ export default function HeroSection() {
                     Your Ad Brain Is Coming!
                   </p>
                   <p className="text-base sm:text-lg font-bold text-gray-700 mb-5">
-                    Learn Fast.Scales Faster.
+                    Learn Fast. Scales Faster.
                   </p>
                   <button
                     onClick={(e) => {

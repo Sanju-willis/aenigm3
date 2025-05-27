@@ -14,9 +14,9 @@ export default function OurPresenceSection() {
   const [activeOffice, setActiveOffice] = useState(null);
 
   return (
-    <section className="relative max-w-6xl mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">
-        Our <span className="text-blue-500">Presence</span>
+    <section className="relative max-w-6xl mx-auto px-4 py-1">
+      <h2 className="text-4xl font-bold mt-10 pt-10  text-center">
+        Our <span className="text-pink-500">Presence</span>
       </h2>
 
       <div className="relative">

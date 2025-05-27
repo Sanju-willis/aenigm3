@@ -3,26 +3,33 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 const navigation = {
-  socialMedia: [
-    { name: 'Digital Marketing Services', href: '#' },
-    { name: 'Content Marketing Services', href: '#' },
-    { name: 'Email Marketing Services', href: '#' },
-    { name: 'SEO Services', href: '#' },
-    { name: 'Social Media Servics', href: '#' },
-    { name: 'Web Design', href: '#' },
-    { name: 'Digital Adverticing Services', href: '#' },
+   Services: [
+    { name: 'Conversion Rate Optimization (CRO)', href: '#' },
+    { name: 'AI-Powered Ad Campaigns', href: '#' },
+    { name: 'Landing Page Optimization', href: '#' },
+    { name: 'Paid Media (Meta, Google)', href: '#' },
+    { name: 'Web & App Development', href: '#' },
+    { name: 'Email & Funnel Automation', href: '#' },
+    { name: 'Predictive Retargeting & Analytics', href: '#' },
+    { name: 'GEO & AI Search Optimization', href: '#' },
   ],
-  company: [
-    { name: 'Why Us', href: '#' },
-    { name: 'Revenue Driven Process', href: '#' },
-    { name: 'Team', href: '#' },
-    { name: 'Careers', href: '#' },
+  Explore: [
+    { name: 'Where It All Started', href: '#' },
+    { name: 'Conversion Library ', href: '#' },
+    { name: 'Growth Strategy', href: '#' },
+    
+  ],
+  LegalandOthers: [
+    { name: 'Privacy Policy', href: '#' },
+    { name: 'Terms & Conditions', href: '#' },
+    { name: 'Cookie Preferences', href: '#' },
+    
   ],
   location: [
-    { name: 'Colombo (headquartes)', href: '#' },
-    { name: 'Melbourne', href: '#' },
+    { name: 'Sri Lanka (Main Office)', href: '#' },
+    { name: 'Australia', href: '#' },
     { name: 'New Zealand', href: '#' },
-    { name: 'Dubai', href: '#' },
+    { name: 'UAE', href: '#' },
   ],
   social: [
     {
@@ -52,15 +59,7 @@ const navigation = {
         </svg>
       ),
     },
-    {
-      name: 'WhatsApp',
-      href: '#',
-      icon: () => (
-        <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path fillRule="evenodd" d="M20.463 3.488C18.217 1.24 15.231 0 12.05 0 5.495 0 .16 5.334.157 11.892c0 2.096.548 4.142 1.588 5.945L.057 24l6.304-1.654c1.737.948 3.693 1.447 5.683 1.448h.005c6.554 0 11.89-5.335 11.894-11.893 0-3.181-1.237-6.167-3.48-8.413zM12.05 21.785h-.004c-1.774 0-3.513-.477-5.031-1.378l-.361-.214-3.741.981 1-3.648-.235-.374c-.99-1.574-1.512-3.393-1.511-5.26 0-5.45 4.437-9.884 9.891-9.884 2.64 0 5.122 1.03 6.988 2.898 1.866 1.869 2.893 4.352 2.892 6.993-.003 5.45-4.44 9.886-9.888 9.886zm5.418-7.417c-.298-.149-1.765-.87-2.04-.969-.273-.099-.473-.148-.672.15-.2.298-.772.969-.947 1.168-.174.198-.349.223-.647.074-.298-.149-1.262-.465-2.403-1.483-.888-.79-1.487-1.768-1.662-2.066-.174-.298-.019-.458.13-.607.135-.133.3-.347.448-.52.15-.174.199-.298.298-.497.1-.198.05-.372-.025-.52-.073-.149-.67-1.612-.92-2.207-.241-.579-.486-.5-.67-.51-.172-.008-.372-.01-.571-.01-.2 0-.522.074-.796.372-.273.298-1.045 1.02-1.045 2.484 0 1.463 1.07 2.876 1.218 3.075.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.57-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.273-.198-.571-.347z" clipRule="evenodd" />
-        </svg>
-      ),
-    },
+    
     {
       name: 'Instagram',
       href: 'https://www.instagram.com/aenigm3_labs/',
@@ -83,35 +82,36 @@ export default function Footer() {
           {/* Company Description */}
           <div className="lg:col-span-1">
             <Link href="/">
-              <img src="/logo-2.png" alt="Aenigm3 Labs" className="h-6 mb-4" />
+              <img src="/Logo white-02.svg" alt="Aenigm3 Labs" className="h-12 mb-4" />
             </Link>
             <p className="text-white/90 text-sm leading-relaxed">
               Aenigm3 Labs is a CRO-first marketing and development agency using AI to turn insights into sales. We combine conversion-driven strategy, creative execution, and intelligent automation to help brands grow faster and smarter.
             </p>
           </div>
 
-          {/* Social Media Marketing */}
+          {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Social Media Marketing</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Digital Marketing Services</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Content Marketing Services</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Email Marketing Services</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">SEO Services</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Social Media Services</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Web Design</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Digital Advertising Services</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Conversion Rate Optimization (CRO)</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">AI-Powered Ad Campaigns</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Landing Page Optimization</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Paid Media (Meta, Google)</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Web & App Development</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Email & Funnel Automation</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Predictive Retargeting & Analytics</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">GEO & AI Search Optimization</Link></li>
             </ul>
           </div>
 
-          {/* Company */}
+          
+          {/* Legal & Others*/}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Company</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Legal & Others</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Why Us</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Revenue Driven Process</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Team</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Careers</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Privacy Policy</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Terms & Conditions </Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Cookie Preferences</Link></li>
             </ul>
           </div>
 
@@ -119,10 +119,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Location</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Colombo (headquartes)</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Melbourne</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Sri Lanka (Main Office)</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Australia </Link></li>
               <li><Link href="#" className="text-white/90 hover:text-white text-sm">New Zealand</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Dubai</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">UAE</Link></li>
             </ul>
           </div>
         </div>

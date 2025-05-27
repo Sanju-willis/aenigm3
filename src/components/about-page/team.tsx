@@ -61,7 +61,7 @@ const team: TeamMember[] = [
     {
         name: "Sandali Perera",
         role: `Project and Administrative Manager`,
-        image: "/team/sandali.jpeg",
+        image: "/team/sandali1.jpg",
         linkedin: "https://www.linkedin.com/in/sandali-perera-6708ba324/",
         description:
             `With a background rooted in education and a natural talent for problem-solving, Sandali plays a vital role in keeping the internal gears of Aenigm3 Labs turning smoothly. She supports the leadership and project teams by managing task coordination, internal scheduling, and administrative operations, ensuring everything stays organized and on track.
@@ -87,7 +87,7 @@ const team: TeamMember[] = [
     {
         name: "Lashen Yasawardhana",
         role: `Junior Software & Product Developer`,
-        image: "/team/lashen.jpeg",
+        image: "/team/lashen1.jpg",
         linkedin: "https://www.linkedin.com/in/lashen-yasawardhana-855352261/",
         description:
             `At just 19 years old, Lashen is one of Aenigm3 Labs’ most promising young talents. With a deep interest in AI, machine learning, and software development, he has rapidly gained experience in tools like Python, HTML, CSS, and sentiment analysis models—most of which he pursued through self-learning and online certifications from institutions like IBM and the University of Moratuwa.

@@ -214,9 +214,7 @@ export default function AboutUsPage() {
       <LeadershipTeam/>
       <div className="max-w-9xl mx-auto border-b border-gray-300" />
       </section>
-      <section>
-      <OurPresence />
-      </section>
+      
     </main>
   );
 }

@@ -1,7 +1,8 @@
 import { client } from '@/lib/sanity';
-import { PortableText, PortableTextBlock } from '@portabletext/react';
+import { PortableText, PortableTextBlock, PortableTextComponents } from '@portabletext/react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { ReactNode } from 'react';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,6 +22,17 @@ type Post = {
     image?: { asset?: { url: string } };
   };
 };
+
+// Util: safely extract plain text from ReactNode
+function extractText(children: ReactNode): string {
+  if (typeof children === 'string') return children;
+  if (Array.isArray(children)) return children.map(extractText).join(' ');
+  if (typeof children === 'object' && children && 'props' in children) {
+    // @ts-ignore
+    return extractText(children.props?.children);
+  }
+  return '';
+}
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -47,34 +59,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const headingIdMap = new Map<string, number>();
 
-const headings: Heading[] = post.body
-  .filter(
-    (block): block is PortableTextBlock & { style: 'h2' | 'h3' } =>
-      block._type === 'block' &&
-      typeof block.style === 'string' &&
-      ['h2', 'h3'].includes(block.style) &&
-      typeof block.children?.[0]?.text === 'string'
-  )
-  .map((block) => {
-    const rawText = block.children?.[0]?.text ?? '';
-    const baseId = rawText.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '') || 'section';
-    const count = headingIdMap.get(baseId) || 0;
-    headingIdMap.set(baseId, count + 1);
+  const headings: Heading[] = post.body
+    .filter(
+      (block): block is PortableTextBlock & { style: 'h2' | 'h3' } =>
+        block._type === 'block' &&
+        typeof block.style === 'string' &&
+        ['h2', 'h3'].includes(block.style) &&
+        typeof block.children?.[0]?.text === 'string'
+    )
+    .map((block) => {
+      const rawText = block.children?.[0]?.text ?? '';
+      const baseId = rawText
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9\-]/g, '') || 'section';
+      const count = headingIdMap.get(baseId) || 0;
+      headingIdMap.set(baseId, count + 1);
 
-    const id = count === 0 ? baseId : `${baseId}-${count}`;
+      const id = count === 0 ? baseId : `${baseId}-${count}`;
 
-    return {
-      text: rawText,
-      id,
-      level: block.style as 'h2' | 'h3',
-    };
-  });
+      return {
+        text: rawText,
+        id,
+        level: block.style as 'h2' | 'h3',
+      };
+    });
 
-
-  // Handle PortableText custom blocks
-  const components = {
+  const components: PortableTextComponents = {
     types: {
-      image: ({ value }: any) => {
+      image: ({ value }) => {
         const url = value?.asset?.url;
         if (!url) return null;
         return (
@@ -87,6 +100,38 @@ const headings: Heading[] = post.body
           />
         );
       },
+    },
+    block: {
+      h2: ({ children }) => {
+        const text = extractText(children);
+        const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '') || 'section';
+        return <h2 id={id} className="scroll-mt-32 text-2xl font-bold mt-12 mb-4">{children}</h2>;
+      },
+      h3: ({ children }) => {
+        const text = extractText(children);
+        const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '') || 'section';
+        return <h3 id={id} className="scroll-mt-32 text-xl font-semibold mt-8 mb-2">{children}</h3>;
+      },
+      normal: ({ children }) => (
+        <p className="text-base leading-relaxed my-4">{children}</p>
+      ),
+    },
+    marks: {
+      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+      em: ({ children }) => <em className="italic">{children}</em>,
+      link: ({ value, children }) => (
+        <a href={value.href} className="text-blue-600 underline" target="_blank" rel="noreferrer">
+          {children}
+        </a>
+      ),
+    },
+    list: {
+      bullet: ({ children }) => (
+        <ul className="list-disc list-inside space-y-2 my-4">{children}</ul>
+      ),
+    },
+    listItem: {
+      bullet: ({ children }) => <li>{children}</li>,
     },
   };
 
@@ -135,18 +180,16 @@ const headings: Heading[] = post.body
       <aside className="w-full lg:w-1/4 sticky top-20 h-fit border p-4 rounded-lg shadow-sm">
         <h2 className="text-md font-semibold mb-3">On this page</h2>
         <ul className="space-y-2 text-sm">
-          {headings
-            .filter((h) => h.id)
-            .map((h) => (
-              <li key={h.id} className={`ml-${h.level === 'h3' ? 4 : 0}`}>
-                <a
-                  href={`#${h.id}`}
-                  className="text-gray-600 dark:text-gray-300 hover:underline"
-                >
-                  {h.text}
-                </a>
-              </li>
-            ))}
+          {headings.map((h) => (
+            <li key={h.id} className={`ml-${h.level === 'h3' ? 4 : 0}`}>
+              <a
+                href={`#${h.id}`}
+                className="text-gray-600 dark:text-gray-300 hover:underline"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
         </ul>
       </aside>
     </div>

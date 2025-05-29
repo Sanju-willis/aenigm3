@@ -1,8 +1,9 @@
-import { createClient } from 'next-sanity';
+// src\lib\sanity.ts
+import { createClient } from '@sanity/client';
 
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!, // must match your Sanity project
-  dataset: 'production',
-  apiVersion: '2024-05-17', // ISO date
-  useCdn: true,
+     projectId: 'n85d6r9j',
+     dataset: 'production',
+     apiVersion: '2024-05-17',
+     useCdn: true
 });

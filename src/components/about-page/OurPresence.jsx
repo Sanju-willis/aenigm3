@@ -1,4 +1,4 @@
-// src\components\landing-page\OurPresence.jsx
+// src\components\about-page\OurPresence.jsx
 "use client";
 
 import React, { useState } from 'react';

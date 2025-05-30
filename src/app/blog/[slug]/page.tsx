@@ -1,10 +1,10 @@
-// src/app/blog/[slug]/page.tsx
 import { client } from '@/lib/sanity';
 import { PortableText, PortableTextBlock } from '@portabletext/react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import { components } from '@/components/sanity/PortableText';
+import BlogLayout from '@/components/blog/BlogLayout';
 
 export const dynamic = 'force-dynamic';
 
@@ -92,67 +92,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     });
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 p-6">
-      {/* Main Content */}
-      <article className="prose prose-lg dark:prose-invert col-span-1 lg:col-span-3">
-        {post.mainImage?.asset?.url && (
-          <Image
-            priority
-            src={post.mainImage.asset.url}
-            alt={post.title}
-            width={800}
-            height={400}
-            className="w-full h-auto rounded-xl shadow mb-6 object-cover"
-          />
-        )}
+    <BlogLayout headings={headings}>
+      {post.mainImage?.asset?.url && (
+        <Image
+          priority
+          src={post.mainImage.asset.url}
+          alt={post.title}
+          width={800}
+          height={400}
+          className="w-full h-auto rounded-xl shadow mb-6 object-cover"
+        />
+      )}
 
-        <h1 className="text-4xl font-bold mt-2 mb-2">{post.title}</h1>
-        <p className="text-sm text-gray-500 mb-4">
-          {new Date(post.publishedAt).toDateString()}
-        </p>
+      <h1 className="text-4xl font-bold mt-2 mb-2">{post.title}</h1>
+      <p className="text-sm text-gray-500 mb-4">
+        {new Date(post.publishedAt).toDateString()}
+      </p>
 
-        {post.author?.name && (
-          <div className="flex items-center gap-2 mb-6">
-            {post.author.image?.asset?.url && (
-              <Image
-                src={post.author.image.asset.url}
-                alt={post.author.name}
-                width={32}
-                height={32}
-                className="rounded-full object-cover w-8 h-8"
-              />
-            )}
-            <span className="text-sm text-gray-700 dark:text-gray-300">
-              {post.author.name}
-            </span>
-          </div>
-        )}
+      {post.author?.name && (
+        <div className="flex items-center gap-2 mb-6">
+          {post.author.image?.asset?.url && (
+            <Image
+              src={post.author.image.asset.url}
+              alt={post.author.name}
+              width={32}
+              height={32}
+              className="rounded-full object-cover w-8 h-8"
+            />
+          )}
+          <span className="text-sm text-gray-700 dark:text-gray-300">
+            {post.author.name}
+          </span>
+        </div>
+      )}
 
-        <PortableText value={post.body} components={components} />
-      </article>
-
-      {/* Sidebar TOC */}
-      <aside
-        className="hidden lg:block col-span-1 sticky top-24 h-fit border p-4 rounded-lg shadow-sm"
-        aria-label="Table of contents"
-      >
-        <h2 className="text-md font-semibold mb-3">On this page</h2>
-        <ul className="space-y-2 text-sm">
-          {headings.map((h) => (
-            <li
-              key={h.id}
-              className={`ml-${h.level === 'h3' ? 6 : h.level === 'h2' ? 3 : 0}`}
-            >
-              <a
-                href={`#${h.id}`}
-                className="text-gray-600 dark:text-gray-300 hover:underline"
-              >
-                {h.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </aside>
-    </div>
+      <PortableText value={post.body} components={components} />
+    </BlogLayout>
   );
 }

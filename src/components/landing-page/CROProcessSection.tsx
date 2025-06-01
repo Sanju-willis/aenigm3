@@ -135,25 +135,7 @@ export default function CROProcessSection() {
           </div>
 
           
-          {/* Partner Logos */}
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
-            {partners.map((partner, i) => (
-              <a
-                key={i}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-100 opacity-80 transition-opacity"
-              >
-                <img
-                  src={partner.logo}
-                  alt="Partner Logo"
-                  className="h-6 sm:h-8"
-                />
-              </a>
-
-            ))}
-          </div>
+         
         </div>
       </section>
 

@@ -1,7 +1,8 @@
-// src\app\blog\page.tsx
+// src/app/blog/page.tsx
 import { client } from '@/lib/sanity';
 import Link from 'next/link';
 import Image from 'next/image';
+import { interTight } from '@/utils/fonts';
 
 export const dynamic = 'force-dynamic';
 
@@ -54,7 +55,9 @@ export default async function BlogListPage() {
   `);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-4 gap-10">
+    <section
+      className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-4 gap-10 font-sans ${interTight.variable}`}
+    >
       {/* Blog Cards */}
       <div className="lg:col-span-3 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {posts.map((post) => (
@@ -80,7 +83,6 @@ export default async function BlogListPage() {
                 {post.title}
               </h2>
 
-              {/* Author + Date */}
               <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3">
                 {post.author?.image?.asset?.url && (
                   <Image
@@ -96,7 +98,6 @@ export default async function BlogListPage() {
                 <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
               </div>
 
-              {/* Categories */}
               {post.categories && (
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {post.categories.map((cat) => (
@@ -114,7 +115,7 @@ export default async function BlogListPage() {
         ))}
       </div>
 
-      {/* Categories Sidebar */}
+      {/* Sidebar */}
       <aside className="lg:col-span-1">
         <div className="border rounded-xl p-5 shadow-sm bg-white dark:bg-zinc-900">
           <h2 className="text-lg font-semibold mb-4">Categories</h2>

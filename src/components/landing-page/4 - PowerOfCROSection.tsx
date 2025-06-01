@@ -1,4 +1,4 @@
-// src\components\landing-page\PowerOfCROSection.tsx
+// src\components\landing-page\4 - PowerOfCROSection.tsx
 'use client';
 
 import { motion } from 'framer-motion';

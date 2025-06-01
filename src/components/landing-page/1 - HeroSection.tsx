@@ -1,4 +1,4 @@
-// src\components\landing-page\HeroSection.tsx
+// src\components\landing-page\1 - HeroSection.tsx
 'use client';
 
 import Link from 'next/link';

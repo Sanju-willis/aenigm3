@@ -1,4 +1,4 @@
-// src\components\landing-page\WhyMarketingSection.tsx
+// src\components\landing-page\2- WhyMarketingSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';

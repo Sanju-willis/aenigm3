@@ -42,14 +42,21 @@ function extractHeadings(blocks: PortableTextBlock[]) {
     });
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+// ✅ FIX: update the function signature to avoid type error
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const slug = params.slug;
+
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
       title, body, publishedAt,
       mainImage { asset -> { url } },
       author -> { name, image { asset -> { url } } }
     }`,
-    { slug: params.slug }
+    { slug }
   );
 
   if (!post) notFound();

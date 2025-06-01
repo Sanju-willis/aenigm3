@@ -1,9 +1,10 @@
-// src\components\com-layout\Footer.tsx
+// src/components/com-layout/Footer.tsx
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { interTight } from '@/utils/fonts';
 
 const navigation = {
-   Services: [
+  Services: [
     { name: 'Conversion Rate Optimization (CRO)', href: '#' },
     { name: 'AI-Powered Ad Campaigns', href: '#' },
     { name: 'Landing Page Optimization', href: '#' },
@@ -17,13 +18,11 @@ const navigation = {
     { name: 'Where It All Started', href: '#' },
     { name: 'Conversion Library ', href: '#' },
     { name: 'Growth Strategy', href: '#' },
-    
   ],
   LegalandOthers: [
     { name: 'Privacy Policy', href: '#' },
     { name: 'Terms & Conditions', href: '#' },
     { name: 'Cookie Preferences', href: '#' },
-    
   ],
   location: [
     { name: 'Sri Lanka (Main Office)', href: '#' },
@@ -59,7 +58,6 @@ const navigation = {
         </svg>
       ),
     },
-    
     {
       name: 'Instagram',
       href: 'https://www.instagram.com/aenigm3_labs/',
@@ -69,13 +67,12 @@ const navigation = {
         </svg>
       ),
     },
-    
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0066FF] py-12">
+    <footer className={`bg-[#0066FF] py-12 font-sans ${interTight.variable}`}>
       <div className="container mx-auto px-6">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -95,9 +92,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="#" className="text-white/90 hover:text-white text-sm">Conversion Rate Optimization (CRO)</Link></li>
               <li><Link href="#" className="text-white/90 hover:text-white text-sm">AI-Powered Ad Campaigns</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Landing Page Optimization</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Paid Media (Meta, Google)</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Web & App Development</Link></li>
+              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Landing Page Optimization</Link></li>              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Web & App Development</Link></li>
               <li><Link href="#" className="text-white/90 hover:text-white text-sm">Email & Funnel Automation</Link></li>
               <li><Link href="#" className="text-white/90 hover:text-white text-sm">Predictive Retargeting & Analytics</Link></li>
               <li><Link href="#" className="text-white/90 hover:text-white text-sm">GEO & AI Search Optimization</Link></li>

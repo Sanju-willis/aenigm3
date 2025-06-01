@@ -1,3 +1,4 @@
+// src\components\blog\blog-side.tsx
 'use client';
 
 import { Heading } from '@/types/heading';

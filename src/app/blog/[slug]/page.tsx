@@ -4,8 +4,8 @@ import { PortableText, PortableTextBlock } from '@portabletext/react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
-import { components } from '@/components/sanity/PortableText';
-import BlogLayout from '@/components/blog/BlogLayout';
+import { components } from '@/styles/PortableText';
+import BlogLayout from '@/app/blog/[slug]/BlogLayout';
 
 export const dynamic = 'force-dynamic';
 

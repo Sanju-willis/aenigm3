@@ -5,6 +5,7 @@ import BlogLayout from './BlogLayout';
 import PostContent from './PostContent';
 import { PortableTextBlock } from '@portabletext/react';
 
+
 export const dynamic = 'force-dynamic';
 
 function extractHeadings(blocks: PortableTextBlock[]) {
@@ -43,12 +44,8 @@ function extractHeadings(blocks: PortableTextBlock[]) {
 }
 
 // ✅ FIX: update the function signature to avoid type error
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const slug = params.slug;
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{

@@ -14,9 +14,9 @@ export default function OurPresenceSection() {
   const [activeOffice, setActiveOffice] = useState(null);
 
   return (
-    <section className="relative max-w-6xl mx-auto px-4 py-1">
-      <h2 className="text-4xl font-bold mt-10 pt-10  text-center">
-        Our <span className="text-pink-500">Presence</span>
+    <section className="relative max-w-6xl mx-auto px-4 py-1 font-body">
+      <h2 className="text-4xl font-bold mt-10 pt-10 text-center font-heading">
+        Our <span className="text-[#dd1082]">Presence</span>
       </h2>
 
       <div className="relative">
@@ -39,19 +39,23 @@ export default function OurPresenceSection() {
           />
         ))}
 
-        {/* Office Info Box */}
+        {/* Info Box */}
         {activeOffice && (
-          <div className="fixed bottom-6 right-6 bg-white shadow-lg rounded-lg p-4 w-72 border z-50">
+          <div className="fixed bottom-6 right-6 bg-white shadow-lg rounded-lg p-4 w-72 border z-50 font-sans">
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-semibold">{activeOffice.label}</h3>
+              <h3 className="text-lg font-semibold font-heading text-gray-800">
+                {activeOffice.label}
+              </h3>
               <button
                 onClick={() => setActiveOffice(null)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-400 hover:text-gray-600"
               >
                 ✕
               </button>
             </div>
-            <p className="text-sm text-gray-600">{activeOffice.description}</p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {activeOffice.description}
+            </p>
           </div>
         )}
       </div>
@@ -62,17 +66,18 @@ export default function OurPresenceSection() {
 function Marker({ top, left, label, tag, onClick }) {
   return (
     <div
-      className="absolute flex flex-col items-center cursor-pointer group"
+      className="absolute flex flex-col items-center cursor-pointer group font-sans"
       style={{ top, left, transform: 'translate(-50%, -50%)' }}
       onClick={onClick}
     >
-      <div className="relative">        {/* Animated pulse */}
+      <div className="relative">
+        {/* Pulse */}
         <span className="absolute inline-flex h-8 w-8 rounded-full bg-brandblue/75 opacity-75 animate-ping"></span>
         <span className="relative inline-flex rounded-full h-8 w-8 bg-brandblue text-white text-xs font-semibold items-center justify-center">
           {tag}
         </span>
       </div>
-      <span className="mt-1 text-xs font-medium text-gray-700 hidden sm:block group-hover:block">
+      <span className="mt-1 text-[11px] sm:text-xs font-medium text-gray-700 hidden sm:block group-hover:block">
         {label}
       </span>
     </div>

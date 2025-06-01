@@ -1,4 +1,4 @@
-// src/components/com-layout/Footer.tsx
+// src\components\com-layout\Footer.tsx
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { interTight } from '@/utils/fonts';
@@ -13,16 +13,6 @@ const navigation = {
     { name: 'Email & Funnel Automation', href: '#' },
     { name: 'Predictive Retargeting & Analytics', href: '#' },
     { name: 'GEO & AI Search Optimization', href: '#' },
-  ],
-  Explore: [
-    { name: 'Where It All Started', href: '#' },
-    { name: 'Conversion Library ', href: '#' },
-    { name: 'Growth Strategy', href: '#' },
-  ],
-  LegalandOthers: [
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms & Conditions', href: '#' },
-    { name: 'Cookie Preferences', href: '#' },
   ],
   location: [
     { name: 'Sri Lanka (Main Office)', href: '#' },
@@ -74,75 +64,53 @@ export default function Footer() {
   return (
     <footer className={`bg-[#0066FF] py-12 font-sans ${interTight.variable}`}>
       <div className="container mx-auto px-6">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Company Description */}
-          <div className="lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+          <div className="md:col-span-1">
             <Link href="/">
               <img src="/Logo white-02.svg" alt="Aenigm3 Labs" className="h-12 mb-4" />
             </Link>
             <p className="text-white/90 text-sm leading-relaxed">
-              Aenigm3 Labs is a CRO-first marketing and development agency using AI to turn insights into sales. We combine conversion-driven strategy, creative execution, and intelligent automation to help brands grow faster and smarter.
+              Aenigm3 Labs is a CRO-first marketing and development agency using AI to turn insights into sales. We combine conversion-driven strategy, creative execution, and intelligent automation to help brands grow faster and smarter.
             </p>
           </div>
 
-          {/* Services */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Conversion Rate Optimization (CRO)</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">AI-Powered Ad Campaigns</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Landing Page Optimization</Link></li>              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Web & App Development</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Email & Funnel Automation</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Predictive Retargeting & Analytics</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">GEO & AI Search Optimization</Link></li>
+              {navigation.Services.map((item, index) => (
+                <li key={index}><Link href={item.href} className="text-white/90 hover:text-white text-sm">{item.name}</Link></li>
+              ))}
             </ul>
           </div>
 
-          
-          {/* Legal & Others*/}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Legal & Others</h3>
-            <ul className="space-y-2">
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Terms & Conditions </Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Cookie Preferences</Link></li>
-            </ul>
-          </div>
-
-          {/* Location */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Location</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Sri Lanka (Main Office)</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">Australia </Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">New Zealand</Link></li>
-              <li><Link href="#" className="text-white/90 hover:text-white text-sm">UAE</Link></li>
+              {navigation.location.map((item, index) => (
+                <li key={index}><Link href={item.href} className="text-white/90 hover:text-white text-sm">{item.name}</Link></li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="mt-8 pt-8 border-t border-white/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white text-sm">2025 Aenigme Pvt(Ltd). All Right Reserved</p>
-            <div className="flex items-center gap-4">
-              {navigation.social.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  target='_blank'
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-white/80 transition-colors"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon />
-                </Link>
-              ))}
-            </div>
+        <div className="mt-8 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-white text-sm">2025 Aenigme Pvt(Ltd). All Right Reserved</p>
+          <div className="flex items-center gap-4">
+            {navigation.social.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                target='_blank'
+                rel="noopener noreferrer"
+                className="text-white hover:text-white/80 transition-colors"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon />
+              </Link>
+            ))}
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

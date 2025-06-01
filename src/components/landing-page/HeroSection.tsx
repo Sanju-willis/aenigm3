@@ -1,4 +1,4 @@
-// src/components/landing-page/HeroSection.tsx
+// src\components\landing-page\HeroSection.tsx
 'use client';
 
 import Link from 'next/link';
@@ -66,7 +66,7 @@ export default function HeroSection() {
               animate={{ rotateY: 0, opacity: 1 }}
               exit={{ rotateY: 180, opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="w-full max-w-sm bg-blue-50 rounded-xl p-6 sm:p-8 shadow-md"
+className="w-full max-w-[340px] bg-blue-50 rounded-xl p-6 sm:p-6 shadow-md"
             >
               {showAlt ? (
                 <>

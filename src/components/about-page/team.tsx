@@ -1,3 +1,4 @@
+// src\components\about-page\team.tsx
 "use client";
 
 import { useState } from "react";
@@ -129,9 +130,9 @@ export default function LeadershipTeam() {
             />
             <h3 className="mt-3 text-base font-medium text-center">{member.name}</h3>
             <p className="text-sm text-gray-500 text-center">{member.role}</p>
-            <div className="mt-2">
+            <div className="flex justify-center gap-4 mt-2">
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <Linkedin className="text-blue-600 w-4 h-4" />
+                <Linkedin className="text-blue-600 hover:text-blue-800 w-4 h-4" />
               </a>
             </div>
           </div>

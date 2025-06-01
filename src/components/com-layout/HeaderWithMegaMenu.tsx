@@ -1,3 +1,4 @@
+// src\components\com-layout\HeaderWithMegaMenu.tsx
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -123,7 +124,7 @@ export default function HeaderWithMegaMenu() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [showProposalForm, setShowProposalForm] = useState(false);
+  const [showGetProposalForm, setShowGetProposalForm] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -221,7 +222,7 @@ export default function HeaderWithMegaMenu() {
 
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <button
-              onClick={() => setShowProposalForm(true)}
+              onClick={() => setShowGetProposalForm(true)}
               className="rounded-full bg-brandblue px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-brandblue/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandblue transition"
             >
               Get Proposal
@@ -279,7 +280,7 @@ export default function HeaderWithMegaMenu() {
 
             <button
               onClick={() => {
-                setShowProposalForm(true);
+                setShowGetProposalForm(true);
                 setMobileMenuOpen(false);
               }}
               className="mt-6 w-full rounded-md bg-brandblue px-4 py-2 text-center text-white font-semibold hover:bg-brandblue/90"
@@ -289,6 +290,14 @@ export default function HeaderWithMegaMenu() {
           </div>
         </Dialog.Panel>
       </Dialog>
+
+      {showGetProposalForm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
+          <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">
+            <GetProposalForm onClose={() => setShowGetProposalForm(false)} />
+          </div>
+        </div>
+      )}
 
     </>
   );

@@ -13,7 +13,7 @@ import CROServicesSection from '@/components/landing-page/9 - ServicesSection';
 import GrowRevenueSection from '@/components/landing-page/10 - GrowRevenueSection';
 import WhyDigitalMarketingSection from '@/components/landing-page/3 - MarketingAloneSection';
 import PowerOfCROSection from '@/components/landing-page/4 - PowerOfCROSection';
-import ClientPageViewTracker from '@/components/ClientPageViewTracker';
+
 
 
 export const metadata: Metadata = {

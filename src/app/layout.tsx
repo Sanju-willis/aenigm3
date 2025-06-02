@@ -5,6 +5,7 @@ import { royalCastle, aleo } from '../utils/fonts';
 import Header from '../components/com-layout/HeaderWithMegaMenu';
 import Footer from '../components/com-layout/Footer';
 import GTM from '@/components/analytics/GTM';
+import ClientPageViewTracker from '@/components/ClientPageViewTracker';
 import { siteMetadata } from '@/lib/metadata';
 
 
@@ -29,6 +30,9 @@ export default function RootLayout({
           />
         </noscript>
         <GTM />
+        <ClientPageViewTracker />
+        
+        {/* Main layout structure */}
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow pt-16">

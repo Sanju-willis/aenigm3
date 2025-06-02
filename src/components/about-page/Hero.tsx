@@ -10,7 +10,7 @@ export default function AboutHero() {
         {/* Left Text Column */}
         <div className="text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8">
-            About <span className="text-brandblue">Aenigm3</span>
+            About <span className="text-black">Aenigm3</span>
           </h1>
 
           <ul className="space-y-6 text-lg sm:text-xl md:text-2xl ml-10 leading-relaxed">
@@ -20,7 +20,7 @@ export default function AboutHero() {
               ['Growth', 'Greatness'],
             ].map(([from, to], index) => (
               <li key={index} className="flex items-start space-x-4">
-                <Hexagon className="text-brandblue w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mt-1" />
+                <Hexagon className="text-green-400 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mt-1" />
                 <span>
                   <span className="font-semibold text-gray-900">From </span>
                   <span className="font-bold text-brandblue">{from}</span>

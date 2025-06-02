@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import GetProposalForm from '../forms/GetProposalForm';
+import { interTight } from '@/utils/fonts';
 
 const navigation = [
   {
@@ -105,12 +106,20 @@ const navigation = [
     href: '#',
     submenu: [
       {
-        name: 'Inside Aenigm3', href: '/about',
+        name: 'Inside Aenigm3 Labs',
+        href: '/about',
         content: [
           { label: 'About Us: Where It All Started', href: '/about' },
           { label: 'Our Team: The Brains & Builders', href: '/about#leadership-team' }
         ]
       },
+      {
+        name: 'Resources',
+        href: '/resources',
+        content: [
+          { label: 'Blog Articles', href: '/blog' },
+        ]
+      }
     ],
     rightBox: {
       title: 'Accelerate Your Growth',
@@ -145,8 +154,8 @@ export default function HeaderWithMegaMenu() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 bg-black/5 backdrop-blur-lg shadow-sm ring-1 ring-gray-200">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8" aria-label="Global">
+      <header className={`fixed inset-x-0 top-0 z-50 bg-black/5 backdrop-blur-lg shadow-sm ring-1 ring-gray-200 ${interTight.variable}`}>
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 sm:px-6 lg:px-8 font-sans" aria-label="Global">
           <div className="flex flex-1">
             <Link href="/" className="flex items-center">
               <span className="sr-only">Aenigm3 Labs</span>
@@ -170,16 +179,16 @@ export default function HeaderWithMegaMenu() {
               <div key={item.name} className="group relative">
                 <button
                   onClick={() => setOpenMenu(openMenu === item.name ? null : item.name)}
-                  className={`text-xl font-bold transition-colors tracking-wide ${openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'}`}
+                  className={`text-xl font-semibold transition-colors tracking-wide ${openMenu === item.name ? 'text-brandblue' : 'text-gray-900 hover:text-brandblue'}`}
                 >
                   {item.name}
                 </button>
                 {item.submenu && openMenu === item.name && (
                   <div className="fixed left-1/2 transform -translate-x-1/2 top-full w-[1200px] bg-white rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.1)] ring-1 ring-black/5 p-0 flex opacity-100 translate-y-0 transition-all duration-300">
-                    <div className="p-6 grid grid-cols-3 gap-6 flex-1">
+                    <div className="p-6 grid grid-cols-3 gap-6 flex-1 font-sans">
                       {item.submenu.map((sub) => (
                         <div key={sub.name} className="group">
-                          <h3 className="text-lg font-heading font-semibold text-gray-900 mb-3">{sub.name}</h3>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-3">{sub.name}</h3>
                           {'content' in sub && sub.content && (
                             <ul className="space-y-2">
                               {sub.content.map((contentItem, index) => (
@@ -205,8 +214,8 @@ export default function HeaderWithMegaMenu() {
                         </div>
                       ))}
                     </div>
-                    <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-center p-8 text-white">
-                      <h4 className="text-2xl font-heading mb-2">{item.rightBox?.title}</h4>
+                    <div className="w-80 bg-brandblue rounded-2xl m-4 flex flex-col justify-center items-center p-8 text-white font-sans">
+                      <h4 className="text-2xl font-semibold mb-2">{item.rightBox?.title}</h4>
                       <p className="mb-4 text-base opacity-90">{item.rightBox?.description}</p>
                       <img
                         src={item.rightBox?.image}
@@ -247,7 +256,7 @@ export default function HeaderWithMegaMenu() {
             </button>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 font-sans">
             {navigation.map((item, i) => (
               <div key={i} className="mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h3>
@@ -290,6 +299,7 @@ export default function HeaderWithMegaMenu() {
           </div>
         </Dialog.Panel>
       </Dialog>
+<<<<<<< HEAD
 
       {showGetProposalForm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
@@ -299,6 +309,8 @@ export default function HeaderWithMegaMenu() {
         </div>
       )}
 
+=======
+>>>>>>> origin/main
     </>
   );
 }

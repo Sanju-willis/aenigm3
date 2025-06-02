@@ -3,16 +3,16 @@
 import React from 'react';
 import { Metadata } from 'next';
 import SecondaryNav from '@/components/com-layout/SecondaryNav';
-import HeroSection from '@/components/landing-page/HeroSection';
-import WhyMarketingSection from '@/components/landing-page/WhyMarketingSection';
-import BigMistakesSection from '@/components/landing-page/BigMistakesSection';
-import CROProcessSection from '@/components/landing-page/CROProcessSection';
-import IsCRORightSection from '@/components/landing-page/IsCRORightSection';
-import CROQuestionsSection from '@/components/landing-page/CROQuestionsSection';
-import CROServicesSection from '@/components/landing-page/CROServicesSection';
-import GrowRevenueSection from '@/components/landing-page/GrowRevenueSection';
-import WhyDigitalMarketingSection from '@/components/landing-page/WhyDigitalMarketingSection';
-import PowerOfCROSection from '@/components/landing-page/PowerOfCROSection';
+import HeroSection from '@/components/landing-page/1 - HeroSection';
+import WhyMarketingSection from '@/components/landing-page/2- WhyMarketingSection';
+import BigMistakesSection from '@/components/landing-page/5 - BigMistakesSection';
+import CROProcessSection from '@/components/landing-page/6 - CROProcessSection';
+import IsCRORightSection from '@/components/landing-page/7 - IsCRORightSection';
+import CROQuestionsSection from '@/components/landing-page/8 - CROQuestionsSection';
+import CROServicesSection from '@/components/landing-page/9 - ServicesSection';
+import GrowRevenueSection from '@/components/landing-page/10 - GrowRevenueSection';
+import WhyDigitalMarketingSection from '@/components/landing-page/3 - MarketingAloneSection';
+import PowerOfCROSection from '@/components/landing-page/4 - PowerOfCROSection';
 import ClientPageViewTracker from '@/components/ClientPageViewTracker';
 
 
@@ -75,6 +75,7 @@ export default function Home() {
       <section id="grow-revenue">
         <GrowRevenueSection />
       </section>
+     
     </main>
   );
 }

@@ -1,3 +1,4 @@
+// src\components\landing-page\5 - BigMistakesSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';

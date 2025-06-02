@@ -1,21 +1,19 @@
 // src\components\about-page\team.tsx
-"use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import { Dialog } from "@headlessui/react";
 import { Linkedin } from "lucide-react";
 
-// Define the type for each team member
 interface TeamMember {
-    name: string;
-    role: string;
-    image: string;
-    linkedin: string;
-    description: string;
-    quote: string;
-    quotename?: string; // Optional, in case some members don't have a quote
+  name: string;
+  role: string;
+  image: string;
+  linkedin: string;
+  description: string;
+  quote: string;
+  quotename?: string;
 }
+
 
 const team: TeamMember[] = [
     {
@@ -103,76 +101,37 @@ const team: TeamMember[] = [
 
 export default function LeadershipTeam() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-
   const firstRow = team.slice(0, 4);
   const secondRow = team.slice(4);
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20 text-center" id="leadership-team">
-      <h2 className="text-4xl font-bold mb-12">
+    <section className="max-w-7xl mx-auto px-6 py-20 text-center font-body" id="leadership-team">
+      <h2 className="text-4xl font-bold mb-12 font-heading">
         Meet Our <span className="text-pink-600">Leadership Team</span>
       </h2>
 
-      {/* First row: 4 members */}
+      {/* First Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {firstRow.map((member, idx) => (
-          <div
-            key={idx}
-            onClick={() => setSelectedMember(member)}
-            className="cursor-pointer p-4 rounded-lg hover:shadow-lg transition border w-full max-w-xs flex flex-col items-center"
-          >
-            <Image
-              src={member.image}
-              alt={member.name}
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-            <h3 className="mt-3 text-base font-medium text-center">{member.name}</h3>
-            <p className="text-sm text-gray-500 text-center">{member.role}</p>
-            <div className="flex justify-center gap-4 mt-2">
-              <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <Linkedin className="text-blue-600 hover:text-blue-800 w-4 h-4" />
-              </a>
-            </div>
-          </div>
+          <MemberCard key={idx} member={member} onClick={() => setSelectedMember(member)} />
         ))}
       </div>
 
-      {/* Second row: center 2 remaining members */}
+      {/* Second Row */}
       <div className="flex flex-wrap justify-center gap-6 mt-8">
         {secondRow.map((member, idx) => (
-          <div
-            key={idx + 4}
-            onClick={() => setSelectedMember(member)}
-            className="cursor-pointer p-4 rounded-lg hover:shadow-lg transition border w-full max-w-xs flex flex-col items-center"
-          >
-            <Image
-              src={member.image}
-              alt={member.name}
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-            <h3 className="mt-3 text-base font-medium text-center">{member.name}</h3>
-            <p className="text-sm text-gray-500 text-center">{member.role}</p>
-            <div className="mt-2">
-              <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                <Linkedin className="text-blue-600 w-4 h-4" />
-              </a>
-            </div>
-          </div>
+          <MemberCard key={idx + 4} member={member} onClick={() => setSelectedMember(member)} />
         ))}
       </div>
 
-      {/* Popup Dialog */}
+      {/* Dialog Popup */}
       <Dialog
         open={!!selectedMember}
         onClose={() => setSelectedMember(null)}
         className="fixed z-50 inset-0 overflow-y-auto"
       >
-        <div className="flex items-center justify-center min-h-screen px-4 bg-black/40">
-          <Dialog.Panel className="bg-white rounded-lg p-6 max-w-5xl w-full overflow-y-auto max-h-[100vh] relative">
+        <div className="flex items-center justify-center min-h-screen px-4 bg-black/40 font-body">
+          <Dialog.Panel className="bg-white rounded-lg p-6 max-w-5xl w-full overflow-y-auto max-h-[90vh] relative">
             {selectedMember && (
               <>
                 <Image
@@ -182,20 +141,18 @@ export default function LeadershipTeam() {
                   height={120}
                   className="rounded-full mx-auto mb-4"
                 />
-                <Dialog.Title className="text-xl font-bold text-center">
+                <Dialog.Title className="text-2xl font-bold text-center font-heading mb-2">
                   {selectedMember.name}
                 </Dialog.Title>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  {selectedMember.role}
-                </p>
-                <p className="text-sm text-gray-700 whitespace-pre-line">
+                <p className="text-sm text-gray-600 text-center mb-4">{selectedMember.role}</p>
+                <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line text-left">
                   {selectedMember.description}
                 </p>
-                <h3 className="mt-4 text-lg font-semibold text-gray-800">
-                  {selectedMember.quote}
-                </h3>
+                <h3 className="mt-6 text-lg font-semibold text-gray-800 text-left transition-all duration-300 hover:text-pink-600 hover:scale-105 cursor-pointer">
+  {selectedMember.quote}
+</h3>
                 <p className="text-sm text-gray-500 text-right mt-2">
-                  {selectedMember.quotename || "– " + selectedMember.name} 
+                  {selectedMember.quotename || "– " + selectedMember.name}
                 </p>
                 <button
                   className="absolute top-2 right-2 text-gray-400 hover:text-black"
@@ -209,10 +166,34 @@ export default function LeadershipTeam() {
         </div>
       </Dialog>
 
-      {/* Prevent Scroll When Modal Open */}
+      {/* Prevent Scroll */}
       <style>{`
         body { overflow: ${selectedMember ? "hidden" : "auto"}; }
       `}</style>
     </section>
+  );
+}
+
+function MemberCard({ member, onClick }: { member: TeamMember; onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      className="cursor-pointer p-4 rounded-lg hover:shadow-lg transition border w-full max-w-xs flex flex-col items-center font-body"
+    >
+      <Image
+        src={member.image}
+        alt={member.name}
+        width={100}
+        height={100}
+        className="rounded-full"
+      />
+      <h3 className="mt-3 text-base font-medium text-center text-gray-900">{member.name}</h3>
+      <p className="text-sm text-gray-500 text-center">{member.role}</p>
+      <div className="mt-2">
+        <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+          <Linkedin className="text-blue-600 w-4 h-4" />
+        </a>
+      </div>
+    </div>
   );
 }

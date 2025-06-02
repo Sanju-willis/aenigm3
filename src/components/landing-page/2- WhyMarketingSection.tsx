@@ -1,3 +1,4 @@
+// src\components\landing-page\2- WhyMarketingSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -90,28 +91,9 @@ export default function StopWastingSection() {
               We help businesses turn website visitors into paying customers without increasing ad spend.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-x-3 mb-2 sm:mb-2">
-              <span className="text-xl sm:text-2xl font-medium text-brandblue">More sales</span>
-              <span className="hidden sm:inline text-brandblue text-2xl">|</span>
-              <span className="text-xl sm:text-2xl font-medium text-brandblue">Lower costs</span>
-              <span className="hidden sm:inline text-brandblue text-2xl">|</span>
-              <span className="text-xl sm:text-2xl font-medium text-brandblue">Higher profits</span>
-            </div>
+            
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
-              {[
-                "Fix hidden issues hurting conversions",
-                "Double your revenue with the same traffic",
-                "Use data-driven changes for long-term growth"
-              ].map((text, index) => (
-                <div key={index} className="inline-flex items-center gap-2">
-                  <svg className="w-5 h-5 text-green-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-sm sm:text-base text-gray-700">{text}</span>
-                </div>
-              ))}
-            </div>
+            
 
             <motion.button
               onClick={handleLearnMoreClick}

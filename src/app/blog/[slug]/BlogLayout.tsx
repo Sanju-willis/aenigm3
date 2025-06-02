@@ -1,9 +1,9 @@
-// src\components\blog\BlogLayout.tsx
+// src\app\blog\[slug]\BlogLayout.tsx
 'use client';
 
 import { Heading } from '@/types/heading';
 import { useEffect, useRef, useState } from 'react';
-import BlogSidebar from './blog-side';
+import BlogSidebar from '../../../components/blog/blog-side';
 
 interface BlogLayoutProps {
   children: React.ReactNode;
@@ -51,26 +51,49 @@ export default function BlogLayout({ children, headings }: BlogLayoutProps) {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
       <div
         id="scroll-progress"
         className="fixed top-0 left-0 h-1 bg-blue-500 z-50 transition-all"
-      ></div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.25fr_280px] gap-8 px-10 py-12 antialiased">
-        <article className="prose prose-lg dark:prose-invert">
+      />
+
+      {/* Main Layout */}
+<div className="w-full px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-[280px_2fr] gap-6 py-5">
+        {/* Sidebar */}
+        <BlogSidebar headings={headings} activeId={activeId} />
+        {/* Blog Content */}
+        <article className="prose prose-lg dark:prose-invert max-w-none">
           {children}
 
-          <div className="mt-16 text-sm text-gray-600 dark:text-gray-300">
-            <p>💬 Did this help you? React below or leave a comment.</p>
-            <div className="flex gap-4 mt-2">
-              <button className="text-2xl">👍</button>
-              <button className="text-2xl">👎</button>
-              <button className="text-2xl">🔥</button>
-              <button className="text-2xl">🤯</button>
+          {/* Emoji Reactions */}
+          <div className="mt-20 border-t pt-8">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              💬 Did this help you? React below or leave a comment.
+            </p>
+            <div className="flex gap-4 mt-2 text-2xl">
+              <button>👍</button>
+              <button>👎</button>
+              <button>🔥</button>
+              <button>🤯</button>
+            </div>
+          </div>
+
+          {/* Author Bio (Placeholder) */}
+          <div className="mt-16 pt-8 border-t text-sm text-gray-600 dark:text-gray-400">
+            <p><strong>Written by Sanju Peramuna</strong> — CRO expert, ADHD-powered founder, and builder of Aenigm3 Labs.</p>
+          </div>
+
+          {/* Similar Articles (Placeholder) */}
+          <div className="mt-20 pt-8 border-t">
+            <h3 className="text-lg font-semibold mb-4">Similar articles</h3>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl">[Article 1 Card]</div>
+              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl">[Article 2 Card]</div>
             </div>
           </div>
         </article>
 
-        <BlogSidebar headings={headings} activeId={activeId} />
+        
       </div>
     </>
   );

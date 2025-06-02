@@ -1,4 +1,4 @@
-// src\components\landing-page\IsCRORightSection.tsx
+// src\components\landing-page\7 - IsCRORightSection.tsx
 'use client';
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";

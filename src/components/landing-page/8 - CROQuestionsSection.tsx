@@ -1,10 +1,11 @@
-// src\components\landing-page\CROQuestionsSection.tsx
+// src\components\landing-page\8 - CROQuestionsSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import AskCROForm from "../forms/AskCROForm";
+import { interTight } from '@/utils/fonts';
 
 const faqs = [
   {
@@ -43,17 +44,18 @@ export default function CROQuestionsSection() {
       document.body.style.overflow = 'auto';
     };
   }, [showAskCROForm]);
+
   return (
     <>
-      <section className="py-20 bg-white">
+      <section className={`py-20 bg-white font-sans ${interTight.variable}`}>
         <div className="container mx-auto px-4 md:px-6">
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 leading-snug">
             We understand that you are worried
           </h2>
 
           {/* FAQ List */}
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-4xl mx-auto space-y-5">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -63,9 +65,10 @@ export default function CROQuestionsSection() {
                 transition={{ delay: index * 0.1 }}
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-lg font-medium text-gray-600 w-12">{faq.number}</span>
-                  <div className="flex-1">                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                    <p className="text-brandblue text-lg">{faq.answer}</p>
+                  <span className="text-lg font-medium text-gray-600 w-12 leading-tight">{faq.number}</span>
+                  <div className="flex-1 leading-tight">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">{faq.question}</h3>
+                    <p className="text-brandblue text-base sm:text-lg">{faq.answer}</p>
                   </div>
                 </div>
                 {index < faqs.length - 1 && (
@@ -88,7 +91,8 @@ export default function CROQuestionsSection() {
               <Button
                 onClick={() => setShowAskCROForm(true)}
                 size="lg"
-                className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold" id="ask-cro-expert"
+                className="bg-purple-500 text-white px-12 py-12 rounded-xl flex items-center gap-4 hover:bg-purple-600 text-lg font-semibold"
+                id="ask-cro-expert"
               >
                 <img
                   src="expert.png"
@@ -101,6 +105,7 @@ export default function CROQuestionsSection() {
           </div>
         </div>
       </section>
+
       {/* Modal for AskCROForm */}
       {showAskCROForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">

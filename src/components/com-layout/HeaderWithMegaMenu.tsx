@@ -299,7 +299,7 @@ export default function HeaderWithMegaMenu() {
           </div>
         </Dialog.Panel>
       </Dialog>
-<<<<<<< HEAD
+
 
       {showGetProposalForm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
@@ -308,9 +308,6 @@ export default function HeaderWithMegaMenu() {
           </div>
         </div>
       )}
-
-=======
->>>>>>> origin/main
     </>
   );
 }

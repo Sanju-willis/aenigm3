@@ -125,8 +125,8 @@ export default function HexagonGrid() {
   ];
 
   return (
-    <section>
-      <div className="relative flex flex-col items-center gap-8 mt-20 px-4">
+    <section className="global-section">
+      <div className="relative flex flex-col items-center gap-8 mt-5 px-4">
         {rowGroups.map((row, rowIndex) => (
           <div
             key={rowIndex}

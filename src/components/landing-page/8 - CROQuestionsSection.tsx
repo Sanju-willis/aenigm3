@@ -47,7 +47,7 @@ export default function CROQuestionsSection() {
 
   return (
     <>
-      <section className={`py-20 bg-white font-sans ${interTight.variable}`}>
+      <section className="global-section">
         <div className="container mx-auto px-4 md:px-6">
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 leading-snug">
@@ -68,7 +68,7 @@ export default function CROQuestionsSection() {
                   <span className="text-lg font-medium text-gray-600 w-12 leading-tight">{faq.number}</span>
                   <div className="flex-1 leading-tight">
                     <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">{faq.question}</h3>
-                    <p className="text-brandblue text-base sm:text-lg">{faq.answer}</p>
+                    <p className={`text-brandblue font-sans ${interTight.variable} text-base sm:text-lg`}>{faq.answer}</p>
                   </div>
                 </div>
                 {index < faqs.length - 1 && (

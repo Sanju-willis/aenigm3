@@ -68,7 +68,7 @@ export default function GetProposalForm({ onClose }: GetProposalFormProps) {
   };
 
   const renderThankYou = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -83,7 +83,7 @@ export default function GetProposalForm({ onClose }: GetProposalFormProps) {
   );
 
   const renderForm = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}

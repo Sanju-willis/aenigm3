@@ -53,7 +53,7 @@ export default function AskCROExpertForm({ onClose }: AskCROExpertFormProps) {
 
   if (isSubmitted) {
     return (
-      <div className="relative w-full bg-white rounded-lg p-6">
+      <div className="global-form">
         {onClose && (
           <button
             onClick={onClose}
@@ -70,7 +70,7 @@ export default function AskCROExpertForm({ onClose }: AskCROExpertFormProps) {
   }
 
   return (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}

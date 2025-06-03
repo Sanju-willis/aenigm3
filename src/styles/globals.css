@@ -98,6 +98,14 @@
     transform-style: preserve-3d;
     backface-visibility: hidden;
   }
+
+  .global-section{
+    @apply py-8 sm:py-12 lg:py-16  scroll-mt-24;
+  }
+
+  .global-form{
+    @apply relative w-full bg-white rounded-lg p-6
+  }
 }
 
 

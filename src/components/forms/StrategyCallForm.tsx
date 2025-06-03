@@ -62,7 +62,7 @@ export default function StrategyCallForm({ onClose }: StrategyCallFormProps) {
 
   if (isSubmitted) {
     return (
-      <div className="relative w-full bg-white rounded-lg p-6">
+      <div className="global-form">
         {onClose && (
           <button
             onClick={onClose}
@@ -79,7 +79,7 @@ export default function StrategyCallForm({ onClose }: StrategyCallFormProps) {
   }
 
   return (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}

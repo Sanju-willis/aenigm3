@@ -64,7 +64,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
   };
 
   const renderThankYou = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -92,7 +92,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
   );
 
   const renderForm = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}

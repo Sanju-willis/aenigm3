@@ -27,8 +27,8 @@ export default function Home() {
     <main className="bg-white">
       {/* Hero section */}
       <section id="hero">
-    	<HeroSection />
-      <div className="max-w-5xl mx-auto border-b border-gray-300" />
+        <HeroSection />
+        <div className="max-w-5xl mx-auto border-b border-gray-300" />
       </section>
 
       {/* Sticky secondary nav */}
@@ -75,7 +75,7 @@ export default function Home() {
       <section id="grow-revenue">
         <GrowRevenueSection />
       </section>
-     
+
     </main>
   );
 }

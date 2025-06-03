@@ -20,13 +20,13 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-  sans: ['var(--font-inter-tight)', 'sans-serif'], // for UI/Body
-  heading: ['var(--font-royal-castle)', 'serif'],   // for hero/menu titles
-  body: ['var(--font-aleo)', 'serif'],              // for paragraph/serif body
-  accent: ['var(--font-bangers)', 'cursive'],       // for labels/fun copy
-},
+        sans: ['var(--font-inter-tight)', 'sans-serif'], // for UI/Body
+        heading: ['var(--font-royal-castle)', 'serif'],   // for hero/menu titles
+        body: ['var(--font-aleo)', 'serif'],              // for paragraph/serif body
+        accent: ['var(--font-bangers)', 'cursive'],       // for labels/fun copy
+      },
 
-      
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

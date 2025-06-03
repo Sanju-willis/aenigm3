@@ -63,11 +63,11 @@ export default function CROProcessSection() {
 
   return (
     <>
-      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+      <section className="global-section">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold  mb-3 sm:mb-4">
               Our Simple <span className="text-pink-600">4-Step</span> CRO Process
             </h2>
             <p className="text-base sm:text-lg text-gray-600">

@@ -1,3 +1,4 @@
+// src\components\forms\FindOutForm.tsx
 import { useState } from 'react';
 
 interface FindOutFormData {
@@ -60,7 +61,7 @@ export default function GetProposalForm({ onClose }: FindOutFormProps) {
   };
 
   const renderThankYou = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -75,7 +76,7 @@ export default function GetProposalForm({ onClose }: FindOutFormProps) {
   );
 
   const renderForm = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}

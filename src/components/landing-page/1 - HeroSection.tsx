@@ -24,7 +24,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative isolate overflow-hidden pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-16 bg-white">
+    <section className="relative isolate overflow-hidden pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 font-body">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
           {/* Left Content */}

@@ -19,7 +19,8 @@ const ourFocus = [
 ];
 
 export default function WhyDigitalMarketingSection() {
-  return (<section className="py-16 bg-white scroll-mt-24">
+  return (
+  <section className="py-16 bg-white scroll-mt-24">
     <div className="container mx-auto px-6 max-w-6xl">{/* ⬅️ limits max width */}
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8">
         Why Digital Marketing Alone{' '}

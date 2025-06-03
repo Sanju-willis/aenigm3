@@ -1,7 +1,7 @@
-// src\components\ClientPageViewTracker.tsx
+// src\components\analytics\ClientPageViewTracker.tsx
 "use client";
 
-import useSendPageView from ".././app/hooks/useSendPageView";
+import useSendPageView from "../../app/hooks/useSendPageView";
 
 export default function ClientPageViewTracker() {
   const eventId = `dedupe-${Math.floor(Math.random() * 1000000)}`;

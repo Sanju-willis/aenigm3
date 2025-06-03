@@ -5,7 +5,7 @@ import { royalCastle, aleo } from '../utils/fonts';
 import Header from '../components/com-layout/HeaderWithMegaMenu';
 import Footer from '../components/com-layout/Footer';
 import GTM from '@/components/analytics/GTM';
-import ClientPageViewTracker from '@/components/ClientPageViewTracker';
+import ClientPageViewTracker from '@/components/analytics/ClientPageViewTracker';
 import { siteMetadata } from '@/lib/metadata';
 
 

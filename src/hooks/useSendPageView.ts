@@ -1,4 +1,4 @@
-// src\app\hooks\useSendPageView.ts
+// src\hooks\useSendPageView.ts
 "use client";
 
 import { useEffect } from "react";
@@ -12,11 +12,17 @@ interface PageViewProps {
   event_id?: string;
 }
 
-export default function useSendPageView({ email, gender, city, country, event_id }: PageViewProps) {
+export default function useSendPageView({
+  email,
+  gender,
+  city,
+  country,
+  event_id,
+}: PageViewProps) {
   useEffect(() => {
     const sendEvent = async () => {
       try {
-        await axios.post("http://localhost:3000/events", {
+        const payload = {
           email,
           gender,
           city,
@@ -24,8 +30,10 @@ export default function useSendPageView({ email, gender, city, country, event_id
           event_id,
           client_ip_address: window.location.hostname,
           user_agent: navigator.userAgent,
-        });
-        console.log("✅ PageView event sent to backend");
+        };
+
+        await axios.post("/api/events", payload);
+        console.log("✅ PageView event sent to /api/events");
       } catch (err) {
         console.error("❌ Failed to send PageView:", err);
       }

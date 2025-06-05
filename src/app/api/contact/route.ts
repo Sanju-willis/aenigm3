@@ -1,4 +1,5 @@
 // src\app\api\contact\route.ts
+// Contact form submission
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {

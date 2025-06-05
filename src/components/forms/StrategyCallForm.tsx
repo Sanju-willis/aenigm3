@@ -32,15 +32,32 @@ const topics = [
   'Other',
 ];
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function StrategyCallForm({ onClose }: StrategyCallFormProps) {
   const [formData, setFormData] = useState<StrategyCallFormData>(INITIAL_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof StrategyCallFormData, string>>>({});
 
   const handleChange = (field: keyof StrategyCallFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const validate = () => {
+    const newErrors: Partial<Record<keyof StrategyCallFormData, string>> = {};
+    if (!formData.name) newErrors.name = 'Name is required.';
+    if (!formData.email) newErrors.email = 'Email is required.';
+    else if (!isValidEmail(formData.email)) newErrors.email = 'Invalid email format.';
+    if (!formData.company) newErrors.company = 'Company is required.';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const errorText = (field: keyof StrategyCallFormData) =>
+    errors[field] ? <div className="text-red-500 text-sm">{errors[field]}</div> : null;
+
   const handleSubmit = async () => {
+    if (!validate()) return;
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -94,32 +111,41 @@ export default function StrategyCallForm({ onClose }: StrategyCallFormProps) {
 
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            type="text"
-            placeholder="Name*"
-            value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email*"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
-            required
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Name*"
+              value={formData.name}
+              onChange={(e) => handleChange('name', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
+              required
+            />
+            {errorText('name')}
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email*"
+              value={formData.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
+              required
+            />
+            {errorText('email')}
+          </div>
         </div>
 
-        <input
-          type="text"
-          placeholder="Company Name / Website*"
-          value={formData.company}
-          onChange={(e) => handleChange('company', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
-          required
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Company Name / Website*"
+            value={formData.company}
+            onChange={(e) => handleChange('company', e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
+            required
+          />
+          {errorText('company')}
+        </div>
 
         <select
           value={formData.topic}

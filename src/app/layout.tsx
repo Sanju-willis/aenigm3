@@ -19,7 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`h-full ${royalCastle.variable} ${aleo.variable}`}>
-      <head />
+       <head>
+        {/* ✅ Load Poppins from Google Fonts */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className={`${aleo.className} h-full`}>
         <noscript>
           <iframe

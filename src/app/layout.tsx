@@ -5,27 +5,30 @@ import { royalCastle, aleo } from '../utils/fonts';
 import Header from '../components/com-layout/HeaderWithMegaMenu';
 import Footer from '../components/com-layout/Footer';
 import GTM from '@/components/analytics/GTM';
-import ClientPageViewTracker from '@/components/analytics/ClientPageViewTracker';
 import { siteMetadata } from '@/lib/metadata';
+import { extractRequestInfo } from '@/lib/requestInfo';
+import { sendServerSidePageView } from '@/lib/sendServerEvent';
 
 
 export const metadata: Metadata = siteMetadata;
 
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+const requestInfo = await extractRequestInfo();
+console.log('[📥 Request Info]', requestInfo);
+// Send to API
+await sendServerSidePageView(requestInfo);
+
   return (
     <html lang="en" className={`h-full ${royalCastle.variable} ${aleo.variable}`}>
-       <head>
-        {/* ✅ Load Poppins from Google Fonts */}
+      <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap"
           rel="stylesheet"
         />
-           {/* Facebook Domain Verification */}
         <meta
           name="facebook-domain-verification"
           content="88c1x5wnb7s9bgzsn7lr1rh4h09wa6"
@@ -41,14 +44,10 @@ export default function RootLayout({
           />
         </noscript>
         <GTM />
-        <ClientPageViewTracker />
-        
-        {/* Main layout structure */}
+
         <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-grow pt-16">
-            {children}
-          </main>
+          <main className="flex-grow pt-16">{children}</main>
           <Footer />
         </div>
       </body>

@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
           event_name: 'PageView',
           event_time: Math.floor(Date.now() / 1000),
           action_source: 'website',
-          event_source_url: 'https://yourdomain.com', // ✅ Replace with your actual domain
+          event_source_url: 'https://aenigm3labs.com', // ✅ Replace with your actual domain
           user_data: userData,
           event_id: event_id || 'pageview-' + Date.now(),
         },

@@ -13,7 +13,12 @@ function hash(value?: string) {
 }
 
 // General-purpose event sender
-export async function sendServerEvent({ eventName, userData = {}, customData = {}, eventSourceUrl, eventId = `ssr-${Date.now()}`,
+export async function sendServerEvent({
+  eventName,
+  userData = {},
+  customData = {},
+  eventSourceUrl,
+  eventId = `ssr-${Date.now()}`,
 }: {
   eventName: string;
   userData?: {
@@ -33,7 +38,18 @@ export async function sendServerEvent({ eventName, userData = {}, customData = {
   eventId?: string;
 }) {
   try {
-    const { email, phone, gender, city, country, external_id, ip, userAgent, fbc, fbp,  } = userData;
+    const {
+      email,
+      phone,
+      gender,
+      city,
+      country,
+      external_id,
+      ip,
+      userAgent,
+      fbc,
+      fbp,
+    } = userData;
 
     const payloadUserData: Record<string, any> = {
       client_ip_address: ip,
@@ -43,11 +59,16 @@ export async function sendServerEvent({ eventName, userData = {}, customData = {
     if (email) payloadUserData.em = [hash(email)];
     if (phone) payloadUserData.ph = [hash(phone)];
     if (gender) payloadUserData.ge = [hash(gender)];
-    if (city) payloadUserData.ct = [hash(city)];
-    if (country) payloadUserData.country = [hash(country)];
     if (external_id) payloadUserData.external_id = [hash(external_id)];
     if (fbc) payloadUserData.fbc = fbc;
     if (fbp) payloadUserData.fbp = fbp;
+
+    // 👇 Plaintext city/country — required
+    if (city) payloadUserData.city = city.toLowerCase();
+    if (country) payloadUserData.country = country.toLowerCase();
+
+    // 👇 Optionally also send hashed ct for better match rate (not required)
+    if (city) payloadUserData.ct = [hash(city)];
 
     const payload = {
       access_token: ACCESS_TOKEN,
@@ -64,7 +85,8 @@ export async function sendServerEvent({ eventName, userData = {}, customData = {
         },
       ],
     };
-console.log('[📤 Meta CAPI Payload]', JSON.stringify(payload, null, 2));
+
+    console.log('[📤 Meta CAPI Payload]', JSON.stringify(payload, null, 2));
 
     const res = await axios.post(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, payload);
     console.log(`✅ Sent ${eventName} event via CAPI`, res.data);

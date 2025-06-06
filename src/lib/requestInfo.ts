@@ -1,10 +1,11 @@
 // src\lib\requestInfo.ts
 'use server';
 
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
 
 export async function extractRequestInfo() {
-  const headersList = await headers();
+  const headersList = await headers();  // ✅ must await
+  const cookieStore = await cookies();  // ✅ must await
 
   const userAgent = headersList.get('user-agent') || 'unknown';
   const ipRaw =
@@ -15,7 +16,11 @@ export async function extractRequestInfo() {
   const referrer = headersList.get('referer') || 'none';
   const acceptLang = headersList.get('accept-language') || 'unknown';
 
-  // 🌍 Lookup geolocation from IP (skip localhost)
+  const email = headersList.get('x-user-email') || undefined; // optional from header/middleware
+  const fbc = cookieStore.get('_fbc')?.value || undefined;
+  const fbp = cookieStore.get('_fbp')?.value || undefined;
+
+  // 🌍 Lookup geolocation
   let city = 'unknown';
   let country = 'unknown';
 
@@ -23,7 +28,6 @@ export async function extractRequestInfo() {
     try {
       const geoRes = await fetch(`https://ipapi.co/${ipRaw}/json`);
       const geoData = await geoRes.json();
-
       city = geoData.city || 'unknown';
       country = geoData.country || 'unknown';
     } catch (err) {
@@ -38,5 +42,8 @@ export async function extractRequestInfo() {
     acceptLang,
     city,
     country,
+    email,
+    fbc,
+    fbp,
   };
 }

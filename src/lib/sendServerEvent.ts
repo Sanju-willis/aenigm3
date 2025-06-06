@@ -2,9 +2,9 @@
 import axios from 'axios';
 import crypto from 'crypto';
 
-const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN!;
-const PIXEL_ID = process.env.FB_PIXEL_ID!;
-const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE;
+const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN2!;
+const PIXEL_ID = process.env.FB_PIXEL_ID2!;
+const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE; // Optional
 
 function hash(value?: string) {
   return value
@@ -12,46 +12,67 @@ function hash(value?: string) {
     : undefined;
 }
 
-export async function sendServerSidePageView(data: Record<string, any>) {
+// General-purpose event sender
+export async function sendServerEvent({
+  eventName,
+  userData = {},
+  customData = {},
+  eventSourceUrl,
+  eventId = `ssr-${Date.now()}`,
+}: {
+  eventName: string;
+  userData?: {
+    email?: string;
+    phone?: string;
+    gender?: string;
+    city?: string;
+    country?: string;
+    external_id?: string;
+    ip?: string;
+    userAgent?: string;
+    fbc?: string;
+    fbp?: string;
+  };
+  customData?: Record<string, any>;
+  eventSourceUrl?: string;
+  eventId?: string;
+}) {
   try {
-    const {
-      email,
-      gender,
-      city,
-      country,
-      ip,
-      userAgent,
-    } = data;
+    const { email, phone, gender, city, country, external_id, ip, userAgent, fbc, fbp,  } = userData;
 
-    const userData: Record<string, any> = {
+    const payloadUserData: Record<string, any> = {
       client_ip_address: ip,
       client_user_agent: userAgent,
     };
 
-    if (email) userData.em = [hash(email)];
-    if (gender) userData.ge = [hash(gender)];
-    if (city) userData.ct = [hash(city)];
-    if (country) userData.country = [hash(country)];
+    if (email) payloadUserData.em = [hash(email)];
+    if (phone) payloadUserData.ph = [hash(phone)];
+    if (gender) payloadUserData.ge = [hash(gender)];
+    if (city) payloadUserData.ct = [hash(city)];
+    if (country) payloadUserData.country = [hash(country)];
+    if (external_id) payloadUserData.external_id = [hash(external_id)];
+    if (fbc) payloadUserData.fbc = fbc;
+    if (fbp) payloadUserData.fbp = fbp;
 
     const payload = {
       access_token: ACCESS_TOKEN,
       test_event_code: TEST_EVENT_CODE,
       data: [
         {
-          event_name: 'PageView',
+          event_name: eventName,
           event_time: Math.floor(Date.now() / 1000),
           action_source: 'website',
-          event_source_url: process.env.NEXT_PUBLIC_SITE_URL,
-          user_data: userData,
-          event_id: `ssr-${Date.now()}`,
+          event_source_url: eventSourceUrl || process.env.NEXT_PUBLIC_SITE_URL,
+          event_id: eventId,
+          user_data: payloadUserData,
+          custom_data: customData,
         },
       ],
     };
 
-    await axios.post(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, payload);
-
-    console.log('✅ Server-side PageView sent');
+    const res = await axios.post(`https://graph.facebook.com/v18.0/${PIXEL_ID}/events`, payload);
+    console.log(`✅ Sent ${eventName} event via CAPI`, res.data);
   } catch (err) {
-    console.error('❌ Failed to send PageView', err);
+    console.error(`❌ Failed to send ${eventName} event`, err);
   }
 }

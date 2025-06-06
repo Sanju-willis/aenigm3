@@ -6,36 +6,15 @@ import Header from '../components/com-layout/HeaderWithMegaMenu';
 import Footer from '../components/com-layout/Footer';
 import GTM from '@/components/analytics/GTM';
 import { siteMetadata } from '@/lib/metadata';
-import { extractRequestInfo } from '@/lib/requestInfo';
-import { sendServerEvent } from '@/lib/sendServerEvent';
+import TrackPageView from '@/components/analytics/TrackPageView'; // 👈 Add this
 
 export const metadata: Metadata = siteMetadata;
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const requestInfo = await extractRequestInfo();
-
-  if (requestInfo) {
-    console.log('[📥 Request Info]', requestInfo);
-
-    await sendServerEvent({
-      eventName: 'PageView',
-      userData: {
-        ip: requestInfo.ip,
-        userAgent: requestInfo.userAgent,
-        email: requestInfo.email,
-        city: requestInfo.city,
-        country: requestInfo.country,
-        fbc: requestInfo.fbc,
-        fbp: requestInfo.fbp,
-      },
-      eventSourceUrl: process.env.NEXT_PUBLIC_SITE_URL,
-    });
-  }
-
   return (
     <html lang="en" className={`h-full ${royalCastle.variable} ${aleo.variable}`}>
       <head>
@@ -54,6 +33,7 @@ export default async function RootLayout({
           />
         </noscript>
         <GTM />
+        <TrackPageView /> {/* 👈 Triggers tracking on client side */}
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow pt-16">{children}</main>

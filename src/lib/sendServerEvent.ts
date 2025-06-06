@@ -61,15 +61,16 @@ export async function sendServerEvent({
     if (fbc) payloadUserData.fbc = fbc;
     if (fbp) payloadUserData.fbp = fbp;
 
-    if (city && city !== 'unknown') {
-      payloadUserData.city = city.toLowerCase();
-      const hashedCity = hash(city);
-      if (hashedCity) payloadUserData.ct = [hashedCity];
-    }
+   if (city && city !== 'unknown') {
+  const hashedCity = hash(city);
+  if (hashedCity) payloadUserData.ct = [hashedCity];
+}
 
-    if (country && country !== 'unknown') {
-      payloadUserData.country = country.toLowerCase();
-    }
+if (country && country !== 'unknown') {
+  const hashedCountry = hash(country);
+  if (hashedCountry) payloadUserData.country = [hashedCountry]; // ✅ hashed version is valid
+}
+
 
     const payload = {
       access_token: ACCESS_TOKEN,

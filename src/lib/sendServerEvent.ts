@@ -1,9 +1,10 @@
+// src/lib/sendServerEvent.ts
 import axios from 'axios';
 import crypto from 'crypto';
 
 const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN2!;
 const PIXEL_ID = process.env.FB_PIXEL_ID2!;
-const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE; // Optional
+const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE;
 
 function hash(value?: string) {
   return value
@@ -49,20 +50,26 @@ export async function sendServerEvent({
       fbp,
     } = userData;
 
-    const payloadUserData: Record<string, any> = {
-      client_ip_address: ip,
-      client_user_agent: userAgent,
-    };
+    const payloadUserData: Record<string, any> = {};
 
-    if (email) payloadUserData.em = [hash(email)];
-    if (phone) payloadUserData.ph = [hash(phone)];
-    if (gender) payloadUserData.ge = [hash(gender)];
-    if (external_id) payloadUserData.external_id = [hash(external_id)];
+    if (ip) payloadUserData.client_ip_address = ip;
+    if (userAgent) payloadUserData.client_user_agent = userAgent;
+    if (email && hash(email)) payloadUserData.em = [hash(email)];
+    if (phone && hash(phone)) payloadUserData.ph = [hash(phone)];
+    if (gender && hash(gender)) payloadUserData.ge = [hash(gender)];
+    if (external_id && hash(external_id)) payloadUserData.external_id = [hash(external_id)];
     if (fbc) payloadUserData.fbc = fbc;
     if (fbp) payloadUserData.fbp = fbp;
 
-    if (city && city !== 'unknown') payloadUserData.city = city.toLowerCase();
-    if (country && country !== 'unknown') payloadUserData.country = country.toLowerCase();
+    if (city && city !== 'unknown') {
+      payloadUserData.city = city.toLowerCase();
+      const hashedCity = hash(city);
+      if (hashedCity) payloadUserData.ct = [hashedCity];
+    }
+
+    if (country && country !== 'unknown') {
+      payloadUserData.country = country.toLowerCase();
+    }
 
     const payload = {
       access_token: ACCESS_TOKEN,
@@ -82,9 +89,12 @@ export async function sendServerEvent({
 
     console.log('[📤 Meta CAPI Payload]', JSON.stringify(payload, null, 2));
 
-    const res = await axios.post(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, payload);
+    const res = await axios.post(
+      `https://graph.facebook.com/v22.0/${PIXEL_ID}/events`,
+      payload
+    );
     console.log(`✅ Sent ${eventName} event via CAPI`, res.data);
-  } catch (err) {
-    console.error(`❌ Failed to send ${eventName} event`, err);
+  } catch (err: any) {
+    console.error(`❌ Failed to send ${eventName} event`, err?.response?.data || err.message);
   }
 }

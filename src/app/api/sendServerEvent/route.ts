@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
         },
       ],
     };
+    console.log('[📤 CAPI Payload]', JSON.stringify(payload, null, 2));
 
     const response = await axios.post(`${FB_API_URL}?access_token=${ACCESS_TOKEN}`, payload);
     console.log('✅ Meta CAPI event sent:', response.data);

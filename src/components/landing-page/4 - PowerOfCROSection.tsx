@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function PowerOfCROSection() {
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-white scroll-mt-24">
+    <section className="global-section">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8">
           The Power of <span className="text-pink-600">CRO</span>

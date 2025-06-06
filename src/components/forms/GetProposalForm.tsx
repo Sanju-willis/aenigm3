@@ -32,9 +32,12 @@ const projectTypes = ['Landing Page', 'Full Site', 'CRO Audit', 'AI Ad Setup'];
 const goalOptions = ['More leads', 'Better funnel', 'Higher sales', 'Lower ad spend'];
 const budgetOptions = ['$1k–$3k', '$3k–$10k', '$10k+'];
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function GetProposalForm({ onClose }: GetProposalFormProps) {
   const [formData, setFormData] = useState<GetProposalFormData>(INITIAL_AUDIT_FORM_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof GetProposalFormData, string>>>({});
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -43,17 +46,31 @@ export default function GetProposalForm({ onClose }: GetProposalFormProps) {
     };
   }, []);
 
-  const handleInputChange = (name: string, value: string) => {
+  const handleInputChange = (name: keyof GetProposalFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
+  };
+
+  const validate = (): boolean => {
+    const newErrors: typeof errors = {};
+    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
+    if (!formData.workEmail) newErrors.workEmail = 'Email is required.';
+    else if (!isValidEmail(formData.workEmail)) newErrors.workEmail = 'Invalid email format.';
+    if (!formData.websiteURL) newErrors.websiteURL = 'Website URL is required.';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async () => {
+    if (!validate()) return;
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          subject: 'New CRO Audit Submission',
+          subject: 'New Get Proposal Submission',
           to: 'sanju.peramuna@gmail.com',
           data: formData,
         }),
@@ -67,8 +84,11 @@ export default function GetProposalForm({ onClose }: GetProposalFormProps) {
     }
   };
 
+  const errorText = (field: keyof GetProposalFormData) =>
+    errors[field] && <p className="text-sm text-red-500 mt-1">{errors[field]}</p>;
+
   const renderThankYou = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -83,7 +103,7 @@ export default function GetProposalForm({ onClose }: GetProposalFormProps) {
   );
 
   const renderForm = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -97,32 +117,38 @@ export default function GetProposalForm({ onClose }: GetProposalFormProps) {
       <p className="text-gray-600 text-center mb-6">Unlock actionable insights to boost conversions</p>
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            type="text"
-            placeholder="Full Name*"
-            value={formData.fullName}
-            onChange={(e) => handleInputChange('fullName', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Work Email*"
-            value={formData.workEmail}
-            onChange={(e) => handleInputChange('workEmail', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-            required
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Full Name*"
+              value={formData.fullName}
+              onChange={(e) => handleInputChange('fullName', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            {errorText('fullName')}
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Work Email*"
+              value={formData.workEmail}
+              onChange={(e) => handleInputChange('workEmail', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            {errorText('workEmail')}
+          </div>
         </div>
 
-        <input
-          type="text"
-          placeholder="Company / Website URL*"
-          value={formData.websiteURL}
-          onChange={(e) => handleInputChange('websiteURL', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-          required
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Company / Website URL*"
+            value={formData.websiteURL}
+            onChange={(e) => handleInputChange('websiteURL', e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          />
+          {errorText('websiteURL')}
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <select

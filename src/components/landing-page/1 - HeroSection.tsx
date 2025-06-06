@@ -25,7 +25,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative isolate overflow-hidden pt-16 sm:pt-20 md:pt-24 pb-12 md:pb-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 font-body">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
           {/* Left Content */}
           <motion.div
@@ -66,7 +66,7 @@ export default function HeroSection() {
               animate={{ rotateY: 0, opacity: 1 }}
               exit={{ rotateY: 180, opacity: 0 }}
               transition={{ duration: 0.6 }}
-className="w-full max-w-[340px] bg-blue-50 rounded-xl p-6 sm:p-6 shadow-md"
+              className="w-full max-w-[360px] bg-blue-50 rounded-xl p-6 sm:p-6 shadow-md"
             >
               {showAlt ? (
                 <>

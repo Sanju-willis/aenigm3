@@ -5,8 +5,8 @@ import { Hexagon } from 'lucide-react';
 
 export default function AboutHero() {
   return (
-    <section className="relative px-4 sm:px-8 md:px-12 lg:px-20 py-20 bg-gradient-to-b from-white to-slate-50 text-gray-800">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
+    <section className="global-section">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
         {/* Left Text Column */}
         <div className="text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8">

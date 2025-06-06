@@ -32,15 +32,32 @@ const struggleOptions = [
   'Other',
 ];
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function GetProposalForm({ onClose }: FindOutFormProps) {
   const [formData, setFormData] = useState<FindOutFormData>(INITIAL_FORM_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof FindOutFormData, string>>>({});
 
-  const handleInputChange = (name: string, value: string) => {
+  const handleInputChange = (name: keyof FindOutFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
+  };
+
+  const validate = (): boolean => {
+    const newErrors: typeof errors = {};
+    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
+    if (!formData.workEmail) newErrors.workEmail = 'Email is required.';
+    else if (!isValidEmail(formData.workEmail)) newErrors.workEmail = 'Invalid email format.';
+    if (!formData.websiteURL) newErrors.websiteURL = 'Website URL is required.';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async () => {
+    if (!validate()) return;
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -60,8 +77,11 @@ export default function GetProposalForm({ onClose }: FindOutFormProps) {
     }
   };
 
+  const errorText = (field: keyof FindOutFormData) =>
+    errors[field] && <p className="text-sm text-red-500 mt-1">{errors[field]}</p>;
+
   const renderThankYou = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -76,7 +96,7 @@ export default function GetProposalForm({ onClose }: FindOutFormProps) {
   );
 
   const renderForm = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -91,32 +111,38 @@ export default function GetProposalForm({ onClose }: FindOutFormProps) {
 
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            type="text"
-            placeholder="Full Name*"
-            value={formData.fullName}
-            onChange={(e) => handleInputChange('fullName', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email Address*"
-            value={formData.workEmail}
-            onChange={(e) => handleInputChange('workEmail', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-            required
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Full Name*"
+              value={formData.fullName}
+              onChange={(e) => handleInputChange('fullName', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            {errorText('fullName')}
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address*"
+              value={formData.workEmail}
+              onChange={(e) => handleInputChange('workEmail', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            {errorText('workEmail')}
+          </div>
         </div>
 
-        <input
-          type="text"
-          placeholder="Website URL*"
-          value={formData.websiteURL}
-          onChange={(e) => handleInputChange('websiteURL', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-          required
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Website URL*"
+            value={formData.websiteURL}
+            onChange={(e) => handleInputChange('websiteURL', e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          />
+          {errorText('websiteURL')}
+        </div>
 
         <select
           value={formData.strugglingArea}

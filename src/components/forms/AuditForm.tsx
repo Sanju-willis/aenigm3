@@ -26,15 +26,17 @@ const challengeOptions = [
   'High bounce rate',
   'Poor mobile experience',
   'Confusing checkout process',
-  
 ];
+
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default function AuditForm({ onClose }: AuditFormProps) {
   const [formData, setFormData] = useState<AuditFormData>(INITIAL_AUDIT_FORM_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof AuditFormData, string>>>({});
 
-  const handleInputChange = (name: string, value: string) => {
+  const handleInputChange = (name: keyof AuditFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -44,6 +46,24 @@ export default function AuditForm({ onClose }: AuditFormProps) {
   };
 
   const handleSubmit = async () => {
+    const { fullName, workEmail, websiteURL } = formData;
+    const newErrors: typeof errors = {};
+
+    if (!fullName) newErrors.fullName = 'Full Name is required.';
+    if (!workEmail) {
+      newErrors.workEmail = 'Email is required.';
+    } else if (!isValidEmail(workEmail)) {
+      newErrors.workEmail = 'Invalid email format.';
+    }
+    if (!websiteURL) newErrors.websiteURL = 'Website URL is required.';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -64,7 +84,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
   };
 
   const renderThankYou = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -76,11 +96,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
       )}
       <h2 className="text-2xl font-semibold mb-6 text-center">What Happens Next?</h2>
       <div className="space-y-4 mb-6">
-        {[
-          "We analyze your site's conversion performance",
-          "Our experts identify growth opportunities",
-          "You receive a free CRO report with recommendations",
-        ].map((text, i) => (
+        {["We analyze your site's conversion performance", "Our experts identify growth opportunities", "You receive a free CRO report with recommendations"].map((text, i) => (
           <div key={i} className="flex items-start">
             <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white mr-3">✓</div>
             <p className="font-medium">Step {i + 1}: {text}</p>
@@ -92,7 +108,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
   );
 
   const renderForm = () => (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -114,6 +130,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
             placeholder="Enter your first and last name"
           />
+          {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -124,6 +141,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
               onChange={(e) => handleInputChange('workEmail', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
+            {errors.workEmail && <p className="text-red-500 text-sm mt-1">{errors.workEmail}</p>}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Website URL*</label>
@@ -134,6 +152,7 @@ export default function AuditForm({ onClose }: AuditFormProps) {
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
               placeholder="Link to the website you want us to analyze"
             />
+            {errors.websiteURL && <p className="text-red-500 text-sm mt-1">{errors.websiteURL}</p>}
           </div>
         </div>
         <div>

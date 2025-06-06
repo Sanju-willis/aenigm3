@@ -23,15 +23,36 @@ const INITIAL_DATA: AskCROExpertFormData = {
 
 const urgencyOptions = ['ASAP', 'This Week', 'Just Exploring'];
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function AskCROExpertForm({ onClose }: AskCROExpertFormProps) {
   const [formData, setFormData] = useState<AskCROExpertFormData>(INITIAL_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof AskCROExpertFormData, string>>>({});
 
   const handleChange = (field: keyof AskCROExpertFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async () => {
+    const { name, email, question } = formData;
+    const newErrors: typeof errors = {};
+
+    if (!name) newErrors.name = 'Name is required.';
+    if (!email) {
+      newErrors.email = 'Email is required.';
+    } else if (!isValidEmail(email)) {
+      newErrors.email = 'Invalid email format.';
+    }
+    if (!question) newErrors.question = 'Question is required.';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -53,7 +74,7 @@ export default function AskCROExpertForm({ onClose }: AskCROExpertFormProps) {
 
   if (isSubmitted) {
     return (
-      <div className="relative w-full bg-white rounded-lg p-6">
+      <div className="global-form">
         {onClose && (
           <button
             onClick={onClose}
@@ -70,7 +91,7 @@ export default function AskCROExpertForm({ onClose }: AskCROExpertFormProps) {
   }
 
   return (
-    <div className="relative w-full bg-white rounded-lg p-6">
+    <div className="global-form">
       {onClose && (
         <button
           onClick={onClose}
@@ -85,32 +106,39 @@ export default function AskCROExpertForm({ onClose }: AskCROExpertFormProps) {
 
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            type="text"
-            placeholder="Name*"
-            value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email*"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
-            required
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Name*"
+              value={formData.name}
+              onChange={(e) => handleChange('name', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+          </div>
+
+          <div>
+            <input
+              type="email"
+              placeholder="Email*"
+              value={formData.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
+            />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+          </div>
         </div>
 
-        <textarea
-          placeholder="Your Question / Challenge*"
-          value={formData.question}
-          onChange={(e) => handleChange('question', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
-          rows={4}
-          required
-        />
+        <div>
+          <textarea
+            placeholder="Your Question / Challenge*"
+            value={formData.question}
+            onChange={(e) => handleChange('question', e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:outline-none"
+            rows={4}
+          />
+          {errors.question && <p className="text-red-500 text-sm mt-1">{errors.question}</p>}
+        </div>
 
         <input
           type="text"

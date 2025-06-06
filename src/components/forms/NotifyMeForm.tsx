@@ -31,9 +31,12 @@ const struggleOptions = [
   'I Don’t Know Where to Start',
 ];
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function NotifyMeForm({ onClose }: NotifyMeFormProps) {
   const [formData, setFormData] = useState(INITIAL_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -45,10 +48,23 @@ export default function NotifyMeForm({ onClose }: NotifyMeFormProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
+  };
+
+  const validate = (): boolean => {
+    const newErrors: typeof errors = {};
+    if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
+    if (!formData.workEmail) newErrors.workEmail = 'Work Email is required.';
+    else if (!isValidEmail(formData.workEmail)) newErrors.workEmail = 'Invalid email format.';
+    if (!formData.company) newErrors.company = 'Company / Website is required.';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
+
     try {
       await fetch('/api/send-email', {
         method: 'POST',
@@ -67,6 +83,7 @@ export default function NotifyMeForm({ onClose }: NotifyMeFormProps) {
   };
 
   const inputClass = "w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500";
+  const errorText = (field: keyof FormData) => errors[field] && <p className="text-xs text-red-500 mt-1">{errors[field]}</p>;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#d9e6fb]/70 backdrop-blur-sm p-4">
@@ -94,35 +111,41 @@ export default function NotifyMeForm({ onClose }: NotifyMeFormProps) {
                 <p className="text-sm text-gray-600">Get early beta access before we launch publicly.</p>
               </div>
 
-              <input
-                type="text"
-                name="fullName"
-                placeholder="Full Name*"
-                value={formData.fullName}
-                onChange={handleChange}
-                className={inputClass}
-                required
-              />
+              <div>
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="Full Name*"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+                {errorText('fullName')}
+              </div>
 
-              <input
-                type="email"
-                name="workEmail"
-                placeholder="Work Email*"
-                value={formData.workEmail}
-                onChange={handleChange}
-                className={inputClass}
-                required
-              />
+              <div>
+                <input
+                  type="email"
+                  name="workEmail"
+                  placeholder="Work Email*"
+                  value={formData.workEmail}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+                {errorText('workEmail')}
+              </div>
 
-              <input
-                type="text"
-                name="company"
-                placeholder="Company / Website*"
-                value={formData.company}
-                onChange={handleChange}
-                className={inputClass}
-                required
-              />
+              <div>
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company / Website*"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+                {errorText('company')}
+              </div>
 
               <select
                 name="marketingStruggle"

@@ -28,7 +28,7 @@ export default function BigMistakesSection() {
 
   return (
     <>
-      <section className="py-20 bg-background scroll-mt-24">
+      <section className="global-section">
         <div className="container mx-auto px-6 text-center">
           {/* Top Heading */}
           <motion.div

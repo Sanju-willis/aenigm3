@@ -105,7 +105,8 @@ export default function LeadershipTeam() {
   const secondRow = team.slice(4);
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20 text-center font-body" id="leadership-team">
+    <section className="global-section" id="leadership-team">
+      <div className="max-w-7xl mx-auto px-6 text-center">
       <h2 className="text-4xl font-bold mb-12 font-heading">
         Meet Our <span className="text-pink-600">Leadership Team</span>
       </h2>
@@ -170,6 +171,7 @@ export default function LeadershipTeam() {
       <style>{`
         body { overflow: ${selectedMember ? "hidden" : "auto"}; }
       `}</style>
+      </div>
     </section>
   );
 }

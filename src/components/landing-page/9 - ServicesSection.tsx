@@ -17,9 +17,9 @@ const services = [
 
 export default function CROServicesSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white">
-<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-20">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading mb-8 sm:mb-10 text-center">
+    <section className="global-section">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10 text-center">
           Our <span className="text-pink-600">CRO</span> Services
         </h2>
 

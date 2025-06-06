@@ -26,10 +26,10 @@ const features = [
 
 export default function GrowRevenueSection() {
   return (
-    <section className="py-20 bg-background">
+    <section className="global-section">
       <div className="container mx-auto px-6 text-center">
         {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl font-heading mb-2">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-2">
           Ready to <span className="text-pink-600">Grow Your Revenue</span>
         </h2>
         <p className="text-muted-foreground mb-12">What You’ll Get</p>

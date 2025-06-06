@@ -25,7 +25,7 @@ export default function IsCRORightSection() {
 
   return (
     <>
-      <section className="py-20 bg-background">
+      <section className="global-section">
         <div className="container mx-auto px-6">
           {/* Heading */}
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
@@ -82,7 +82,7 @@ export default function IsCRORightSection() {
               onClick={() => setShowStrategyCallForm(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition" id="see-how-we-can-help"
+              className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full cursor-pointer transition" id="see-how-we-can-help"
             >
               Schedule Strategy Call ▶
             </motion.a>

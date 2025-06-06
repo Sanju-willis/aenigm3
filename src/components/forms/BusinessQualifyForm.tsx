@@ -1,7 +1,6 @@
 // src\components\forms\BusinessQualifyForm.tsx
 import { useEffect, useState } from 'react';
 
-
 interface FormData {
   // Step 1 - About You
   fullName: string;
@@ -82,9 +81,12 @@ interface BusinessQualifyFormProps {
   onClose: () => void;
 }
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
@@ -94,24 +96,94 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
     };
   }, []);
 
+  const validateCurrentStep = (step: number): boolean => {
+    const newErrors: typeof errors = {};
+    
+    if (step === 1) {
+      // Step 1 validation
+      if (!formData.fullName.trim()) {
+        newErrors.fullName = 'Full Name is required';
+      }
+      if (!formData.workEmail.trim()) {
+        newErrors.workEmail = 'Work email is required';
+      } else if (!isValidEmail(formData.workEmail.trim())) {
+        newErrors.workEmail = 'Please enter a valid email address';
+      }
+      if (!formData.jobTitle.trim()) {
+        newErrors.jobTitle = 'Job Title is required';
+      }
+      if (!formData.industry.trim()) {
+        newErrors.industry = 'Industry is required';
+      }
+      if (!formData.websiteURL.trim()) {
+        newErrors.websiteURL = 'Website URL is required';
+      }
+    } 
+    else if (step === 2) {
+      // Step 2 validation
+      if (!formData.monthlyTraffic) {
+        newErrors.monthlyTraffic = 'Please select monthly traffic';
+      }
+      if (!formData.monthlyConversions) {
+        newErrors.monthlyConversions = 'Please select monthly conversions';
+      }
+      if (!formData.monthlyAdSpend) {
+        newErrors.monthlyAdSpend = 'Please select monthly ad spend';
+      }
+    } 
+    else if (step === 3) {
+      // Step 3 validation
+      if (!formData.biggestChallenge) {
+        newErrors.biggestChallenge = 'Please select your biggest challenge';
+      }
+      if (!formData.growthTimeline) {
+        newErrors.growthTimeline = 'Please select growth timeline';
+      }
+      if (!formData.contactMethod) {
+        newErrors.contactMethod = 'Please select contact method';
+      }
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+    
+    // Clear error when user starts typing/selecting
+    if (errors[name as keyof FormData]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
   };
 
   const handleNext = () => {
-    setCurrentStep((prev) => prev + 1);
+    // Validate current step before proceeding
+    if (validateCurrentStep(currentStep)) {
+      setCurrentStep((prev) => prev + 1);
+    }
   };
 
   const handlePrevious = () => {
+    // Clear errors when going back
+    setErrors({});
     setCurrentStep((prev) => prev - 1);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Final validation before submit
+    if (!validateCurrentStep(3)) {
+      return;
+    }
 
     try {
       await fetch('/api/send-email', {
@@ -119,24 +191,31 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           subject: 'ROI Guarantee Form Submitted',
-          to: 'sanju.peramuna@gmail.com', // ✅ ADD THIS
+          to: 'sanju.peramuna@gmail.com',
           data: formData,
         }),
       });
 
+      setIsSubmitted(true);
+      setTimeout(() => {
+        onClose();
+      }, 2000);
     } catch (err) {
       console.error('Email send failed:', err);
+      alert('There was an error submitting the form. Please try again.');
     }
-
-    setIsSubmitted(true);
-    setTimeout(() => {
-      onClose();
-    }, 2000);
   };
 
+  const getFieldError = (field: keyof FormData) => {
+    return errors[field] ? (
+      <p className="text-xs text-red-500 mt-1">{errors[field]}</p>
+    ) : null;
+  };
 
   const inputClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm";
+  const inputErrorClassName = "w-full p-1 rounded-lg bg-white border border-red-300 focus:ring-1 focus:ring-red-500 focus:border-transparent text-gray-800 text-sm";
   const selectClassName = "w-full p-1 rounded-lg bg-white border border-gray-200 focus:ring-1 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm appearance-none cursor-pointer";
+  const selectErrorClassName = "w-full p-1 rounded-lg bg-white border border-red-300 focus:ring-1 focus:ring-red-500 focus:border-transparent text-gray-800 text-sm appearance-none cursor-pointer";
   const buttonClassName = "bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold hover:bg-blue-600 transition-colors";
 
   return (
@@ -194,90 +273,101 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
 
             {/* Form Content */}
             <div className="max-w-lg mx-auto">
-              <form onSubmit={handleSubmit} className="space-y-3">
-                {isSubmitted ? (
-                  <div className="text-center space-y-2 py-2">
-                    <h2 className="text-lg font-bold text-gray-800">Thanks!</h2>
-                    <p className="text-sm text-gray-700">Our team is reviewing your application.</p>
-                    <p className="text-sm text-gray-700">If you qualify, we'll reach out within 24 hours.</p>
+              {isSubmitted ? (
+                <div className="text-center space-y-2 py-2">
+                  <h2 className="text-lg font-bold text-gray-800">Thanks!</h2>
+                  <p className="text-sm text-gray-700">Our team is reviewing your application.</p>
+                  <p className="text-sm text-gray-700">If you qualify, we'll reach out within 24 hours.</p>
 
-                    <div className="mt-2">
-                      <p className="text-gray-600 mb-1 text-xs">In the meantime,</p>
-                      <p className="text-xs mb-2">Schedule a quick call to discuss your growth potential</p>
-                      <button
-                        type="button"
-                        className={buttonClassName}
-                        onClick={() => window.location.href = '/schedule'}
-                      >
-                        Schedule a Call
-                      </button>
-                    </div>
+                  <div className="mt-2">
+                    <p className="text-gray-600 mb-1 text-xs">In the meantime,</p>
+                    <p className="text-xs mb-2">Schedule a quick call to discuss your growth potential</p>
+                    <button
+                      type="button"
+                      className={buttonClassName}
+                      onClick={() => window.location.href = '/schedule'}
+                    >
+                      Schedule a Call
+                    </button>
+                  </div>
 
-                    <div className="mt-3">
-                      <div className="inline-block ">
-                        <img
-                          src="/A3L Logo-01.svg"
-                          alt="Aenigm3 Labs"
-                          className="h-4"
-                        />
-                      </div>
+                  <div className="mt-3">
+                    <div className="inline-block ">
+                      <img
+                        src="/A3L Logo-01.svg"
+                        alt="Aenigm3 Labs"
+                        className="h-4"
+                      />
                     </div>
                   </div>
-                ) : (
-                  <>
-                    {currentStep === 1 && (
-                      <div className="space-y-2">
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  {/* STEP 1 - About You */}
+                  {currentStep === 1 && (
+                    <div className="space-y-2">
+                      <div>
                         <input
                           type="text"
                           name="fullName"
                           placeholder="Full Name*"
                           value={formData.fullName}
                           onChange={handleInputChange}
-                          className={inputClassName}
-                          required
+                          className={errors.fullName ? inputErrorClassName : inputClassName}
                         />
+                        {getFieldError('fullName')}
+                      </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div>
                           <input
                             type="email"
                             name="workEmail"
                             placeholder="Work email*"
                             value={formData.workEmail}
                             onChange={handleInputChange}
-                            className={inputClassName}
-                            required
+                            className={errors.workEmail ? inputErrorClassName : inputClassName}
                           />
+                          {getFieldError('workEmail')}
+                        </div>
+                        <div>
                           <input
                             type="text"
                             name="jobTitle"
                             placeholder="Job Title*"
                             value={formData.jobTitle}
                             onChange={handleInputChange}
-                            className={inputClassName}
-                            required
+                            className={errors.jobTitle ? inputErrorClassName : inputClassName}
                           />
+                          {getFieldError('jobTitle')}
                         </div>
+                      </div>
 
+                      <div>
                         <input
                           type="text"
                           name="industry"
                           placeholder="Industry*"
                           value={formData.industry}
                           onChange={handleInputChange}
-                          className={inputClassName}
-                          required
+                          className={errors.industry ? inputErrorClassName : inputClassName}
                         />
+                        {getFieldError('industry')}
+                      </div>
 
+                      <div>
                         <input
                           type="url"
                           name="websiteURL"
-                          placeholder="website URL*"
+                          placeholder="Website URL*"
                           value={formData.websiteURL}
                           onChange={handleInputChange}
-                          className={inputClassName}
-                          required
+                          className={errors.websiteURL ? inputErrorClassName : inputClassName}
                         />
+                        {getFieldError('websiteURL')}
+                      </div>
 
+                      <div>
                         <input
                           type="tel"
                           name="whatsApp"
@@ -286,164 +376,170 @@ export default function BusinessQualifyForm({ onClose }: BusinessQualifyFormProp
                           onChange={handleInputChange}
                           className={inputClassName}
                         />
-
-                        <div className="text-xs text-red-500">Get direct feedback on your audit results</div>
-
-                        <div className="flex justify-end mt-2">
-                          <button
-                            type="button"
-                            onClick={handleNext}
-                            className={buttonClassName}
-                          >
-                            Next →
-                          </button>
-                        </div>
                       </div>
-                    )}
 
-                    {currentStep === 2 && (
-                      <div className="space-y-2">
-                        <div className="mb-1">
-                          <p className="text-sm font-semibold text-gray-800">Monthly Website Traffic</p>
-                          <p className="text-xs text-gray-500">(Traffic must be enough for valid testing)</p>
-                        </div>
+                      <div className="text-xs text-red-500">Get direct feedback on your audit results</div>
 
+                      <div className="flex justify-end mt-4">
+                        <button
+                          type="button"
+                          onClick={handleNext}
+                          className={buttonClassName}
+                        >
+                          Next →
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* STEP 2 - Website Traffic */}
+                  {currentStep === 2 && (
+                    <div className="space-y-3">
+                      <div className="mb-2">
+                        <p className="text-sm font-semibold text-gray-800">Monthly Website Traffic</p>
+                        <p className="text-xs text-gray-500">(Traffic must be enough for valid testing)</p>
+                      </div>
+
+                      <div>
                         <select
                           name="monthlyTraffic"
                           value={formData.monthlyTraffic}
                           onChange={handleInputChange}
-                          className={selectClassName}
-                          required
+                          className={errors.monthlyTraffic ? selectErrorClassName : selectClassName}
                         >
-                          <option value="">Select monthly traffic</option>
+                          <option value="">Select monthly traffic*</option>
                           {trafficOptions.map((option) => (
                             <option key={option} value={option}>{option}</option>
                           ))}
                         </select>
-
-                        <div>
-                          <p className="text-sm font-semibold text-gray-800 mb-1">How many conversions (sales, leads, sign-ups) do you get per month?</p>
-                          <select
-                            name="monthlyConversions"
-                            value={formData.monthlyConversions}
-                            onChange={handleInputChange}
-                            className={selectClassName}
-                            required
-                          >
-                            <option value="">Select monthly conversions</option>
-                            {conversionOptions.map((option) => (
-                              <option key={option} value={option}>{option}</option>
-                            ))}
-                          </select>
-                        </div>
-
-                        <div>
-                          <p className="text-sm font-semibold text-gray-800 mb-1">Current Monthly Ad Spend</p>
-                          <select
-                            name="monthlyAdSpend"
-                            value={formData.monthlyAdSpend}
-                            onChange={handleInputChange}
-                            className={selectClassName}
-                            required
-                          >
-                            <option value="">Select monthly ad spend</option>
-                            {spendOptions.map((option) => (
-                              <option key={option} value={option}>{option}</option>
-                            ))}
-                          </select>
-                        </div>
-
-                        <div className="flex justify-between mt-2">
-                          <button
-                            type="button"
-                            onClick={handlePrevious}
-                            className="text-blue-500 px-3 py-1 rounded-full font-semibold hover:bg-blue-50 transition-all text-sm"
-                          >
-                            ← Back
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleNext}
-                            className={buttonClassName}
-                          >
-                            Next →
-                          </button>
-                        </div>
+                        {getFieldError('monthlyTraffic')}
                       </div>
-                    )}
 
-                    {currentStep === 3 && (
-                      <div className="space-y-2">
-                        <div className="mb-1">
-                          <p className="text-sm font-semibold text-gray-800">Biggest Conversion Challenge?</p>
-                          <p className="text-xs text-gray-500">(Open-ended for qualification)</p>
-                        </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-800 mb-1">How many conversions (sales, leads, sign-ups) do you get per month?*</p>
+                        <select
+                          name="monthlyConversions"
+                          value={formData.monthlyConversions}
+                          onChange={handleInputChange}
+                          className={errors.monthlyConversions ? selectErrorClassName : selectClassName}
+                        >
+                          <option value="">Select monthly conversions*</option>
+                          {conversionOptions.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                        {getFieldError('monthlyConversions')}
+                      </div>
 
+                      <div>
+                        <p className="text-sm font-semibold text-gray-800 mb-1">Current Monthly Ad Spend*</p>
+                        <select
+                          name="monthlyAdSpend"
+                          value={formData.monthlyAdSpend}
+                          onChange={handleInputChange}
+                          className={errors.monthlyAdSpend ? selectErrorClassName : selectClassName}
+                        >
+                          <option value="">Select monthly ad spend*</option>
+                          {spendOptions.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                        {getFieldError('monthlyAdSpend')}
+                      </div>
+
+                      <div className="flex justify-between mt-4">
+                        <button
+                          type="button"
+                          onClick={handlePrevious}
+                          className="text-blue-500 px-3 py-1 rounded-full font-semibold hover:bg-blue-50 transition-all text-sm"
+                        >
+                          ← Back
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleNext}
+                          className={buttonClassName}
+                        >
+                          Next →
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* STEP 3 - Challenges & Preferences */}
+                  {currentStep === 3 && (
+                    <div className="space-y-3">
+                      <div className="mb-2">
+                        <p className="text-sm font-semibold text-gray-800">Biggest Conversion Challenge?*</p>
+                        <p className="text-xs text-gray-500">(Open-ended for qualification)</p>
+                      </div>
+
+                      <div>
                         <select
                           name="biggestChallenge"
                           value={formData.biggestChallenge}
                           onChange={handleInputChange}
-                          className={selectClassName}
-                          required
+                          className={errors.biggestChallenge ? selectErrorClassName : selectClassName}
                         >
-                          <option value="">Select your biggest challenge</option>
+                          <option value="">Select your biggest challenge*</option>
                           {challengeOptions.map((option) => (
                             <option key={option} value={option}>{option}</option>
                           ))}
                         </select>
-
-                        <div>
-                          <p className="text-sm font-semibold text-gray-800 mb-1">How Soon Do You Want to See Growth?</p>
-                          <select
-                            name="growthTimeline"
-                            value={formData.growthTimeline}
-                            onChange={handleInputChange}
-                            className={selectClassName}
-                            required
-                          >
-                            <option value="">Select timeline</option>
-                            {timelineOptions.map((option) => (
-                              <option key={option} value={option}>{option}</option>
-                            ))}
-                          </select>
-                        </div>
-
-                        <div>
-                          <p className="text-sm font-semibold text-gray-800 mb-1">Preferred Contact Method</p>
-                          <select
-                            name="contactMethod"
-                            value={formData.contactMethod}
-                            onChange={handleInputChange}
-                            className={selectClassName}
-                            required
-                          >
-                            <option value="">Select contact method</option>
-                            {contactOptions.map((option) => (
-                              <option key={option} value={option}>{option}</option>
-                            ))}
-                          </select>
-                        </div>
-
-                        <div className="flex justify-between mt-2">
-                          <button
-                            type="button"
-                            onClick={handlePrevious}
-                            className="text-blue-500 px-3 py-1 rounded-full font-semibold hover:bg-blue-50 transition-all text-sm"
-                          >
-                            ← Back
-                          </button>
-                          <button
-                            type="submit"
-                            className={buttonClassName}
-                          >
-                            Submit
-                          </button>
-                        </div>
+                        {getFieldError('biggestChallenge')}
                       </div>
-                    )}
-                  </>
-                )}
-              </form>
+
+                      <div>
+                        <p className="text-sm font-semibold text-gray-800 mb-1">How Soon Do You Want to See Growth?*</p>
+                        <select
+                          name="growthTimeline"
+                          value={formData.growthTimeline}
+                          onChange={handleInputChange}
+                          className={errors.growthTimeline ? selectErrorClassName : selectClassName}
+                        >
+                          <option value="">Select timeline*</option>
+                          {timelineOptions.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                        {getFieldError('growthTimeline')}
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-semibold text-gray-800 mb-1">Preferred Contact Method*</p>
+                        <select
+                          name="contactMethod"
+                          value={formData.contactMethod}
+                          onChange={handleInputChange}
+                          className={errors.contactMethod ? selectErrorClassName : selectClassName}
+                        >
+                          <option value="">Select contact method*</option>
+                          {contactOptions.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                        {getFieldError('contactMethod')}
+                      </div>
+
+                      <div className="flex justify-between mt-4">
+                        <button
+                          type="button"
+                          onClick={handlePrevious}
+                          className="text-blue-500 px-3 py-1 rounded-full font-semibold hover:bg-blue-50 transition-all text-sm"
+                        >
+                          ← Back
+                        </button>
+                        <button
+                          type="submit"
+                          className={buttonClassName}
+                        >
+                          Submit 
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </form>
+              )}
             </div>
           </div>
         </div>

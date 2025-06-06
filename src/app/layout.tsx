@@ -31,7 +31,7 @@ console.log('[📥 Request Info]', requestInfo);
     fbc: requestInfo.fbc,
     fbp: requestInfo.fbp,
   },
-  eventSourceUrl: requestInfo.referrer || process.env.NEXT_PUBLIC_SITE_URL,
+eventSourceUrl: process.env.NEXT_PUBLIC_SITE_URL
 });
 
 

@@ -42,10 +42,6 @@ console.log('[📥 Request Info]', requestInfo);
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap"
           rel="stylesheet"
         />
-        <meta
-          name="facebook-domain-verification"
-          content="88c1x5wnb7s9bgzsn7lr1rh4h09wa6"
-        />
       </head>
       <body className={`${aleo.className} h-full`}>
         <noscript>

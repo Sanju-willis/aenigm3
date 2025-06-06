@@ -70,7 +70,7 @@ export async function sendServerEvent({
       ],
     };
 
-    const res = await axios.post(`https://graph.facebook.com/v18.0/${PIXEL_ID}/events`, payload);
+    const res = await axios.post(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, payload);
     console.log(`✅ Sent ${eventName} event via CAPI`, res.data);
   } catch (err) {
     console.error(`❌ Failed to send ${eventName} event`, err);

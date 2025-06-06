@@ -13,12 +13,7 @@ function hash(value?: string) {
 }
 
 // General-purpose event sender
-export async function sendServerEvent({
-  eventName,
-  userData = {},
-  customData = {},
-  eventSourceUrl,
-  eventId = `ssr-${Date.now()}`,
+export async function sendServerEvent({ eventName, userData = {}, customData = {}, eventSourceUrl, eventId = `ssr-${Date.now()}`,
 }: {
   eventName: string;
   userData?: {
@@ -69,6 +64,7 @@ export async function sendServerEvent({
         },
       ],
     };
+console.log('[📤 Meta CAPI Payload]', JSON.stringify(payload, null, 2));
 
     const res = await axios.post(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, payload);
     console.log(`✅ Sent ${eventName} event via CAPI`, res.data);

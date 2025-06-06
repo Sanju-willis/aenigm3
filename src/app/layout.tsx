@@ -1,4 +1,3 @@
-// src\app\layout.tsx
 import '../styles/globals.css';
 import type { Metadata } from 'next';
 import { royalCastle, aleo } from '../utils/fonts';
@@ -9,7 +8,6 @@ import { siteMetadata } from '@/lib/metadata';
 import { extractRequestInfo } from '@/lib/requestInfo';
 import { sendServerEvent } from '@/lib/sendServerEvent';
 
-
 export const metadata: Metadata = siteMetadata;
 
 export default async function RootLayout({
@@ -17,23 +15,25 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-const requestInfo = await extractRequestInfo();
-console.log('[📥 Request Info]', requestInfo);
-// Send to API
- await sendServerEvent({
-  eventName: 'PageView', // ✅ required
-  userData: {
-    ip: requestInfo.ip,
-    userAgent: requestInfo.userAgent,
-    email: requestInfo.email,
-    city: requestInfo.city,
-    country: requestInfo.country,
-    fbc: requestInfo.fbc,
-    fbp: requestInfo.fbp,
-  },
-eventSourceUrl: process.env.NEXT_PUBLIC_SITE_URL
-});
+  const requestInfo = await extractRequestInfo();
 
+  if (requestInfo) {
+    console.log('[📥 Request Info]', requestInfo);
+
+    await sendServerEvent({
+      eventName: 'PageView',
+      userData: {
+        ip: requestInfo.ip,
+        userAgent: requestInfo.userAgent,
+        email: requestInfo.email,
+        city: requestInfo.city,
+        country: requestInfo.country,
+        fbc: requestInfo.fbc,
+        fbp: requestInfo.fbp,
+      },
+      eventSourceUrl: process.env.NEXT_PUBLIC_SITE_URL,
+    });
+  }
 
   return (
     <html lang="en" className={`h-full ${royalCastle.variable} ${aleo.variable}`}>
@@ -53,7 +53,6 @@ eventSourceUrl: process.env.NEXT_PUBLIC_SITE_URL
           />
         </noscript>
         <GTM />
-
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow pt-16">{children}</main>

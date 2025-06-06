@@ -1,4 +1,4 @@
-// src/lib/sendServerEvent.ts
+// src\lib\sendServerEvent.ts
 import axios from 'axios';
 import crypto from 'crypto';
 
@@ -60,11 +60,6 @@ export async function sendServerEvent({
     if (external_id && hash(external_id)) payloadUserData.external_id = [hash(external_id)];
     if (fbc) payloadUserData.fbc = fbc;
     if (fbp) payloadUserData.fbp = fbp;
-
-   if (city && city !== 'unknown') {
-  const hashedCity = hash(city);
-  if (hashedCity) payloadUserData.ct = [hashedCity];
-}
 
 if (country && country !== 'unknown') {
   const hashedCountry = hash(country);

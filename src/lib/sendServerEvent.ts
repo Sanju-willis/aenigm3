@@ -64,8 +64,9 @@ export async function sendServerEvent({
     if (fbp) payloadUserData.fbp = fbp;
 
     // 👇 Plaintext city/country — required
-    if (city) payloadUserData.city = city.toLowerCase();
-    if (country) payloadUserData.country = country.toLowerCase();
+    if (city && city !== 'unknown') payloadUserData.city = city.toLowerCase();
+if (country && country !== 'unknown') payloadUserData.country = country.toLowerCase();
+
 
     // 👇 Optionally also send hashed ct for better match rate (not required)
     if (city) payloadUserData.ct = [hash(city)];

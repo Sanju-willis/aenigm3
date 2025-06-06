@@ -82,7 +82,10 @@ if (country && country !== 'unknown') {
         },
       ],
     };
-
+if (!eventName || typeof eventName !== 'string' || eventName.trim() === '') {
+  console.warn('[❌ Invalid event name]', eventName);
+  return;
+}
     console.log('[📤 Meta CAPI Payload]', JSON.stringify(payload, null, 2));
 
     const res = await axios.post(

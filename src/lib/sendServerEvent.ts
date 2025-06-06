@@ -1,4 +1,3 @@
-// src\lib\sendServerEvent.ts
 import axios from 'axios';
 import crypto from 'crypto';
 
@@ -12,7 +11,6 @@ function hash(value?: string) {
     : undefined;
 }
 
-// General-purpose event sender
 export async function sendServerEvent({
   eventName,
   userData = {},
@@ -63,13 +61,8 @@ export async function sendServerEvent({
     if (fbc) payloadUserData.fbc = fbc;
     if (fbp) payloadUserData.fbp = fbp;
 
-    // 👇 Plaintext city/country — required
     if (city && city !== 'unknown') payloadUserData.city = city.toLowerCase();
-if (country && country !== 'unknown') payloadUserData.country = country.toLowerCase();
-
-
-    // 👇 Optionally also send hashed ct for better match rate (not required)
-    if (city) payloadUserData.ct = [hash(city)];
+    if (country && country !== 'unknown') payloadUserData.country = country.toLowerCase();
 
     const payload = {
       access_token: ACCESS_TOKEN,

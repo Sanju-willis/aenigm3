@@ -1,3 +1,4 @@
+// src\lib\trackEvent.ts
 'use client';
 
 export async function trackEvent({

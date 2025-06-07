@@ -1,4 +1,3 @@
-// src\components\analytics\TrackPageView.tsx
 'use client';
 
 import { useEffect } from 'react';
@@ -9,17 +8,22 @@ declare global {
     __fb_dedupe_id?: string;
   }
 }
+
 export default function TrackPageView() {
   useEffect(() => {
-    const email = ''; // Optional: populate from session or user context
+    if (typeof window === 'undefined') return;
+
+    const email = ''; // Optional: pull from session/user
     const phone = '';
-    const eventId = typeof window !== 'undefined' ? window.__fb_dedupe_id : undefined;
+    const eventId = window.__fb_dedupe_id;
+
+    console.log('[🧪 Dedupe ID] window.__fb_dedupe_id:', eventId);
 
     trackEvent({
       email,
       phone,
       eventName: 'PageView',
-      eventId, // 👈 deduplication ID passed to backend
+      eventId, // ✅ This must match the browser pixel's eventID
     });
   }, []);
 

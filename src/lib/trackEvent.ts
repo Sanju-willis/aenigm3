@@ -1,5 +1,5 @@
-// src\lib\trackEvent.ts
 'use client';
+
 export async function trackEvent({
   email,
   phone,
@@ -10,9 +10,16 @@ export async function trackEvent({
   eventName?: string;
 }) {
   try {
+    if (!eventName || typeof eventName !== 'string') {
+      console.warn('⚠️ Skipping event: invalid or missing event name.');
+      return;
+    }
+
     const fbp = getCookie('_fbp');
     const fbc = getCookie('_fbc');
     const eventSourceUrl = window.location.href;
+
+    console.log('📡 Tracking client event:', eventName);
 
     await fetch('/api/sendServerEvent', {
       method: 'POST',

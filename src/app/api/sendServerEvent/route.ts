@@ -1,11 +1,11 @@
-// src\app\api\sendServerEvent\route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import crypto from 'crypto';
 
 const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN2!;
 const PIXEL_ID = process.env.FB_PIXEL_ID2!;
-const FB_API_URL = `https://graph.facebook.com/v18.0/${PIXEL_ID}/events`;
+const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE; // Optional
+const FB_API_URL = `https://graph.facebook.com/v22.0/${PIXEL_ID}/events`;
 
 function hash(value?: string) {
   return value
@@ -17,9 +17,21 @@ export async function POST(req: NextRequest) {
   try {
     const ip = req.headers.get('x-forwarded-for') || '';
     const userAgent = req.headers.get('user-agent') || '';
-    const { email, phone, fbp, fbc, eventName = 'PageView', eventSourceUrl } = await req.json();
+    const {
+      email,
+      phone,
+      fbp,
+      fbc,
+      eventName = 'PageView',
+      eventSourceUrl,
+    } = await req.json();
 
-    const eventId = `ssr-${Date.now()}`; // Unique ID for deduplication
+    if (!eventName || typeof eventName !== 'string') {
+      console.warn('❌ Missing or invalid event_name, skipping event');
+      return NextResponse.json({ error: 'Missing or invalid event_name' }, { status: 400 });
+    }
+
+    const eventId = `ssr-${Date.now()}`;
 
     const payload = {
       data: [
@@ -30,17 +42,19 @@ export async function POST(req: NextRequest) {
           event_source_url: eventSourceUrl || '',
           action_source: 'website',
           user_data: {
-            em: hash(email),
-            ph: hash(phone),
+            em: email ? [hash(email)] : undefined,
+            ph: phone ? [hash(phone)] : undefined,
             client_ip_address: ip,
             client_user_agent: userAgent,
             fbp,
             fbc,
           },
+          ...(TEST_EVENT_CODE && { test_event_code: TEST_EVENT_CODE }),
         },
       ],
     };
-    console.log('[📤 CAPI Payload]', JSON.stringify(payload, null, 2));
+
+    console.log('[📤 Sending CAPI Event]', JSON.stringify(payload, null, 2));
 
     const response = await axios.post(`${FB_API_URL}?access_token=${ACCESS_TOKEN}`, payload);
     console.log('✅ Meta CAPI event sent:', response.data);

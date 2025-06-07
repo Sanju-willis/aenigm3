@@ -22,6 +22,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap"
           rel="stylesheet"
         />
+        <GTM />
       </head>
       <body className={`${aleo.className} h-full`}>
         <noscript>
@@ -32,7 +33,6 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <GTM />
         <TrackPageView /> {/* 👈 Triggers tracking on client side */}
         <div className="min-h-screen flex flex-col">
           <Header />

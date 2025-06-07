@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       eventName,
       eventSourceUrl,
       eventId: customEventId,
-      test_event_code, // 👈 support dynamic test code
+      test_event_code,
       custom_data = {},
       actionSource = 'website',
     } = body;
@@ -59,7 +59,6 @@ export async function POST(req: NextRequest) {
       zip: zip ? [hash(zip)] : undefined,
     };
 
-    // Clean undefined fields
     Object.keys(user_data).forEach((key) => {
       if (user_data[key] === undefined) delete user_data[key];
     });
@@ -78,10 +77,9 @@ export async function POST(req: NextRequest) {
       ],
     };
 
-    // Conditionally include test_event_code
     const finalTestCode = test_event_code || ENV_TEST_EVENT_CODE;
     if (finalTestCode) {
-      payload.data[0].test_event_code = finalTestCode;
+      payload.test_event_code = finalTestCode; // ✅ CORRECT PLACEMENT
     }
 
     console.log('[📤 Sending CAPI Event]', JSON.stringify(payload, null, 2));

@@ -1,3 +1,4 @@
+// src\components\analytics\TrackPageView.tsx
 'use client';
 
 import { useEffect } from 'react';

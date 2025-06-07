@@ -4,7 +4,7 @@ import crypto from 'crypto';
 
 const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN2!;
 const PIXEL_ID = process.env.FB_PIXEL_ID2!;
-const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE;
+const ENV_TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE;
 const FB_API_URL = `https://graph.facebook.com/v22.0/${PIXEL_ID}/events`;
 
 function hash(value?: string) {
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
       eventName,
       eventSourceUrl,
       eventId: customEventId,
+      test_event_code, // 👈 support dynamic test code
       custom_data = {},
       actionSource = 'website',
     } = body;
@@ -58,12 +59,12 @@ export async function POST(req: NextRequest) {
       zip: zip ? [hash(zip)] : undefined,
     };
 
-    // Remove undefined fields
+    // Clean undefined fields
     Object.keys(user_data).forEach((key) => {
       if (user_data[key] === undefined) delete user_data[key];
     });
 
-    const payload = {
+    const payload: Record<string, any> = {
       data: [
         {
           event_name: eventName,
@@ -73,10 +74,15 @@ export async function POST(req: NextRequest) {
           action_source: actionSource,
           user_data,
           custom_data,
-          ...(TEST_EVENT_CODE && { test_event_code: TEST_EVENT_CODE }),
         },
       ],
     };
+
+    // Conditionally include test_event_code
+    const finalTestCode = test_event_code || ENV_TEST_EVENT_CODE;
+    if (finalTestCode) {
+      payload.data[0].test_event_code = finalTestCode;
+    }
 
     console.log('[📤 Sending CAPI Event]', JSON.stringify(payload, null, 2));
 

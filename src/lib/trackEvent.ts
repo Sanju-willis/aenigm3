@@ -5,10 +5,14 @@ export async function trackEvent({
   email,
   phone,
   eventName = 'PageView',
+  eventId,
+  test_event_code,
 }: {
   email?: string;
   phone?: string;
   eventName?: string;
+  eventId?: string;
+  test_event_code?: string;
 }) {
   try {
     if (!eventName || typeof eventName !== 'string') {
@@ -20,7 +24,7 @@ export async function trackEvent({
     const fbc = getCookie('_fbc');
     const eventSourceUrl = window.location.href;
 
-    console.log('📡 Tracking client event:', eventName);
+    console.log('📡 Tracking client event:', { eventName, eventId });
 
     await fetch('/api/sendServerEvent', {
       method: 'POST',
@@ -32,6 +36,8 @@ export async function trackEvent({
         fbc,
         eventName,
         eventSourceUrl,
+        eventId,
+        test_event_code,
       }),
     });
   } catch (err) {

@@ -78,21 +78,23 @@ export default function BlogLayout({ children, headings, author }: BlogLayoutPro
             </p>
             
           </div>
-
-          {/* Author Bio */}
+{/* Author Bio */}
 <div className="mt-16 pt-8 border-t text-sm text-gray-600 dark:text-gray-400 flex gap-4 items-start">
-  {author.image?.asset?.url && (
+  {author.image?.asset?.url ? (
     <img
       src={author.image.asset.url}
-      alt={author.name}
+      alt={author.name || 'Author'}
       className="w-12 h-12 rounded-full object-cover mt-1"
     />
+  ) : (
+    <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-700 mt-1" />
   )}
   <div>
-    <p><strong>{author.name}</strong></p>
-    {author.bio && <p className="mt-1">{author.bio}</p>}
+    <p><strong>{author.name || 'Unknown Author'}</strong></p>
+    <p className="mt-1">{author.bio || 'No author bio available.'}</p>
   </div>
 </div>
+
 
 
           {/* Similar Articles (Placeholder) */}

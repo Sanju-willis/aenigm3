@@ -10,19 +10,19 @@ import AuditForm from '../forms/AuditForm';
 const painPoints = [
   {
     text: 'Low sales despite high traffic?',
-    img: '/images/low-sales.png',
+    img: '/images/low-sales.webp',
   },
   {
     text: 'Spending thousands on ads/SEO with little ROI?',
-    img: '/images/low-roi.png',
+    img: '/images/low-roi.webp',
   },
   {
     text: "Visitors come but don't buy?",
-    img: '/images/no-buy.png',
+    img: '/images/no-buy.webp',
   },
   {
     text: 'High number of 1-time buyers & less lifelong customers?',
-    img: '/images/low-retention.png',
+    img: '/images/low-retention.webp',
   },
 ];
 

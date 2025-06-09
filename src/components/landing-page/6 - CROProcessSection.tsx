@@ -14,7 +14,7 @@ const steps = [
       "User behavior analysis",
       "Identify high-risk pages",
     ],
-    img: "/images/research.png",
+    img: "/images/research.webp",
   },
   {
     title: "A/B Testing & UX Optimization",
@@ -24,7 +24,7 @@ const steps = [
       "Improve layout, copy & mobile experience",
       "Reduce bounce rate & exits",
     ],
-    img: "/images/abtesting.png",
+    img: "/images/abtesting.webp",
   },
   {
     title: "Deploy, Track, Optimize & Scale",
@@ -34,13 +34,13 @@ const steps = [
       "Track performance using analytics",
       "Continuous improvement for growth",
     ],
-    img: "/images/scale.png",
+    img: "/images/scale.webp",
   },
   {
     title: "Implement Winning Strategies",
     subtitle: "(Turn Plans into Profit)",
     points: ["Continuously tweak & improve", "Use live data insights"],
-    img: "/images/strategy.png",
+    img: "/images/strategy.webp",
   },
 ];
 

@@ -47,7 +47,7 @@ export default function PowerOfCROSection() {
             className="relative mx-4 sm:mx-8 my-6 lg:my-0"
           >
             <Image
-              src="/images/power-cro-funnel.png"
+              src="/images/power-cro-funnel.webp"
               alt="CRO Funnel"
               width={180}
               height={300}

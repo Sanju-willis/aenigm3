@@ -21,7 +21,7 @@ export const components: PortableTextComponents = {
       return (
         <h1
           id={id}
-          className="scroll-mt-32 text-5xl font-extrabold tracking-tight leading-tight mt-16 mb-8"
+          className="scroll-mt-32 text-5xl font-extrabold tracking-tight leading-tight mt-16 mb-8 text-black dark:text-white font-sans"
         >
           {children}
         </h1>
@@ -33,7 +33,7 @@ export const components: PortableTextComponents = {
       return (
         <h2
           id={id}
-          className="scroll-mt-28 text-3xl font-bold leading-snug mt-14 mb-6"
+          className="scroll-mt-28 text-3xl font-bold leading-snug mt-14 mb-6 text-gray-900 dark:text-gray-100 font-sans"
         >
           {children}
         </h2>
@@ -45,19 +45,19 @@ export const components: PortableTextComponents = {
       return (
         <h3
           id={id}
-          className="scroll-mt-24 text-2xl font-semibold leading-snug mt-10 mb-4"
+          className="scroll-mt-24 text-2xl font-semibold leading-snug mt-10 mb-4 text-gray-800 dark:text-gray-200 font-sans"
         >
           {children}
         </h3>
       );
     },
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 pl-5 italic text-gray-600 dark:text-gray-300 text-lg leading-relaxed my-6">
+      <blockquote className="border-l-4 pl-5 italic text-gray-600 dark:text-gray-300 text-lg leading-relaxed my-6 font-serif">
         {children}
       </blockquote>
     ),
     normal: ({ children }) => (
-      <p className="text-lg leading-8 my-6 text-gray-800 dark:text-gray-200">
+      <p className="text-base md:text-lg leading-8 my-6 text-gray-800 dark:text-gray-200 font-sans">
         {children}
       </p>
     ),
@@ -67,7 +67,7 @@ export const components: PortableTextComponents = {
     image: ({ value }: any) => {
       if (!value?.asset) return null;
 
-      const url = urlFor(value).auto('format').fit('crop').url();
+      const url = urlFor(value).auto('format').fit('max').url();
 
       const width = value.asset.metadata?.dimensions?.width;
       const height = value.asset.metadata?.dimensions?.height;
@@ -129,7 +129,9 @@ export const components: PortableTextComponents = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className="ml-2">{children}</li>
+      <li className="ml-2 font-sans text-gray-700 dark:text-gray-300">
+        {children}
+      </li>
     ),
   },
 
@@ -152,6 +154,18 @@ export const components: PortableTextComponents = {
       <code className="bg-gray-100 dark:bg-gray-800 text-pink-600 dark:text-pink-400 px-1.5 py-0.5 rounded text-sm font-mono">
         {children}
       </code>
+    ),
+
+    strong: ({ children }) => (
+      <strong className="font-bold text-black dark:text-white">
+        {children}
+      </strong>
+    ),
+
+    em: ({ children }) => (
+      <em className="italic text-gray-700 dark:text-gray-300">
+        {children}
+      </em>
     ),
   },
 };

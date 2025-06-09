@@ -1,4 +1,3 @@
-// src\styles\PortableText.tsx
 import { PortableTextComponents } from '@portabletext/react';
 import Image from 'next/image';
 import { ReactNode } from 'react';
@@ -63,29 +62,47 @@ export const components: PortableTextComponents = {
       </p>
     ),
   },
+
   types: {
     image: ({ value }: any) => {
-      const url = value?.asset ? urlFor(value).width(700).height(400).url() : null;
-      if (!url) return null;
+      if (!value?.asset) return null;
+
+      const url = urlFor(value).auto('format').fit('crop').url();
+
+      const width = value.asset.metadata?.dimensions?.width;
+      const height = value.asset.metadata?.dimensions?.height;
+
+      const aspectRatio = width && height ? width / height : null;
+      const isWide = aspectRatio && aspectRatio > 1.6;
+      const isSquare = aspectRatio && aspectRatio > 0.9 && aspectRatio < 1.1;
+
+      const containerClass = isWide
+        ? 'max-w-5xl'
+        : isSquare
+        ? 'max-w-md'
+        : 'max-w-2xl';
 
       return (
-    <div className="my-8 mx-auto w-full max-w-3xl">
-  <Image
-    src={url}
-    alt={value.alt || 'Blog image'}
-    width={700}
-    height={400}
-    loading="lazy"
-    className="rounded-xl w-full h-auto object-cover"
-  />
-  {value.caption && (
-    <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">
-      {value.caption}
-    </p>
-  )}
-</div>
+        <div className={`my-8 mx-auto w-full ${containerClass} overflow-auto`}>
+          <div className="inline-block">
+            <Image
+              src={url}
+              alt={value.alt || 'Blog image'}
+              width={width || 700}
+              height={height || 400}
+              loading="lazy"
+              className="rounded-xl object-contain max-w-full h-auto"
+            />
+            {value.caption && (
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">
+                {value.caption}
+              </p>
+            )}
+          </div>
+        </div>
       );
     },
+
     youtube: ({ value }: any) => {
       const url = `https://www.youtube.com/embed/${value?.videoId}`;
       return (
@@ -101,6 +118,7 @@ export const components: PortableTextComponents = {
       );
     },
   },
+
   list: {
     bullet: ({ children }) => (
       <ul className="list-disc pl-6 my-4 space-y-2 text-base leading-7 text-gray-800 dark:text-gray-200">
@@ -108,11 +126,13 @@ export const components: PortableTextComponents = {
       </ul>
     ),
   },
+
   listItem: {
     bullet: ({ children }) => (
       <li className="ml-2">{children}</li>
     ),
   },
+
   marks: {
     link: ({ value, children }) => {
       const rel = value.href.startsWith('http') ? 'noopener noreferrer' : undefined;
@@ -127,6 +147,7 @@ export const components: PortableTextComponents = {
         </a>
       );
     },
+
     code: ({ children }) => (
       <code className="bg-gray-100 dark:bg-gray-800 text-pink-600 dark:text-pink-400 px-1.5 py-0.5 rounded text-sm font-mono">
         {children}

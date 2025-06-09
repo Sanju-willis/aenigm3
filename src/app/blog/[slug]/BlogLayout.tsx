@@ -70,12 +70,7 @@ export default function BlogLayout({ children, headings }: BlogLayoutProps) {
             <p className="text-sm text-gray-600 dark:text-gray-300">
               💬 Did this help you? React below or leave a comment.
             </p>
-            <div className="flex gap-4 mt-2 text-2xl">
-              <button>👍</button>
-              <button>👎</button>
-              <button>🔥</button>
-              <button>🤯</button>
-            </div>
+            
           </div>
 
           {/* Author Bio (Placeholder) */}

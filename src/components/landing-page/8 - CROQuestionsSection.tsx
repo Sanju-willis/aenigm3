@@ -95,7 +95,7 @@ export default function CROQuestionsSection() {
                 id="ask-cro-expert"
               >
                 <img
-                  src="expert.png"
+                  src="expert.webp"
                   alt="Expert"
                   className="w-12 h-12 rounded-full"
                 />

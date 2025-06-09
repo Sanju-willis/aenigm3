@@ -54,7 +54,7 @@ const navigation = [
     rightBox: {
       title: 'Convert Smarter, Grow Faster',
       description: 'Drive meaningful traffic, convert with precision, and scale faster through AI-powered marketing, conversion optimization, and brand strategy.',
-      image: '/images/ab-testing.png',
+      image: '/images/ab-testing.webp',
     },
   },
   {
@@ -98,7 +98,7 @@ const navigation = [
     rightBox: {
       title: 'AI-Powered Solutions',
       description: 'Transform your digital presence with our suite of AI-powered tools. Optimize conversions, automate campaigns, and maximize ROI.',
-      image: '/images/personalized-recommendations.png',
+      image: '/images/personalized-recommendations.webp',
     }
   },
   {
@@ -124,7 +124,7 @@ const navigation = [
     rightBox: {
       title: 'Accelerate Your Growth',
       description: 'Access expert knowledge, proven strategies, and real-world case studies to transform your business performance.',
-      image: '/images/strategy.png',
+      image: '/images/strategy.webp',
     }
   }
 ];

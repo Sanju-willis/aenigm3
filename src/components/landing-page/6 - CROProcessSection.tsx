@@ -44,12 +44,6 @@ const steps = [
   },
 ];
 
-const partners = [
-  { logo: "/logos/vwo.png", url: "https://vwo.com" },
-  { logo: "/logos/google-analytics.png", url: "https://analytics.google.com" },
-  { logo: "/logos/hotjar.png", url: "https://www.hotjar.com" },
-  { logo: "/logos/shopify.png", url: "https://www.shopify.com" },
-];
 
 export default function CROProcessSection() {
   const [showStrategyCallForm, setShowStrategyCallForm] = useState(false);

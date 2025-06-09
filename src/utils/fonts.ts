@@ -42,12 +42,12 @@ export const aleo = localFont({
 export const bangers = localFont({
   src: [
     {
-      path: '../fonts/bangers.regular.woff2',
+      path: '../fonts/Bangers.Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../fonts/bangers.regular.woff',
+      path: '../fonts/Bangers.Regular.woff',
       weight: '400',
       style: 'normal',
     },

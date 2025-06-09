@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const services = [
   { title: "A/B Testing", img: "/images/ab-testing.webp" },
   { title: "Customer Journey Mapping", img: "/images/customer-journey.webp" },
-  { title: "User Flow Analysis", img: "/images/user-flow.png" },
+  { title: "User Flow Analysis", img: "/images/user-flow.webp" },
   { title: "User Behavior Analysis", img: "/images/user-behavior.webp" },
   { title: "Research & Data Analytics", img: "/images/data-analytics.webp" },
   { title: "UX Auditing & Funnel Optimization", img: "/images/ux-audit.webp" },

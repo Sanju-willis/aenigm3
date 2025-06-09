@@ -5,43 +5,43 @@ import Image from "next/image";
 const hexData = [
   {
     id: 1,
-    image: "/hexagons/Icons-1.png",
+    image: "/hexagons/Icons-1.webp",
     title: "Aenigm3 Labs",
     content: "Aenigm3 Labs didn’t start as some grand vision. It started with a phone call during the pandemic—a simple chat about investing in a digital agency to help with other ventures. But the more we looked around, the more we realized something was off.\n\nEvery agency looked good on the outside… but when it came to real, meaningful results? They just weren’t there. So we thought: why not build something better ourselves?"
   },
   {
     id: 2,
-    image: "/hexagons/Icons-2.png",
+    image: "/hexagons/Icons-2.webp",
     title: "Where We Began: Digital, Like Everyone Else",
     content: "We started as a traditional digital marketing agency. Ads, content, social media—the usual stuff. We brought in experienced people, ran campaigns, followed the playbook.\n\nBut two years in, we hit a wall.\n\nDespite the effort, we kept seeing the same pattern—businesses spending more and getting less. Digital marketing was starting to feel more like an expense than an investment. We weren’t okay with that."
   },
   {
     id: 3,
-    image: "/hexagons/Icons-3.png",
+    image: "/hexagons/Icons-3.webp",
     title: "Our First Big Shift: Growth Marketing",
     content: "So in early 2024, we scrapped the fluff and rebuilt around one goal:**growth**.\n\nWe stopped focusing on vanity metrics and started caring about what actually mattered—revenue, leads, engagement that meant something. We mapped out the full funnel, started measuring everything, and put ROI at the center of our strategy.\n\nThings started clicking. Clients saw the difference. We finally felt like we were solving the right problems.\n\nBut then… things changed again."
   },
   {
     id: 4,
-    image: "/hexagons/Icons-4.png",
+    image: "/hexagons/Icons-4.webp",
     title: "A Setback That Shifted Our Focus",
     content: "Around this time, one of our co-founders stepped away to focus on another venture.\n\nIt was a hard moment. Losing a piece of the original team always hits a little deeper than you expect. And for a bit, we slowed down.\n\nBut that pause gave us space to ask, _what’s next?_"
   },
   {
     id: 5,
-    image: "/hexagons/Icons-5.png",
+    image: "/hexagons/Icons-5.webp",
     title: "The Second Pivot: From More Traffic to More Conversions",
     content: `That’s when we realized: most businesses don’t need more traffic—they need more from the traffic they already have.\n\nWe shifted again—this time, into **Conversion Rate Optimization (CRO)**. We started diving deep into:\n\n- What’s stopping people from buying?\n- Where are users dropping off?\n- How do we design smarter, not just prettier?\n\nIt wasn’t just about attracting attention anymore. It was about turning that attention into action. And it worked.`
   },
   {
     id: 6,
-    image: "/hexagons/Icons-6.png",
+    image: "/hexagons/Icons-6.webp",
     title: "Now: Where CRO Meets AI",
     content: "Once we had CRO in place, the next step became obvious: **scale needed intelligence.** And in today’s world, that means one thing—**AI.**\n\nEverything around us is evolving with AI. Marketing, development, customer experience—none of it can truly scale without it anymore. And the businesses that don’t adapt? They’ll be left behind.\n\nAt Aenigm3 Labs, we’ve embraced that reality. We’re integrating AI into every layer of what we do:\n\n- Smarter A/B testing\n- Predictive audience targeting\n- Real-time behavioral insights\n- Automated CRO workflows\n- Hyper-personalized content delivery\n\nAI isn’t a tool—it’s the engine that drives **scalable, sustainable growth.** And it’s the core of where we’re headed next."
   },
   {
     id: 7,
-    image: "/hexagons/Icons-7.png",
+    image: "/hexagons/Icons-7.webp",
     title: "Why We’ve Evolved (More Than Once)",
     content: `Simple: we’ve never been okay with "just good enough."
 
@@ -53,13 +53,13 @@ const hexData = [
   },
   {
     id: 8,
-    image: "/hexagons/Icons-8.png",
+    image: "/hexagons/Icons-8.webp",
     title: "What Keeps Us Going",
     content: `-Solving problems with real data (not guesses)\n- Building systems that keep working long after we step back\n- Staying ahead of trends, tools, and tech\n- And always asking, how can we do this better?\n\nWe’re not here to just "manage" marketing. We’re here to make it **matter.**`
   },
   {
     id: 9,
-    image: "/hexagons/Icons-9.png",
+    image: "/hexagons/Icons-9.webp",
     title: "Looking Ahead",
     content: `Our goal? To become one of the top CRO and AI-led marketing labs in the world.
 

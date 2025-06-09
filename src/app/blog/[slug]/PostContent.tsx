@@ -1,3 +1,4 @@
+// src\app\blog\[slug]\PostContent.tsx
 'use client';
 
 import { PortableText } from '@portabletext/react';

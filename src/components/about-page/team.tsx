@@ -19,7 +19,7 @@ const team: TeamMember[] = [
     {
         name: "Sanju Peramuna Arachchi",
         role: "Chief Executive Officer | AI Strategist | Product Innovator",
-        image: "/team/sanju.jpg",
+        image: "/team/sanju.webp",
         linkedin: "https://www.linkedin.com/in/sanju-peramuna-arachchi/",
         description:
             `Sanju is the driving force behind Aenigm3 Labs’ bold transformation from a traditional digital marketing agency into a future-focused, AI-powered CRO powerhouse. With a strong background in web and software development, he now leads the vision, strategy, and development of in-house AI products that align directly with the agency’s mission—helping clients achieve practical, measurable, and ROI-focused growth.
@@ -32,7 +32,7 @@ const team: TeamMember[] = [
     {
         name: "Chamo Hewawasam",
         role: `Chief Operating Officer | Prompt Engineer | People-Centered Strategist`,
-        image: "/team/chamo.jpeg",
+        image: "/team/chamo.webp",
         linkedin: "https://www.linkedin.com/in/chamo-hewawasam/",
         description:
             `Chamo is the backbone of Aenigm3 Labs’ operations, ensuring that strategy meets execution across every project. As COO, she oversees the day-to-day workflow of the agency—coordinating teams, monitoring performance, and ensuring that everything from campaign execution to website development is delivered with precision and purpose.
@@ -45,7 +45,7 @@ const team: TeamMember[] = [
     {
         name: "Chrislo Perera",
         role: `Chief Administrative Officer | Tech-Savvy Strategist | Sales & Systems Integrator`,
-        image: "/team/chrislo.jpeg",
+        image: "/team/chrislo.webp",
         linkedin: "https://www.linkedin.com/in/chrislo-perera/",
         description:
             `Chrislo is the steady hand behind Aenigm3 Labs' internal structure, ensuring that the engine of the company runs smoothly while also playing a vital role in driving sales. With a background in Business Information Systems and years of experience in both sales and IT infrastructure, Chrislo bridges the gap between internal operations and external growth.
@@ -60,7 +60,7 @@ const team: TeamMember[] = [
     {
         name: "Sandali Perera",
         role: `Project and Administrative Manager`,
-        image: "/team/sandali1.jpg",
+        image: "/team/sandali1.webp",
         linkedin: "https://www.linkedin.com/in/sandali-perera-6708ba324/",
         description:
             `With a background rooted in education and a natural talent for problem-solving, Sandali plays a vital role in keeping the internal gears of Aenigm3 Labs turning smoothly. She supports the leadership and project teams by managing task coordination, internal scheduling, and administrative operations, ensuring everything stays organized and on track.
@@ -73,7 +73,7 @@ const team: TeamMember[] = [
     {
         name: "Anjana Kalpa",
         role: `Creative Designer & Director`,
-        image: "/team/anjana.jpeg",
+        image: "/team/anjana.webp",
         linkedin: "https://www.linkedin.com/in/anjana-kalpa-77892b358/",
         description:
             `Anjana is the visionary behind Aenigm3 Labs’ creative output. With over a decade of multidisciplinary experience spanning photography, UI/UX, visual communication, and software engineering, he crafts brand identities, digital experiences, and campaign visuals that not only look good—but convert.
@@ -86,7 +86,7 @@ const team: TeamMember[] = [
     {
         name: "Lashen Yasawardhana",
         role: `Junior Software & Product Developer`,
-        image: "/team/lashen1.jpg",
+        image: "/team/lashen1.webp",
         linkedin: "https://www.linkedin.com/in/lashen-yasawardhana-855352261/",
         description:
             `At just 19 years old, Lashen is one of Aenigm3 Labs’ most promising young talents. With a deep interest in AI, machine learning, and software development, he has rapidly gained experience in tools like Python, HTML, CSS, and sentiment analysis models—most of which he pursued through self-learning and online certifications from institutions like IBM and the University of Moratuwa.

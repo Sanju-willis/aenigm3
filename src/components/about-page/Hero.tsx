@@ -36,14 +36,15 @@ export default function AboutHero() {
         <div className="relative w-full flex justify-center lg:justify-end">
           <div className="absolute -top-5 -right-5 w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] bg-brandblue rounded-full opacity-20 blur-3xl"></div>
           <div className="relative w-[280px] sm:w-[350px] md:w-[420px] lg:w-[480px] xl:w-[550px]">
-            <Image
-              src="/about/hero.png"
-              alt="Design Illustration"
-              className="relative w-full object-contain drop-shadow-xl"
-              width={600}
-              height={600}
-              priority
-            />
+           <Image
+  src="/about/hero.webp" // <-- updated to .webp
+  alt="Design Illustration"
+  className="relative w-full object-contain drop-shadow-xl"
+  width={600}
+  height={600}
+  priority
+/>
+
           </div>
         </div>
       </div>

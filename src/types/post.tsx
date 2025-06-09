@@ -1,3 +1,4 @@
+// src\types\post.tsx
 import { PortableTextBlock } from '@portabletext/react';
 
 export type Heading = {

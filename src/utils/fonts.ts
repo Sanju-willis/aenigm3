@@ -6,7 +6,12 @@ import { Inter_Tight } from 'next/font/google';
 export const royalCastle = localFont({
   src: [
     {
-      path: '../fonts/Royal-Castle-ExtraBold.otf',
+      path: '../fonts/RoyalCastle-ExtraBold.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/RoyalCastle-ExtraBold.woff',
       weight: '800',
       style: 'normal',
     },
@@ -19,7 +24,12 @@ export const royalCastle = localFont({
 export const aleo = localFont({
   src: [
     {
-      path: '../fonts/Aleo-Regular.otf',
+      path: '../fonts/Aleo-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Aleo-Regular.woff',
       weight: '400',
       style: 'normal',
     },
@@ -32,7 +42,12 @@ export const aleo = localFont({
 export const bangers = localFont({
   src: [
     {
-      path: '../fonts/bangers.regular.ttf',
+      path: '../fonts/bangers.regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/bangers.regular.woff',
       weight: '400',
       style: 'normal',
     },
@@ -46,5 +61,5 @@ export const interTight = Inter_Tight({
   subsets: ['latin'],
   variable: '--font-inter-tight',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'], // ← includes all usable weights
+  weight: ['300', '400', '500', '600', '700', '800'],
 });

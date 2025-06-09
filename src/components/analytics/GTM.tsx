@@ -30,7 +30,7 @@ export default function GTM() {
               // Push initial GTM bootstrap + our custom variables
               window.dataLayer.push({
                 'gtm.start': new Date().getTime(),
-                event: 'gtm.js',
+                event: 'contextReady',
                 userId: userId,
                 pageCategory: document.body.dataset.category || 'unknown',
                 pageTitle: document.title,

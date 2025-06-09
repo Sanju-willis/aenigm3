@@ -1,14 +1,7 @@
 // src\lib\trackEvent.ts
 'use client';
 
-export async function trackEvent({
-  email,
-  phone,
-  userId,
-  eventName = 'PageView',
-  eventId,
-  test_event_code,
-}: {
+export async function trackEvent({ email, phone, userId, eventName = 'PageView', eventId, test_event_code,}: {
   email?: string;
   phone?: string;
   userId?: string;

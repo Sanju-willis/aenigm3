@@ -3,7 +3,7 @@
 
 import { Heading } from '@/types/heading';
 import { useEffect, useRef, useState } from 'react';
-import BlogSidebar from '../../../components/blog/blog-side';
+import BlogSidebar from './blog-side';
 
 interface BlogLayoutProps {
   children: React.ReactNode;

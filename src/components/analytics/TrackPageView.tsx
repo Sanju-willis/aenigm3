@@ -13,6 +13,8 @@ export default function TrackPageView() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
+    // Add: Get user ID from localStorage or auth context
+    const userId = localStorage.getItem('a3l_userId') || ''; // fallback-safe
     const email = '';
     const phone = '';
 
@@ -30,6 +32,7 @@ export default function TrackPageView() {
           phone,
           eventName: 'PageView',
           eventId,
+          userId, // ✅ added user ID here
         });
         clearInterval(interval);
       } else {
@@ -40,6 +43,7 @@ export default function TrackPageView() {
             email,
             phone,
             eventName: 'PageView',
+            userId, // ✅ still pass user ID
           });
           clearInterval(interval);
         }

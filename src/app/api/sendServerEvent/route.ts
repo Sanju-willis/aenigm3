@@ -1,4 +1,3 @@
-// src\app\api\sendServerEvent\route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import crypto from 'crypto';
@@ -14,9 +13,31 @@ function hash(value?: string) {
     : undefined;
 }
 
+// 🔧 New: Extract public IP (IPv6 preferred, fallback to IPv4)
+function extractClientIp(forwardedFor: string | null): string | undefined {
+  if (!forwardedFor) return undefined;
+  const ipList = forwardedFor.split(',').map(ip => ip.trim());
+
+  for (const ip of ipList) {
+    if (
+      ip &&
+      ip !== '::1' &&
+      ip !== '127.0.0.1' &&
+      !ip.startsWith('10.') &&
+      !ip.startsWith('192.168.') &&
+      !ip.startsWith('172.')
+    ) {
+      return ip;
+    }
+  }
+
+  return ipList[0]; // fallback: return something
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get('x-forwarded-for') || '';
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    const ip = extractClientIp(forwardedFor);
     const userAgent = req.headers.get('user-agent') || '';
 
     const bodyText = await req.text();
@@ -80,7 +101,7 @@ export async function POST(req: NextRequest) {
 
     const finalTestCode = test_event_code || ENV_TEST_EVENT_CODE;
     if (finalTestCode) {
-      payload.test_event_code = finalTestCode; // ✅ CORRECT PLACEMENT
+      payload.test_event_code = finalTestCode;
     }
 
     console.log('[📤 Sending CAPI Event]', JSON.stringify(payload, null, 2));

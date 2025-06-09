@@ -1,20 +1,11 @@
-// src\utils\fonts.ts
+import { Poppins, Inter_Tight } from 'next/font/google';
 import localFont from 'next/font/local';
-import { Inter_Tight } from 'next/font/google';
 
 // ▶ Royal Castle – Display/Heading font (800 weight)
 export const royalCastle = localFont({
   src: [
-    {
-      path: '../fonts/RoyalCastle-ExtraBold.woff2',
-      weight: '800',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/RoyalCastle-ExtraBold.woff',
-      weight: '800',
-      style: 'normal',
-    },
+    { path: '../fonts/RoyalCastle-ExtraBold.woff2', weight: '800', style: 'normal' },
+    { path: '../fonts/RoyalCastle-ExtraBold.woff', weight: '800', style: 'normal' },
   ],
   variable: '--font-royal-castle',
   display: 'swap',
@@ -23,16 +14,8 @@ export const royalCastle = localFont({
 // ▶ Aleo – Serif body/quote font (400 weight)
 export const aleo = localFont({
   src: [
-    {
-      path: '../fonts/Aleo-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/Aleo-Regular.woff',
-      weight: '400',
-      style: 'normal',
-    },
+    { path: '../fonts/Aleo-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/Aleo-Regular.woff', weight: '400', style: 'normal' },
   ],
   variable: '--font-aleo',
   display: 'swap',
@@ -41,16 +24,8 @@ export const aleo = localFont({
 // ▶ Bangers – Fun/label/accent font (400 weight)
 export const bangers = localFont({
   src: [
-    {
-      path: '../fonts/Bangers.Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/Bangers.Regular.woff',
-      weight: '400',
-      style: 'normal',
-    },
+    { path: '../fonts/Bangers.Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/Bangers.Regular.woff', weight: '400', style: 'normal' },
   ],
   variable: '--font-bangers',
   display: 'swap',
@@ -62,4 +37,12 @@ export const interTight = Inter_Tight({
   variable: '--font-inter-tight',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700', '800'],
+});
+
+// ▶ Poppins – Bold display/section font (600–800)
+export const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap',
+  weight: ['600', '700', '800'],
 });

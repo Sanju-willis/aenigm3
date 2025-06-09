@@ -24,6 +24,7 @@ const config: Config = {
         heading: ['var(--font-royal-castle)', 'serif'],   // for hero/menu titles
         body: ['var(--font-aleo)', 'serif'],              // for paragraph/serif body
         accent: ['var(--font-bangers)', 'cursive'],       // for labels/fun copy
+        display: ['var(--font-poppins)', 'sans-serif'],    
       },
 
 

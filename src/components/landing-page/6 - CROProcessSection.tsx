@@ -1,5 +1,5 @@
-// src\components\landing-page\6 - CROProcessSection.tsx
 'use client';
+
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -44,7 +44,6 @@ const steps = [
   },
 ];
 
-
 export default function CROProcessSection() {
   const [showStrategyCallForm, setShowStrategyCallForm] = useState(false);
 
@@ -61,7 +60,7 @@ export default function CROProcessSection() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold  mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
               Our Simple <span className="text-pink-600">4-Step</span> CRO Process
             </h2>
             <p className="text-base sm:text-lg text-gray-600">
@@ -69,18 +68,19 @@ export default function CROProcessSection() {
             </p>
           </div>
 
-          {/* Steps Grid */}
+          {/* Step Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
               >
                 <Card className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 rounded-lg overflow-hidden h-full">
                   <CardContent className="p-4 sm:p-6 flex flex-col h-full">
-                    {/* Top section with image and title - fixed height */}
+                    {/* Image and title */}
                     <div className="flex flex-col items-center mb-4">
                       <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 mb-4">
                         <img
@@ -93,47 +93,40 @@ export default function CROProcessSection() {
                         {step.title}
                       </h3>
                       {step.subtitle && (
-                        <p className="text-sm text-gray-500 text-center">
-                          {step.subtitle}
-                        </p>
+                        <p className="text-sm text-gray-500 text-center">{step.subtitle}</p>
                       )}
                     </div>
 
-                    {/* Horizontal divider - centered */}
+                    {/* Divider */}
                     <div className="flex justify-center mb-4">
                       <div className="w-48 h-px bg-gray-200"></div>
                     </div>
 
-                    {/* Bullet points section */}
-                    <div className="w-full">
-                      <ul className="space-y-3">
-                        {step.points.map((point, i) => (
-                          <li key={i} className="flex items-baseline">
-                            <span className="text-brandblue mr-2 flex-shrink-0">•</span>
-                            <span className="text-sm sm:text-base text-gray-600">{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {/* Bullet points */}
+                    <ul className="space-y-3">
+                      {step.points.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="text-brandblue mr-2 flex-shrink-0">•</span>
+                          <span className="text-sm sm:text-base text-gray-600">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </div>
 
-          {/* Results Text */}
+          {/* Results line */}
           <div className="text-center mb-8 sm:mb-12">
             <p className="text-lg sm:text-xl font-semibold text-gray-500">
               Results? More revenue, lower costs, and higher profits.
             </p>
           </div>
-
-          
-         
         </div>
       </section>
 
-      {/* Modal for StrategyCallForm */}
+      {/* Modal */}
       {showStrategyCallForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
           <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">

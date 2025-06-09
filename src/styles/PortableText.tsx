@@ -1,3 +1,4 @@
+// src\styles\PortableText.tsx
 import { PortableTextComponents } from '@portabletext/react';
 import Image from 'next/image';
 import { ReactNode } from 'react';

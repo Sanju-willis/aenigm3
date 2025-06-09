@@ -1,34 +1,34 @@
-// src\components\landing-page\10 - GrowRevenueSection.tsx
+// src/components/landing-page/10 - GrowRevenueSection.tsx
 'use client';
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { CheckCircle, Rocket } from "lucide-react";
-import { motion } from "framer-motion";
-import Image from "next/image"; // ✅ Add Image import
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, Rocket } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const features = [
   {
-    title: "Website Audit & Analysis",
-    description: "Identify conversion blockers and sales leaks",
-    img: "/images/website-audit.webp",
+    title: 'Website Audit & Analysis',
+    description: 'Identify conversion blockers and sales leaks',
+    img: '/images/website-audit.webp',
   },
   {
-    title: "Actionable Strategies",
-    description: "Steps to boost sales and reduce drop-offs",
-    img: "/images/actionable-strategies.webp",
+    title: 'Actionable Strategies',
+    description: 'Steps to boost sales and reduce drop-offs',
+    img: '/images/actionable-strategies.webp',
   },
   {
-    title: "Personalized Recommendations",
-    description: "Expert insights tailored to your business needs",
-    img: "/images/personalized-recommendations.webp",
+    title: 'Personalized Recommendations',
+    description: 'Expert insights tailored to your business needs',
+    img: '/images/personalized-recommendations.webp',
   },
 ];
 
 export default function GrowRevenueSection() {
   return (
     <section className="global-section">
-      <div className="container mx-auto px-6 text-center">
+      <div className="container mx-auto px-4 sm:px-6 text-center">
         {/* Heading */}
         <h2 className="text-3xl sm:text-4xl font-bold mb-2">
           Ready to <span className="text-pink-600">Grow Your Revenue</span>
@@ -39,13 +39,14 @@ export default function GrowRevenueSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {features.map((feature, index) => (
             <motion.div
-              key={index}
+              key={feature.title}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
               <Card className="p-6">
-                <CardContent className="flex flex-col items-center">
+                <CardContent className="flex flex-col items-center text-center">
                   <div className="relative w-24 h-24 mb-4">
                     <Image
                       src={feature.img}
@@ -56,7 +57,7 @@ export default function GrowRevenueSection() {
                       priority={index === 0}
                     />
                   </div>
-                  <h3 className="text-lg font-heading mb-2">{feature.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
                   <CheckCircle className="text-green-500 w-6 h-6" />
                 </CardContent>
@@ -67,9 +68,10 @@ export default function GrowRevenueSection() {
 
         {/* CTA Button */}
         <motion.div
-          className="mt-6 text-center"
+          className="mt-6"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.9 }}
         >
           <motion.a

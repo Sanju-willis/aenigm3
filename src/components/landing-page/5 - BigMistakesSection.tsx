@@ -1,10 +1,9 @@
-// src\components\landing-page\5 - BigMistakesSection.tsx
+// src/components/landing-page/5 - BigMistakesSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { XCircle, AlertTriangle, Rocket } from "lucide-react";
-import { motion } from "framer-motion";
+import { XCircle, AlertTriangle, Rocket } from 'lucide-react';
+import { motion } from 'framer-motion';
 import FindOutForm from '../forms/FindOutForm';
 
 const mistakes = [
@@ -21,22 +20,21 @@ export default function BigMistakesSection() {
 
   useEffect(() => {
     document.body.style.overflow = showFindOutForm ? 'hidden' : 'auto';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    return () => { document.body.style.overflow = 'auto'; };
   }, [showFindOutForm]);
 
   return (
     <>
       <section className="global-section">
-        <div className="container mx-auto px-6 text-center">
-          {/* Top Heading */}
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          {/* Heading */}
           <motion.div
             className="mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            {/* Mobile Layout */}
+            {/* Mobile */}
             <h2 className="text-2xl sm:hidden font-bold flex flex-col items-center gap-1">
               <span className="flex items-center gap-2">
                 <AlertTriangle className="text-yellow-500 w-6 h-6" />
@@ -45,7 +43,7 @@ export default function BigMistakesSection() {
               <span>Your <span className="text-pink-600">Sales</span></span>
             </h2>
 
-            {/* Desktop Layout */}
+            {/* Desktop */}
             <h2 className="hidden sm:flex text-2xl sm:text-3xl lg:text-4xl font-bold justify-center items-center gap-2">
               <AlertTriangle className="text-yellow-500 w-8 h-8" />
               The Big Mistakes Hurting Your <span className="text-pink-600">Sales</span>
@@ -58,13 +56,14 @@ export default function BigMistakesSection() {
               {mistakes.map((mistake, index) => (
                 <motion.li
                   key={index}
-                  className="flex items-center gap-3"
+                  className="flex items-start gap-3"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <XCircle className="text-red-500 w-6 h-6 flex-shrink-0" />
-                  <span>{mistake}</span>
+                  <XCircle className="text-red-500 w-6 h-6 mt-1 flex-shrink-0" />
+                  <span className="text-gray-700">{mistake}</span>
                 </motion.li>
               ))}
             </ul>
@@ -75,7 +74,7 @@ export default function BigMistakesSection() {
             className="mt-12 text-xl font-semibold flex justify-center items-center gap-2 text-gray-500"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
+            transition={{ delay: 0.6 }}
           >
             Fix these, and your revenue will skyrocket.
             <Rocket className="text-pink-500 w-6 h-6 hidden sm:inline" />
@@ -97,7 +96,7 @@ export default function BigMistakesSection() {
         </div>
       </section>
 
-      {/* Modal for FindOutForm */}
+      {/* Modal */}
       {showFindOutForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">
           <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-lg">

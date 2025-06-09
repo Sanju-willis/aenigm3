@@ -1,4 +1,3 @@
-// src\app\blog\BlogList.tsx
 'use client';
 
 import { useState } from 'react';
@@ -24,6 +23,11 @@ type Post = {
   categories?: Category[];
 };
 
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return isNaN(date.getTime()) ? 'Unknown' : date.toLocaleDateString();
+}
+
 export default function BlogList({
   posts,
   categories,
@@ -42,36 +46,33 @@ export default function BlogList({
   return (
     <BlogListLayout
       sidebar={
-        <div className="border rounded-xl p-5 shadow-sm bg-white dark:bg-zinc-900">
-          <h2 className="text-lg font-semibold mb-4">Categories</h2>
-          <ul className="space-y-2">
-            <li>
+        <div className="rounded-2xl border border-border bg-white dark:bg-zinc-900 shadow-md p-6 space-y-4">
+          <h2 className="text-lg font-bold">Categories</h2>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-3 py-1.5 text-sm rounded-full border transition-all ${
+                !selectedCategory
+                  ? 'bg-primary text-white'
+                  : 'hover:bg-muted hover:text-foreground'
+              }`}
+            >
+              All
+            </button>
+            {categories.map((cat) => (
               <button
-                onClick={() => setSelectedCategory(null)}
-                className={`w-full text-left text-sm px-3 py-2 rounded border transition ${
-                  !selectedCategory
+                key={cat._id}
+                onClick={() => setSelectedCategory(cat._id)}
+                className={`px-3 py-1.5 text-sm rounded-full border transition-all ${
+                  selectedCategory === cat._id
                     ? 'bg-primary text-white'
-                    : 'hover:bg-primary hover:text-white'
+                    : 'hover:bg-muted hover:text-foreground'
                 }`}
               >
-                All
+                {cat.title}
               </button>
-            </li>
-            {categories.map((cat) => (
-              <li key={cat._id}>
-                <button
-                  onClick={() => setSelectedCategory(cat._id)}
-                  className={`w-full text-left text-sm px-3 py-2 rounded border transition ${
-                    selectedCategory === cat._id
-                      ? 'bg-primary text-white'
-                      : 'hover:bg-primary hover:text-white'
-                  }`}
-                >
-                  {cat.title}
-                </button>
-              </li>
             ))}
-          </ul>
+          </div>
         </div>
       }
     >
@@ -79,46 +80,46 @@ export default function BlogList({
         <Link
           key={post._id}
           href={`/blog/${post.slug.current}`}
-          className="group rounded-xl border border-border overflow-hidden bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md transition"
+          className="group rounded-2xl border border-border overflow-hidden bg-white dark:bg-zinc-900 shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
         >
           {post.mainImage?.asset?.url && (
-            <div className="aspect-[16/9] w-full overflow-hidden">
+            <div className="aspect-[16/9] overflow-hidden">
               <Image
                 src={post.mainImage.asset.url}
                 alt={post.title}
-                width={400}
-                height={225}
-                className="w-full h-full object-cover transition group-hover:scale-105 duration-300"
+                width={600}
+                height={340}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
           )}
 
-          <div className="p-4 flex flex-col justify-between h-full">
-            <h2 className="text-base font-semibold mb-2 group-hover:text-primary transition text-balance">
+          <div className="p-4 space-y-2 flex flex-col h-full">
+            <h2 className="text-sm font-semibold group-hover:text-primary transition-colors text-balance line-clamp-2">
               {post.title}
             </h2>
 
-            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
               {post.author?.image?.asset?.url && (
                 <Image
                   src={post.author.image.asset.url}
                   alt={post.author.name}
                   width={20}
                   height={20}
-                  className="rounded-full object-cover w-5 h-5"
+                  className="rounded-full w-5 h-5 object-cover"
                 />
               )}
               {post.author?.name && <span>{post.author.name}</span>}
               <span className="mx-1">·</span>
-              <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+              <span>{formatDate(post.publishedAt)}</span>
             </div>
 
-            {post.categories && (
-              <div className="flex flex-wrap gap-2 mt-auto">
+            {post.categories && post.categories.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
                 {post.categories.map((cat) => (
                   <span
                     key={cat._id}
-                    className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-zinc-800 rounded-full text-gray-600 dark:text-gray-300"
+                    className="text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground"
                   >
                     {cat.title}
                   </span>

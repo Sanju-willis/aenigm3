@@ -1,3 +1,4 @@
+// src\utils\fonts.ts
 import { Poppins, Inter_Tight } from 'next/font/google';
 import localFont from 'next/font/local';
 

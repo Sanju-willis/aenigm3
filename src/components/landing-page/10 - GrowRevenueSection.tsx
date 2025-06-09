@@ -1,10 +1,10 @@
-// src\components\landing-page\10 - GrowRevenueSection.tsx
 'use client';
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image"; // ✅ Add Image import
 
 const features = [
   {
@@ -45,7 +45,16 @@ export default function GrowRevenueSection() {
             >
               <Card className="p-6">
                 <CardContent className="flex flex-col items-center">
-                  <img src={feature.img} alt={feature.title} className="h-24 mb-4" />
+                  <div className="relative w-24 h-24 mb-4">
+                    <Image
+                      src={feature.img}
+                      alt={feature.title}
+                      fill
+                      sizes="(max-width: 768px) 80px, 96px"
+                      className="object-contain"
+                      priority={index === 0}
+                    />
+                  </div>
                   <h3 className="text-lg font-heading mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{feature.description}</p>
                   <CheckCircle className="text-green-500 w-6 h-6" />
@@ -66,7 +75,8 @@ export default function GrowRevenueSection() {
             href="#grow-revenue"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center justify-center bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition gap-2" id="let-take-off"
+            className="inline-flex items-center justify-center bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full transition gap-2"
+            id="let-take-off"
           >
             <Rocket className="w-5 h-5" />
             Let’s Take Off!

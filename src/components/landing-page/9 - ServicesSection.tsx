@@ -1,8 +1,8 @@
-// src\components\landing-page\9 - ServicesSection.tsx
 'use client';
 
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import Image from "next/image"; // ✅ Import added
 
 const services = [
   { title: "A/B Testing", img: "/images/ab-testing.webp" },
@@ -35,11 +35,14 @@ export default function CROServicesSection() {
               <Card className="w-full bg-white border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex flex-col items-center">
-                    <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mb-4 flex items-center justify-center">
-                      <img 
-                        src={service.img} 
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mb-4 flex items-center justify-center relative">
+                      <Image
+                        src={service.img}
                         alt={service.title}
-                        className="w-full h-full object-contain p-2"
+                        fill
+                        sizes="(max-width: 768px) 80px, (max-width: 1024px) 96px, 128px"
+                        className="object-contain p-2"
+                        priority={index === 0} // ✅ Only preload 1st
                       />
                     </div>
                     <h3 className="text-sm sm:text-base lg:text-lg font-heading text-center text-gray-800 line-clamp-2">

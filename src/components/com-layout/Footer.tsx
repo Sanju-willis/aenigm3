@@ -1,5 +1,8 @@
 // src\components\com-layout\Footer.tsx
+'use client';
+
 import Link from 'next/link';
+import Image from 'next/image'; // ✅ Import added
 import { cn } from '@/lib/utils';
 import { interTight } from '@/utils/fonts';
 
@@ -67,7 +70,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
           <div className="md:col-span-1">
             <Link href="/">
-              <img src="/Logo white-02.svg" alt="Aenigm3 Labs" className="h-12 mb-4" />
+              <Image
+                src="/Logo white-02.svg"
+                alt="Aenigm3 Labs"
+                width={144}
+                height={48}
+                priority={false}
+                className="h-12 w-auto mb-4"
+              />
             </Link>
             <p className="text-white/90 text-sm leading-relaxed">
               Aenigm3 Labs is a CRO-first marketing and development agency using AI to turn insights into sales. We combine conversion-driven strategy, creative execution, and intelligent automation to help brands grow faster and smarter.

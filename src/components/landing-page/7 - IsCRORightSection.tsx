@@ -1,9 +1,11 @@
 // src\components\landing-page\7 - IsCRORightSection.tsx
 'use client';
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from 'next/image'; // ✅ Import added
 import StrategyCallForm from "../forms/StrategyCallForm";
 
 const points = [
@@ -40,7 +42,16 @@ export default function IsCRORightSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img src="/images/cro-illustration.webp" alt="CRO" className="mx-auto h-64" />
+              <div className="mx-auto h-64 relative w-full max-w-md">
+                <Image
+                  src="/images/cro-illustration.webp"
+                  alt="CRO"
+                  fill
+                  sizes="(max-width: 768px) 90vw, 400px"
+                  className="object-contain"
+                  priority={false}
+                />
+              </div>
             </motion.div>
 
             {/* Right List */}
@@ -82,13 +93,15 @@ export default function IsCRORightSection() {
               onClick={() => setShowStrategyCallForm(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full cursor-pointer transition" id="see-how-we-can-help"
+              className="inline-block bg-brandblue hover:bg-brandblue/90 text-white font-medium text-lg py-3 px-6 rounded-full cursor-pointer transition"
+              id="see-how-we-can-help"
             >
               Schedule Strategy Call ▶
             </motion.a>
           </motion.div>
         </div>
       </section>
+
       {/* Modal for StrategyCallForm */}
       {showStrategyCallForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75 p-4">

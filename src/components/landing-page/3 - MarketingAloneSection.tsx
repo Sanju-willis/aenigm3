@@ -1,3 +1,4 @@
+// src\components\landing-page\3 - MarketingAloneSection.tsx
 'use client';
 
 import { motion } from 'framer-motion';

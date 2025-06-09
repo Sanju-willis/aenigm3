@@ -21,8 +21,19 @@ export default function RootLayout({
       className={`h-full ${royalCastle.variable} ${aleo.variable} ${poppins.variable} ${interTight.variable}`}
     >
       <head>
-        <GTM />
-      </head>
+  {/* ✅ Preconnect to critical 3rd-party origins */}
+  <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
+  <link rel="preconnect" href="https://www.facebook.com" crossOrigin="anonymous" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+
+  {/* ✅ If using DNS-prefetch fallback (not needed if preconnect present) */}
+  <link rel="dns-prefetch" href="https://connect.facebook.net" />
+  <link rel="dns-prefetch" href="https://www.facebook.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  {/* Your GTM init script */}
+  <GTM />
+</head>
       <body className="h-full font-sans">
         <noscript>
           <iframe

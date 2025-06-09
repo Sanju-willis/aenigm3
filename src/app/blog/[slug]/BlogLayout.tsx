@@ -8,9 +8,15 @@ import BlogSidebar from './blog-side';
 interface BlogLayoutProps {
   children: React.ReactNode;
   headings: Heading[];
+  author: {
+    name: string;
+    image?: { asset?: { url: string } };
+    bio?: string;
+  };
 }
 
-export default function BlogLayout({ children, headings }: BlogLayoutProps) {
+
+export default function BlogLayout({ children, headings, author }: BlogLayoutProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -73,10 +79,21 @@ export default function BlogLayout({ children, headings }: BlogLayoutProps) {
             
           </div>
 
-          {/* Author Bio (Placeholder) */}
-          <div className="mt-16 pt-8 border-t text-sm text-gray-600 dark:text-gray-400">
-            <p><strong>Written by Sanju Peramuna</strong> — CRO expert, ADHD-powered founder, and builder of Aenigm3 Labs.</p>
-          </div>
+          {/* Author Bio */}
+<div className="mt-16 pt-8 border-t text-sm text-gray-600 dark:text-gray-400 flex gap-4 items-start">
+  {author.image?.asset?.url && (
+    <img
+      src={author.image.asset.url}
+      alt={author.name}
+      className="w-12 h-12 rounded-full object-cover mt-1"
+    />
+  )}
+  <div>
+    <p><strong>{author.name}</strong></p>
+    {author.bio && <p className="mt-1">{author.bio}</p>}
+  </div>
+</div>
+
 
           {/* Similar Articles (Placeholder) */}
           <div className="mt-20 pt-8 border-t">

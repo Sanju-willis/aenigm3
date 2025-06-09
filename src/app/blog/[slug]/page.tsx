@@ -61,7 +61,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const headings = extractHeadings(post.body);
 
   return (
-    <BlogLayout headings={headings}>
+    <BlogLayout headings={headings}author={post.author}>
       <PostContent post={post} headings={headings} />
     </BlogLayout>
   );

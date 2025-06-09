@@ -1,3 +1,4 @@
+// src\components\landing-page\6 - CROProcessSection.tsx
 'use client';
 
 import { useState, useEffect } from 'react';

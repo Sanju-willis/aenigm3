@@ -1,4 +1,4 @@
-// src/components/landing-page/10 - GrowRevenueSection.tsx
+// src\components\landing-page\10 - GrowRevenueSection.tsx
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';

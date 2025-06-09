@@ -1,4 +1,3 @@
-// src\app\blog\[slug]\BlogLayout.tsx
 'use client';
 
 import { Heading } from '@/types/heading';
@@ -15,10 +14,10 @@ interface BlogLayoutProps {
   };
 }
 
-
 export default function BlogLayout({ children, headings, author }: BlogLayoutProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const observer = useRef<IntersectionObserver | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
@@ -30,8 +29,8 @@ export default function BlogLayout({ children, headings, author }: BlogLayoutPro
     };
 
     observer.current = new IntersectionObserver(handleIntersect, {
-      rootMargin: '0px 0px -60% 0px',
-      threshold: 0.4,
+      rootMargin: '0px 0px -70% 0px',
+      threshold: 0.25,
     });
 
     const targets = document.querySelectorAll('h1, h2, h3');
@@ -55,6 +54,15 @@ export default function BlogLayout({ children, headings, author }: BlogLayoutPro
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <>
       {/* Scroll Progress Bar */}
@@ -64,9 +72,21 @@ export default function BlogLayout({ children, headings, author }: BlogLayoutPro
       />
 
       {/* Main Layout */}
-<div className="w-full px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-[280px_2fr] gap-6 py-5">
+      <div className="w-full px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-[280px_2fr] gap-6 py-5">
         {/* Sidebar */}
-        <BlogSidebar headings={headings} activeId={activeId} />
+        {isMobile ? (
+          <details className="lg:hidden mb-4">
+            <summary className="cursor-pointer text-blue-600 underline">
+              On this page
+            </summary>
+            <div className="mt-2">
+              <BlogSidebar headings={headings} activeId={null} />
+            </div>
+          </details>
+        ) : (
+          <BlogSidebar headings={headings} activeId={activeId} />
+        )}
+
         {/* Blog Content */}
         <article className="prose prose-lg dark:prose-invert max-w-none">
           {children}
@@ -76,38 +96,40 @@ export default function BlogLayout({ children, headings, author }: BlogLayoutPro
             <p className="text-sm text-gray-600 dark:text-gray-300">
               💬 Did this help you? React below or leave a comment.
             </p>
-            
           </div>
-{/* Author Bio */}
-<div className="mt-16 pt-8 border-t text-sm text-gray-600 dark:text-gray-400 flex gap-4 items-start">
-  {author.image?.asset?.url ? (
-    <img
-      src={author.image.asset.url}
-      alt={author.name || 'Author'}
-      className="w-12 h-12 rounded-full object-cover mt-1"
-    />
-  ) : (
-    <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-700 mt-1" />
-  )}
-  <div>
-    <p><strong>{author.name || 'Unknown Author'}</strong></p>
-    <p className="mt-1">{author.bio || 'No author bio available.'}</p>
-  </div>
-</div>
 
+          {/* Author Bio */}
+          <div className="mt-16 pt-8 border-t text-sm text-gray-600 dark:text-gray-400 flex gap-4 items-start">
+            {author.image?.asset?.url ? (
+              <img
+                src={author.image.asset.url}
+                alt={author.name || 'Author'}
+                className="w-12 h-12 rounded-full object-cover mt-1"
+              />
+            ) : (
+              <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-700 mt-1" />
+            )}
+            <div>
+              <p>
+                <strong>{author.name || 'Unknown Author'}</strong>
+              </p>
+              <p className="mt-1">{author.bio || 'No author bio available.'}</p>
+            </div>
+          </div>
 
-
-          {/* Similar Articles (Placeholder) */}
+          {/* Similar Articles */}
           <div className="mt-20 pt-8 border-t">
             <h3 className="text-lg font-semibold mb-4">Similar articles</h3>
             <div className="grid md:grid-cols-2 gap-6 text-sm">
-              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl">[Article 1 Card]</div>
-              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl">[Article 2 Card]</div>
+              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl">
+                [Article 1 Card]
+              </div>
+              <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl">
+                [Article 2 Card]
+              </div>
             </div>
           </div>
         </article>
-
-        
       </div>
     </>
   );

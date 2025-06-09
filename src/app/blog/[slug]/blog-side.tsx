@@ -1,4 +1,3 @@
-// src\app\blog\[slug]\blog-side.tsx
 'use client';
 
 import { Heading } from '@/types/heading';
@@ -11,25 +10,31 @@ interface BlogSidebarProps {
 export default function BlogSidebar({ headings, activeId }: BlogSidebarProps) {
   return (
     <aside
-      className="hidden lg:block sticky top-24 h-fit border p-5 rounded-xl shadow-sm bg-white dark:bg-gray-900 ml-auto w-full max-w-[280px]"
+      className="sticky top-24 h-fit border p-5 rounded-xl shadow-sm bg-white dark:bg-gray-900 w-full max-w-[280px]"
       aria-label="Table of contents"
     >
       <h2 className="text-base font-semibold mb-4 text-gray-700 dark:text-gray-200">
         On this page
       </h2>
-      <ul className="space-y-2 text-sm">
+      <ul className="space-y-2 text-sm leading-snug">
         {headings.map((h) => (
           <li
             key={h.id}
-            className={`pl-${h.level === 'h3' ? 6 : h.level === 'h2' ? 3 : 0}`}
+            className={`border-l-2 ${
+              h.level === 'h3'
+                ? 'ml-4 pl-2 border-transparent'
+                : h.level === 'h2'
+                ? 'ml-1 pl-2 border-blue-200'
+                : 'pl-2'
+            }`}
           >
             <a
               href={`#${h.id}`}
               title={`Go to section: ${h.text}`}
-              className={`block hover:underline transition-colors duration-200 ${
+              className={`block transition-colors duration-200 ${
                 activeId === h.id
                   ? 'text-blue-600 font-semibold'
-                  : 'text-gray-600 dark:text-gray-300'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-blue-500'
               }`}
             >
               {h.text}

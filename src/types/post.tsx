@@ -1,5 +1,4 @@
-// src\types\post.tsx
-import { PortableText, PortableTextBlock } from '@portabletext/react';
+import { PortableTextBlock } from '@portabletext/react';
 
 export type Heading = {
   text: string;
@@ -7,7 +6,7 @@ export type Heading = {
   level: 'h1' | 'h2' | 'h3';
 };
 
-export type  Post = {
+export type Post = {
   title: string;
   body: PortableTextBlock[];
   publishedAt: string;
@@ -16,4 +15,6 @@ export type  Post = {
     name: string;
     image?: { asset?: { url: string } };
   };
+  category?: string;       // ✅ Add this
+  tags?: string[];         // ✅ Add this
 };
